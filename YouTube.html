@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+        <link rel="shortcut icon" href="https://www.youtube.com/s/desktop/d53e3d89/img/favicon.ico" type="image/x-icon">
+        <title>YouTube</title>
+        <style>
+            html, body {
+                height: 100%;
+            }
+            body {
+                width:1117.6px;
+                margin: 0;
+                padding: 0;
+                position: fixed;
+            }
+            header {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                width: 823.2px;
+                height: 56px;
+                padding: 0 16px 0 16px
+            }
+            #logo {
+                padding: 18px 14px 18px 16px; /*top, right, bottom, left */
+                align-items: flex-start;
+            }
+            #search-form {
+                margin-left: 220px;
+                padding: 0 4px 0 4px;
+                height: 30px;
+                width: 640px;
+                border: 1px solid #ccc;
+                box-shadow: inset 0 1px 2px #eee;
+                border-radius: 2px;
+            }
+            #search-input {
+                height: 24px;
+                width: 562px;
+                border: none;
+                padding: 2px 6px 2px 6px;
+                margin: 0px;
+                height: auto;
+                width: 100%;
+                color: #909090;
+                font-size: 16px;
+            }
+            input:focus {outline:1px solid #065fd4;}
+            #login {
+                width: 180px;
+                height: 40px;
+                border: 1px solid #065fd4;
+                background-color: white;
+                margin-left: 8px;
+                align-items: flex-end;
+                cursor: pointer;
+            }
+            .middle {
+                display: flex;
+                flex-direction: row;
+            }
+            .menu{
+                width: 72px;
+                height: 697.6px;
+                position: fixed;
+            }
+            #items {
+                width: 72px;
+                height: 368px;
+                margin-top: 4px;
+                display: block;
+                position: relative;
+            }
+            .menu-btn {
+                width: 72px;
+                height: 73.6px;
+                cursor: pointer;
+                align-items: center;
+            }
+            .menu-btn:hover {
+                background-color: #e6e6e6;
+            }
+            .menu-btn:visited {
+                color: red;
+            }
+            .menu-btn p {
+                font-size: 10px;
+                text-align: center;
+                margin-bottom: 6px;
+            }
+            .main {
+                width: 1448px;
+                height: 3180.29px;
+                background-color: #eeeeee;
+                margin: 56px 0 0 72px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div style="padding: 8px">
+                <i class="fas fa-bars" style="padding: 8px; font-size: 18px; color: #606060; cursor: pointer;"></i>
+            </div>
+            <img id="logo" src="https://cdn2.downdetector.com/static/uploads/logo/image17.png" width="89.59px" height="20px">
+            <span style="margin: -20px 0 0 -10px; font-size: 10px; color:#606060">KR</span>
+            <form id="search-form" type="text" name="search">
+                <input id="search-input" type="text" name="search" placeholder="검색">
+                <img src="https://www.gstatic.com/inputtools/images/tia.png" style="padding: 0 2px 0 2px; position: relative;">
+                <button style="padding: 1px 6px 1px 6px; width: 56px; height: 26px;">
+                    <i class="fas fa-search" id="search-icon"></i>
+                </button>
+            </form>
+            <i class="fas fa-th" style="font-size: 18px; color: #606060; cursor: pointer; margin-left: 8px;"></i>
+            <i class="fas fa-ellipsis-v" style="font-size: 18px; color: #606060; cursor: pointer; margin-left: 8px;"></i>
+            <button id="login">
+                <i class="fas fa-user-circle" style="font-size: 22px; color: #065fd4;" color="#065fd4"></i>
+                <span style="font-size: 14px; color: #065fd4;">로그인</span>
+            </button>
+        </header>
+        <div class="middle">
+            <div class="menu">
+                <div id="items">
+                    <div class="menu-btn" id="home">
+                        <i class="fas fa-home"></i>
+                        <p>홈</p>
+                    </div>
+                    <div class="menu-btn" id="exploration">
+                        <i class="fas fa-compass"></i>
+                        <p>탐색</p>
+                    </div>
+                    <div class="menu-btn" id="subscribe">
+                        <i class="fab fa-youtube"></i>
+                        <p>구독</p>
+                    </div>
+                    <div class="menu-btn" id="custody">
+                        <i class="fas fa-inbox"></i>
+                        <p>보관함</p>
+                    </div>
+                    <div class="menu-btn" id="history">
+                        <i class="fas fa-history"></i>
+                        <p>시청 기록</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main">
+
+            </div>
+        </div>
+    </body>
+    
+</html>
