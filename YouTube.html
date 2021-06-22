@@ -2,55 +2,63 @@
 
 <html>
     <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
         <link rel="shortcut icon" href="https://www.youtube.com/s/desktop/d53e3d89/img/favicon.ico" type="image/x-icon">
         <title>YouTube</title>
         <style>
-            html, body {
-                height: 100%;
-            }
             body {
-                width:1117.6px;
                 margin: 0;
                 padding: 0;
-                position: fixed;
+                overflow-x: hidden;
             }
+            
             header {
                 align-items: center;
+                position: fixed;
+                z-index: 4;
                 display: flex;
                 flex-direction: row;
-                width: 823.2px;
+                width: 1490px;
                 height: 56px;
-                padding: 0 16px 0 16px
+                padding: 0 16px 0 16px;
+                background-color: white;
+            }
+            button {
+                outline: none;
+                border: none;
+                width: 40px;
+                height: 40px;
+                background-color: white;
+                cursor: pointer;
             }
             #logo {
                 padding: 18px 14px 18px 16px; /*top, right, bottom, left */
                 align-items: flex-start;
             }
-            #search-form {
-                margin-left: 220px;
-                padding: 0 4px 0 4px;
-                height: 30px;
-                width: 640px;
-                border: 1px solid #ccc;
-                box-shadow: inset 0 1px 2px #eee;
-                border-radius: 2px;
-            }
-            #search-input {
-                height: 24px;
+            .search-box {
                 width: 562px;
-                border: none;
-                padding: 2px 6px 2px 6px;
-                margin: 0px;
-                height: auto;
-                width: 100%;
-                color: #909090;
-                font-size: 16px;
+                height: 30px;
+                margin-left: 230px;
+                padding: 0 4px 0 4px;
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 2px 0 0 2px;
+                box-shadow: inset 0 1px 2px #eee;
             }
-            input:focus {outline:1px solid #065fd4;}
+            #search-btn {
+                width: 70px;
+                height: 32px;
+                font-size: 15px;
+                padding: 1px 6px 1px 6px;
+                border: 1px solid #ccc;
+                color: #909090;
+                background-color: #eee;
+                border-radius: 0 2px 2px 0;
+                cursor: pointer;
+                margin-left: 10px;
+            }
             #login {
-                width: 180px;
+                width: 99.5px;
                 height: 40px;
                 border: 1px solid #065fd4;
                 background-color: white;
@@ -58,14 +66,13 @@
                 align-items: flex-end;
                 cursor: pointer;
             }
-            .middle {
-                display: flex;
-                flex-direction: row;
-            }
-            .menu{
+
+            .menu {
                 width: 72px;
                 height: 697.6px;
                 position: fixed;
+                background-color: white;
+                margin-top: 56px;
             }
             #items {
                 width: 72px;
@@ -76,79 +83,334 @@
             }
             .menu-btn {
                 width: 72px;
-                height: 73.6px;
+                height: 43.6px;
+                padding: 16px 0 14px 0;
                 cursor: pointer;
                 align-items: center;
             }
             .menu-btn:hover {
                 background-color: #e6e6e6;
             }
-            .menu-btn:visited {
-                color: red;
-            }
             .menu-btn p {
                 font-size: 10px;
                 text-align: center;
                 margin-bottom: 6px;
+                color: #606060;
             }
+
             .main {
-                width: 1448px;
-                height: 3180.29px;
+                width: 1447.2px;
+                height: 800px;
+                /* height: 3180.29px; */
                 background-color: #eeeeee;
-                margin: 56px 0 0 72px;
+                position: absolute;
+                z-index: 2;
+                background-attachment: scroll;
+                margin-top: 56px;
+                margin-left: 72px;
+            }
+            #thumnail {
+                width: auto;
+                height: 190.113px;
+                cursor: pointer;
+            }
+            #thumnail img {
+                width: 337.987px;
+                height: 190.113px;
+                object-fit: cover;
+            }
+            #profile {
+                width: 36px;
+                height: 36px;
+                margin: 12px 12px 0 0;
+                cursor: pointer;
+            }
+            #profile img {
+                width: 36px;
+                height: 36px;
+                object-fit: cover;
+                border-radius: 50%;
+                background-color: transparent;
+            }
+            #video-title {
+                font-size: 16px;
+                -webkit-box-orient: vertical;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                font-weight: 500;
+                overflow: hidden;
+                max-height: 94.4px;
+                margin: 0;
+                cursor: pointer;
+            }
+            #video-info {
+                font-size: 14px;
+                color: #606060;
+                cursor: pointer;
             }
         </style>
     </head>
 
     <body>
         <header>
-            <div style="padding: 8px">
-                <i class="fas fa-bars" style="padding: 8px; font-size: 18px; color: #606060; cursor: pointer;"></i>
-            </div>
-            <img id="logo" src="https://cdn2.downdetector.com/static/uploads/logo/image17.png" width="89.59px" height="20px">
+            <button>
+                <i class="fas fa-bars" style="font-size: 20px; color: #606060;"></i>
+            </button>
+
+            <img id="logo" src="https://cdn2.downdetector.com/static/uploads/logo/image17.png" width="89.59px" height="20px" style="cursor: pointer;">
             <span style="margin: -20px 0 0 -10px; font-size: 10px; color:#606060">KR</span>
-            <form id="search-form" type="text" name="search">
-                <input id="search-input" type="text" name="search" placeholder="검색">
-                <img src="https://www.gstatic.com/inputtools/images/tia.png" style="padding: 0 2px 0 2px; position: relative;">
-                <button style="padding: 1px 6px 1px 6px; width: 56px; height: 26px;">
-                    <i class="fas fa-search" id="search-icon"></i>
-                </button>
-            </form>
-            <i class="fas fa-th" style="font-size: 18px; color: #606060; cursor: pointer; margin-left: 8px;"></i>
-            <i class="fas fa-ellipsis-v" style="font-size: 18px; color: #606060; cursor: pointer; margin-left: 8px;"></i>
+            
+            <div class="search-box">
+                <input type="search" id="search" placeholder="검색" style="border: none; height: auto; width: 100%; outline: none; font-size: 16px; margin-top: 5px;"/>
+            </div>
+            <img src="https://www.gstatic.com/inputtools/images/tia.png" style="margin-left: -35px; padding: 0 2px 0 2px; cursor: pointer;">
+
+            <button id="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <button style="font-size: 18px; color: #606060; margin-left: 5px;">
+                <i class="fas fa-microphone"></i>
+            </button>
+            
+            <button style="margin-left: 230px;">
+                <i class="fas fa-th" style="font-size: 17px; color: #606060; cursor: pointer;"></i>
+            </button>
+
+            <button style="margin-left: 10px;">
+                <i class="fas fa-ellipsis-v" style="font-size: 16px; color: #606060; cursor: pointer;"></i>
+            </button>
+
             <button id="login">
-                <i class="fas fa-user-circle" style="font-size: 22px; color: #065fd4;" color="#065fd4"></i>
+                <i class="fas fa-user-circle" style="font-size: 24px; color: #065fd4;"></i>
                 <span style="font-size: 14px; color: #065fd4;">로그인</span>
             </button>
         </header>
-        <div class="middle">
-            <div class="menu">
-                <div id="items">
-                    <div class="menu-btn" id="home">
+
+        <div class="menu">
+            <div id="items">
+                <div class="menu-btn">
+                    <p style="font-size: 18px; margin: 0;">
                         <i class="fas fa-home"></i>
-                        <p>홈</p>
-                    </div>
-                    <div class="menu-btn" id="exploration">
+                    </p>
+                    <p>홈</p>
+                </div>
+                <div class="menu-btn">
+                    <p style="font-size: 18px; margin: 0;">
                         <i class="fas fa-compass"></i>
-                        <p>탐색</p>
-                    </div>
-                    <div class="menu-btn" id="subscribe">
+                    </p>
+                    <p>탐색</p>
+                </div>
+                <div class="menu-btn">
+                    <p style="font-size: 18px; margin: 0;">
                         <i class="fab fa-youtube"></i>
-                        <p>구독</p>
-                    </div>
-                    <div class="menu-btn" id="custody">
+                    </p>
+                    <p>구독</p>
+                </div>
+                <div class="menu-btn">
+                    <p style="font-size: 18px; margin: 0;">
                         <i class="fas fa-inbox"></i>
-                        <p>보관함</p>
-                    </div>
-                    <div class="menu-btn" id="history">
+                    </p>
+                    <p>보관함</p>
+                </div>
+                <div class="menu-btn">
+                    <p style="font-size: 18px; margin: 0;">
                         <i class="fas fa-history"></i>
-                        <p>시청 기록</p>
+                    </p>
+                    <p>시청 기록</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div style="margin-top: 24px; padding: 0 16px 0 16px; display: flex; flex-direction: row;">
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="https://i.ytimg.com/vi/t7w3k3pjZY4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBXHZm2_J_W2-j4iK_KLMPLaehnwA" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwnhvPAl2CEgAL7yjLP6FrcoHCZer1L2_2x0T9RNx=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">산악회 아저씨들이 부르는 Justin Bieber - Peaches🍑</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">피식대학Psick Univ</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 27만회 · 1주 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="https://i.ytimg.com/vi/i9GZHNhalxg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCO7K2EwD-g802RsDJMhVk91J54xw" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwnhvPAl2CEgAL7yjLP6FrcoHCZer1L2_2x0T9RNx=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">산악회 아저씨들이 부르는 BTS(방탄소년단) - Butter🧈</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">피식대학Psick Univ</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 73만회 · 1일 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/6RQ-bBdASvk/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwnheEdG74_yDgY_6ASQuOyFzUu4KY6PNnZWLeRh4=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[4K][Killing Voice] 성시경(Sungsikyung)의 킬링보이스 - 너의 모든 순간, 좋을텐데, 넌 감동이었어, 희재, 두사람, 미소천사, 거리에서, 태양계ㅣ딩고뮤직</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">딩고 뮤직 / dingo music</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 876만회 · 4주 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/wDfqXR_5yyQ/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwnheEdG74_yDgY_6ASQuOyFzUu4KY6PNnZWLeRh4=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[4K][Special] 아이유(IU)의 킬링보이스를 라이브로! / 하루 끝, 너의 의미, 스물셋, 밤편지, 팔레트, 가을 아침, 삐삐, Blueming, 에잇, Coin, 라일락</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">딩고 뮤직 / dingo music</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 2200만회 · 2개월 전</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="main">
-
+            <div style="margin-top: 24px; padding: 0 16px 0 16px; display: flex; flex-direction: row;">
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/n9A1W52uJIA/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwngar1_XTH1_SltGSmX1M2RxEWj3GovxZ-qYW6K63Q=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[4K] 헤이즈(Heize)의 킬링벌스를 라이브로! l 비도 오고 그래서, 돌아오지마, 널 너무 모르고, Jenga, 저 별, And July, 교통정리, 헤픈 우연 등</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">dingo freestyle</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 309만회 · 2주 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/Qvu_JCYrwE0/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/ytc/AAUvwnhax1WjxE04YPkFCHoK1kWmpYDB4i3q2wbXEsLslA=s176-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[GOING SEVENTEEN] EP.9 돈't Lie Ⅲ #1 (Don't Lie Ⅲ #1)</h3>
+                            </div>
+                            <div style="width: 196.475px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">SEVENTEEN</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 154만회 · 6일 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/f4W33_lQl9I/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/0-MHWCZaR948Kly_Bd0porjQnTQXkyBC0dKMey1zh7Cbbrtwy13LpxSw4vawDKAlHJ9gFQgXpA=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[예고] 역주행의 아이콘★ 브레이브걸스 민영X유정이 온다!#놀라운토요일 | amazingsaturday EP.166</h3>
+                            </div>
+                            <div style="width: 211.387px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">놀라운 토요일 Amazing Saturday</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 27만회 · 3일 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 337.987px; height: 284.513px; margin: 0 8px 40px 8px;">
+                    <div id="thumnail">
+                        <img src="http://i3.ytimg.com/vi/aijzG0K0aZE/maxresdefault.jpg" />
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <div id="profile">
+                            <img src="https://yt3.ggpht.com/0-MHWCZaR948Kly_Bd0porjQnTQXkyBC0dKMey1zh7Cbbrtwy13LpxSw4vawDKAlHJ9gFQgXpA=s68-c-k-c0x00ffffff-no-rj" />
+                        </div>
+                        <div style="width: 260.688px; height: 94.4px;">
+                            <div style="width: auto; height: 43.2px; margin: 12px 0 4px 0;">
+                                <h3 id="video-title">[세로캠] 엔딩장인♥ 키(Key)의 에스파 Next Level#놀라운토요일 | amazingsaturday EP.165</h3>
+                            </div>
+                            <div style="width: 211.387px; height: 35.2px;">
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">놀라운 토요일 Amazing Saturday</span>
+                                </div>
+                                <div style="width: auto; height: 17.6px;">
+                                    <span id="video-info">조회수 48만회 · 3일 전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
