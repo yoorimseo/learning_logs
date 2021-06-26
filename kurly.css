@@ -1,0 +1,320 @@
+body {
+    margin: 0;
+}
+
+/* header */
+.header {
+    width: 1519.2px;
+    height: 156px;
+    background-color: white;
+}
+
+.userMenu {
+    width: 1050px;
+    height: 37px;
+    margin: 0 234.6px 0 234.6px;
+    display: flex;
+    flex-direction: row;
+}
+
+.delivery {
+    width: 130px;
+    height: 20px;
+    background-color: white;
+    margin-top: 7px;
+    padding: 0;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 30px;
+}
+
+.list_Menu {
+    width: 195.15px;
+    height: 37px;
+    margin: 0 0 0 724.85px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    font-size: 11px;
+    list-style: none;
+}
+.signUp {
+    width: 64.96px;
+    height: auto;
+    color: rgb(95, 0, 128);
+    text-align: center;
+    padding-top: 10px;
+}
+.signUp::after {
+    width: 1px;
+    height: 14px;
+    content: "";
+    float: right;
+    background-color: rgb(216, 216, 216);
+}
+.logIn {
+    width: 64.225px;
+    height: auto;
+    text-align: center;
+    padding-top: 10px;
+}
+.logIn::after {
+    width: 1px;
+    height: 14px;
+    content: "";
+    float: right;
+    background-color: rgb(216, 216, 216);
+}
+.customer {
+    width: 65.963px;
+    height: auto;
+    text-align: center;
+    padding-top: 10px;
+}
+.customer::after {
+    width: 8px;
+    height: 5px;
+    content: "";
+    background-image: url("https://res.kurly.com/pc/ico/1908/ico_down_8x5.png");
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 16px;
+    margin-left: 2px;
+}
+
+.headerLogo {
+    width: 1050px;
+    height: 63px;
+    margin: 0 234.6px 0 234.6px;
+    text-align: center;
+}
+.logo {
+    width: 103px;
+    height: 79px;
+    margin: -22px 48.5px 0 48.5px;
+    background-color: white;
+}
+
+.gnb {
+    width: 1519.2px;
+    height: 56px;
+}
+.gnbMenu {
+    width: 1050px;
+    height: 56px;
+    margin: 0 234.6px 0 234.6px;
+    display: flex;
+    flex-direction: row;
+}
+.gnbDetail{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 17px 0 0 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+.menu1 {
+    width: 208px;
+    height: auto;
+}
+.menuName1 {
+    padding-left: 10px;
+}
+.menu2 {
+    width: 124px;
+    height: auto;
+}
+.menu3 {
+    width: 110px;
+    height: auto;
+}
+.menu4 {
+    width: 116px;
+    height: auto;
+}
+.menu5 {
+    width: 116px;
+    height: auto;
+}
+.search {
+    width: 242px;
+    height: 36px;
+    border-radius: 30px;
+    background-color: #f4f4f4;
+    text-align: right;
+    margin: 10px 0 0 25px;
+}
+.searchIcon {
+    width: 30px;
+    height: 30px;
+    margin: 3px 5px 0 0;
+}
+.location {
+    color: #333;
+    margin: 15px 35px 0 35px;
+}
+.cart {
+    color: #333;
+    margin-top: 15px;
+}
+
+/* main */
+.main {
+    width: 1519.2px;
+    height: 7399.8px;
+}
+
+.slider {
+    width: auto;
+    height: 370px;
+    background-color: rgb(216, 216, 216);
+}
+.sliderImg {
+    width: 1519.2px;
+    height: 370px;
+}
+
+.recommend {
+    width: auto;
+    height: 652px;
+}
+.title {
+    width: 1519.2px;
+    height: 32px;
+    padding: 79px 0 35px 0;
+    margin: 0;
+    font-size: 26px;
+    text-align: center;
+    font-weight: 500;
+}
+.pdtBox {
+    width: 1050px;
+    height: 506px;
+    margin: 0 234.6px 0 234.6px;
+}
+.pdtList{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+.product {
+    width: 249px;
+    height: 506px;
+    list-style: none;
+    margin-right: 18px;
+}
+.pdtImg {
+    width: auto;
+    height: 320px;
+}
+.pdtInfo {
+    display: flex;
+    flex-direction: column;
+}
+.pdtName {
+    font-size: 15px;
+    margin-top: 12px;
+}
+.price{
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 9px;
+}
+.percent {
+    color: #fa622f;
+    padding-right: 8px;
+}
+.discount {
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    padding-top: 5px;
+    text-decoration: line-through;
+}
+
+.benefits {
+    width: auto;
+    height: 684px;
+    background-color: rgb(241, 241, 241);
+}
+.sale {
+    width: auto;
+    height: 652px;
+    background-color: blueviolet;
+}
+
+.AD_1 {
+    width: auto;
+    height: 141.6px;
+}
+.AdImg1 {
+    width: 1050px;
+    height: 140px;
+    margin: 0 234.6px 0 234.6px;
+}
+
+.MD {
+    width: auto;
+    height: 964px;
+    background-color: blueviolet;
+}
+
+.AD_2 {
+    width: auto;
+    height: 140px;
+}
+.AdImg2 {
+    width: 1050px;
+    height: 140px;
+    margin: 0 234.6px 0 234.6px;
+}
+
+.popular {
+    width: auto;
+    height: 652px;
+    background-color: blueviolet;
+}
+.season {
+    width: auto;
+    height: 652px;
+    background-color: gainsboro;
+}
+.lowprice {
+    width: auto;
+    height: 682px;
+    background-color: blueviolet;
+}
+.diet {
+    width: auto;
+    height: 682px;
+    background-color: gainsboro;
+}
+.recipe {
+    width: auto;
+    height: 449px;
+    background-color: blueviolet;
+}
+.review {
+    width: auto;
+    height: 517.6px;
+    background-color: gainsboro;
+}
+.banner {
+    width: auto;
+    height: 161.6px;
+}
+.bannerImg {
+    width: 1050px;
+    height: 161.1px;
+    margin: 0 234.6px 0 234.6px;
+}
+
+/* footer */
+.footer {
+    width: 1050px;
+    height: 358.6px;
+    padding-bottom: 60px;
+    margin: 0 234.6px 0 234.6px;
+    background-color: #dccdff;
+}
