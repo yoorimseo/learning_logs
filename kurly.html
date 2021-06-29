@@ -5,17 +5,31 @@
     <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 
     <link rel="stylesheet" href="kurly.css" />
+    <link rel="javascipt" href="kurly.js" />
     <link rel="shortcut icon" href="https://play-lh.googleusercontent.com/TXQ-2Q-mkbnhlXUQl-oJjVe2-ISLg8PcYAivqCnGUOucBQJdkPnneCr-L3EtBym2404C" type="image/x-icon" />
 
   </head>
   <body>
       <div class="header">
           <div class="userMenu">
-              <div class="delivery"></div>
+              <div class="delivery">
+                <span class="text_1">수도권·충청</span>
+                <span class="text_2">샛별배송
+                  <i class="fas fa-chevron-right fa-xs"></i>
+                </span>
+              </div>
               <ul class="list_Menu">
-                  <li class="signUp">회원가입</li>
-                  <li class="logIn">로그인</li>
-                  <li class="customer">고객센터</li>
+                  <li class="signUp"><a href="#">회원가입</a></li>
+                  <li class="logIn"><a href="#">로그인</a></li>
+                  <ul class="customer"><a href="#">고객센터</a>
+                    <ul class="sub_Menu">
+                      <li class="sub_text"><a href="#">공지사항</a></li>
+                      <li class="sub_text"><a href="#">자주하는 질문</a></li>
+                      <li class="sub_text"><a href="#">1:1 문의</a></li>
+                      <li class="sub_text"><a href="#">상품 제안</a></li>
+                      <li class="sub_text"><a href="#">에코포장 피드백</a></li>                        
+                    </ul>
+                  </ul>
               </ul>
           </div>
           <div class="headerLogo">
@@ -24,10 +38,31 @@
           <div class="gnb"><!--gnb: global navigation bar, 사이트 전체에 동일하게 적용되는 최상위 전체 공통 네비게이션-->
               <div class="gnbMenu">
                   <ul class="gnbDetail">
-                      <li class="menu1">
+                      <ul class="menu1">
                         <i class="fas fa-bars fa-lg"></i>  
-                        <span class="menuName1">전체 카테고리</span>
-                    </li>
+                        <span class="menuName1"><a href="#">전체 카테고리</a></span>
+                        <ul class="category">
+                          <li class="category_text"><a href="#">채소</a></li>
+                          <li class="category_text"><a href="#">과일·견과·쌀</a></li>
+                          <li class="category_text"><a href="#">수산·해산·건어물</a></li>
+                          <li class="category_text"><a href="#">정육·계란</a></li>
+                          <li class="category_text"><a href="#">국·반찬·메인요리</a></li>
+                          <li class="category_text"><a href="#">샐러드·간편식</a></li>
+                          <li class="category_text"><a href="#">면·양념·오일</a></li>
+                          <li class="category_text"><a href="#">생수·음료·우유·커피</a></li>
+                          <li class="category_text"><a href="#">간식·과자·떡</a></li>
+                          <li class="category_text"><a href="#">베이커리·치즈·델리</a></li>
+                          <li class="category_text"><a href="#">건강식품</a></li>
+                          <li class="category_text"><a href="#">생활용품·리빙</a></li>
+                          <li class="category_text"><a href="#">스킨케어·메이크업</a></li>
+                          <li class="category_text"><a href="#">헤어·바디·구강</a></li>
+                          <li class="category_text"><a href="#">주방용품</a></li>
+                          <li class="category_text"><a href="#">가전제품</a></li>
+                          <li class="category_text"><a href="#">베이비·키즈</a></li>
+                          <li class="category_text"><a href="#">반려동물</a></li>
+                          <li class="category_text"><a href="#">컬리의 추천</a></li>                          
+                        </ul>
+                      </ul>
                       <li class="menu2">신상품</li>
                       <li class="menu3">베스트</li>
                       <li class="menu4">알뜰쇼핑</li>
@@ -96,7 +131,25 @@
               </ul>
             </div>
           </div>
-          <div class="benefits"></div>
+          <div class="benefits">
+            <div>
+              <p class="title">특가/혜택
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>
+            </div>
+            <div class="pdtBox">
+              <ul>
+                <li>
+                  <img>
+                  <div class="bnf_info">
+                    <span class="bnf_text1">외할머니댁 최대 15% 할인</span>
+                    <span class="bnf_text2">할머니의 밥상을 그대로</span>
+                  </div>
+                </li>
+              </ul>              
+            </div>
+
+          </div>
           <div class="sale"></div>
 
           <div class="AD_1">

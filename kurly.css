@@ -18,15 +18,25 @@ body {
 }
 
 .delivery {
-    width: 130px;
+    width: 135px;
     height: 20px;
     background-color: white;
     margin-top: 7px;
-    padding: 0;
+    padding: 3px 0 0 5px;
     border: 1px solid rgb(216, 216, 216);
     border-radius: 30px;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: pointer;
 }
-
+.text_1 {
+    color: rgb(153, 153, 153);
+}
+.text_2 {
+    color: rgb(95, 0, 128);
+    padding-left: 2px;
+}
+a { text-decoration:none }
 .list_Menu {
     width: 195.15px;
     height: 37px;
@@ -35,14 +45,15 @@ body {
     display: flex;
     flex-direction: row;
     font-size: 11px;
+    font-weight: 700;
     list-style: none;
 }
 .signUp {
     width: 64.96px;
-    height: auto;
     color: rgb(95, 0, 128);
     text-align: center;
     padding-top: 10px;
+    cursor: pointer;
 }
 .signUp::after {
     width: 1px;
@@ -53,9 +64,10 @@ body {
 }
 .logIn {
     width: 64.225px;
-    height: auto;
+    color: black;
     text-align: center;
     padding-top: 10px;
+    cursor: pointer;
 }
 .logIn::after {
     width: 1px;
@@ -66,9 +78,12 @@ body {
 }
 .customer {
     width: 65.963px;
-    height: auto;
+    color: black;
     text-align: center;
-    padding-top: 10px;
+    padding: 10px 0 0 0;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 .customer::after {
     width: 8px;
@@ -79,6 +94,26 @@ body {
     background-repeat: no-repeat;
     top: 16px;
     margin-left: 2px;
+}
+.sub_Menu {
+    display: none;
+    position: absolute;
+    list-style: none;
+    font-size: 11px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 86px;
+    padding: 3px 9px 3px 9px;
+    z-index: 1;
+    top: 34px;
+    left: -40px;
+    text-align: left;
+}
+.sub_text {
+    padding: 5px 2px 5px 2px;
+}
+.customer:hover .sub_Menu {
+    display: block;
 }
 
 .headerLogo {
@@ -91,7 +126,7 @@ body {
     width: 103px;
     height: 79px;
     margin: -22px 48.5px 0 48.5px;
-    background-color: white;
+    cursor: pointer;
 }
 
 .gnb {
@@ -114,29 +149,77 @@ body {
     font-size: 14px;
     font-weight: bold;
 }
+
 .menu1 {
     width: 208px;
     height: auto;
+    cursor: pointer;
 }
 .menuName1 {
     padding-left: 10px;
+    color: black;
 }
+.menu1:hover {
+    color :rgb(95, 0, 128);
+}
+.menu1:hover .category {
+    display: block;
+}
+.category {
+    width: 219px;
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+    position: relative;
+    display: inline-block;
+}
+.category_text {
+    display: none;
+    position: absolute;
+    list-style: none;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-align: left;
+    z-index: 1;
+}
+
 .menu2 {
     width: 124px;
     height: auto;
+    cursor: pointer;
+}
+.menu2:hover {
+    text-decoration: underline;
+    text-underline-position: under;
 }
 .menu3 {
     width: 110px;
     height: auto;
+    cursor: pointer;
+}
+.menu3:hover {
+    text-decoration: underline;
+    text-underline-position: under;
 }
 .menu4 {
     width: 116px;
     height: auto;
+    cursor: pointer;
+}
+.menu4:hover {
+    text-decoration: underline;
+    text-underline-position: under;
 }
 .menu5 {
     width: 116px;
     height: auto;
+    cursor: pointer;
 }
+.menu5:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
 .search {
     width: 242px;
     height: 36px;
@@ -153,10 +236,18 @@ body {
 .location {
     color: #333;
     margin: 15px 35px 0 35px;
+    cursor: pointer;
+}
+.location:hover {
+    color :rgb(95, 0, 128);
 }
 .cart {
     color: #333;
     margin-top: 15px;
+    cursor: pointer;
+}
+.cart:hover {
+    color :rgb(95, 0, 128);
 }
 
 /* main */
