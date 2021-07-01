@@ -36,7 +36,6 @@ body {
     color: rgb(95, 0, 128);
     padding-left: 2px;
 }
-a { text-decoration:none }
 .list_Menu {
     width: 195.15px;
     height: 37px;
@@ -64,7 +63,6 @@ a { text-decoration:none }
 }
 .logIn {
     width: 64.225px;
-    color: black;
     text-align: center;
     padding-top: 10px;
     cursor: pointer;
@@ -78,7 +76,6 @@ a { text-decoration:none }
 }
 .customer {
     width: 65.963px;
-    color: black;
     text-align: center;
     padding: 10px 0 0 0;
     position: relative;
@@ -128,11 +125,18 @@ a { text-decoration:none }
     margin: -22px 48.5px 0 48.5px;
     cursor: pointer;
 }
-
+/* Menu */
 .gnb {
     width: 1519.2px;
     height: 56px;
+    background-color: white;
+    box-shadow: 0 10px 10px -10px #ddd;
 }
+.gnb-fixed {
+    position: fixed;
+    top: 0px;
+    left:0px;
+  }
 .gnbMenu {
     width: 1050px;
     height: 56px;
@@ -146,41 +150,58 @@ a { text-decoration:none }
     flex-direction: row;
     margin: 0;
     padding: 17px 0 0 0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
 }
 
+.icon {
+    width: 24px;
+    height: 24px;
+}
 .menu1 {
     width: 208px;
-    height: auto;
+    padding: 0;
+    position: relative;
+    display: inline-block;
     cursor: pointer;
 }
 .menuName1 {
     padding-left: 10px;
-    color: black;
 }
-.menu1:hover {
+.menu1_sub:hover {
     color :rgb(95, 0, 128);
+}
+
+.category {
+    width: 219px;
+    height: 590px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+    color: rgb(76, 76, 76);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: none;
+    position: absolute;
+    padding-bottom: 7px;
+    margin-top: 19px;
+}
+.category_sub {
+    height: 35px;
+    list-style: none;
+    z-index: 1;
+    padding: 7px 0 0 14px;
+}
+.category_sub:hover {
+    background-color: rgb(241, 241, 241);
+    color: rgb(95, 0, 128);
+}
+.category_text {
+    font-size: 14px;
+    font-weight: 600;
 }
 .menu1:hover .category {
     display: block;
-}
-.category {
-    width: 219px;
-    font-size: 12px;
-    color: rgb(76, 76, 76);
-    position: relative;
-    display: inline-block;
-}
-.category_text {
-    display: none;
-    position: absolute;
-    list-style: none;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    text-align: left;
-    z-index: 1;
 }
 
 .menu2 {
@@ -220,18 +241,23 @@ a { text-decoration:none }
     text-underline-position: under;
 }
 
+.searchBox {
+    display: flex;
+    flex-direction: row;
+}
 .search {
     width: 242px;
     height: 36px;
     border-radius: 30px;
     background-color: #f4f4f4;
-    text-align: right;
     margin: 10px 0 0 25px;
+    border: none;
+    padding-left: 10px;
 }
 .searchIcon {
     width: 30px;
     height: 30px;
-    margin: 3px 5px 0 0;
+    margin: 13px 0 0 -35px;
 }
 .location {
     color: #333;
@@ -259,7 +285,6 @@ a { text-decoration:none }
 .slider {
     width: auto;
     height: 370px;
-    background-color: rgb(216, 216, 216);
 }
 .sliderImg {
     width: 1519.2px;
@@ -270,14 +295,18 @@ a { text-decoration:none }
     width: auto;
     height: 652px;
 }
-.title {
+.titleBox {
     width: 1519.2px;
     height: 32px;
     padding: 79px 0 35px 0;
     margin: 0;
-    font-size: 26px;
     text-align: center;
-    font-weight: 500;
+}
+.title {
+    font-size: 26px;
+    font-weight: 500;   
+    margin: 0;
+    cursor: pointer;
 }
 .pdtBox {
     width: 1050px;
@@ -299,6 +328,7 @@ a { text-decoration:none }
 .pdtImg {
     width: auto;
     height: 320px;
+    cursor: pointer;
 }
 .pdtInfo {
     display: flex;
@@ -307,6 +337,7 @@ a { text-decoration:none }
 .pdtName {
     font-size: 15px;
     margin-top: 12px;
+    cursor: pointer;
 }
 .price{
     font-size: 15px;
@@ -329,10 +360,40 @@ a { text-decoration:none }
     height: 684px;
     background-color: rgb(241, 241, 241);
 }
+.bnfProduct {
+    width: 338px;
+    height: 538px;
+    margin-left: 18px;
+    list-style: none;
+}
+.bnfImg {
+    width: 338px;
+    height: 338px;
+    cursor: pointer;
+}
+.bnfInfo {
+    display: flex;
+    flex-direction: column;
+}
+.bnf_text1 {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 17px;
+    cursor: pointer;
+}
+.bnf_text2 {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(153, 153, 153);
+    padding-top: 8px;
+    cursor: pointer;
+}
+
 .sale {
     width: auto;
     height: 652px;
-    background-color: blueviolet;
 }
 
 .AD_1 {
@@ -348,7 +409,17 @@ a { text-decoration:none }
 .MD {
     width: auto;
     height: 964px;
-    background-color: blueviolet;
+}
+.MD_menu {
+    height: 200px;
+}
+.MD_list {
+    width: 1050px;
+    height: 180px;
+    margin: 0 234.6px 0 234.6px;
+    padding: 0 0 20px 0;
+    border: 1px solid red;
+    list-style: none;
 }
 
 .AD_2 {
@@ -364,33 +435,92 @@ a { text-decoration:none }
 .popular {
     width: auto;
     height: 652px;
-    background-color: blueviolet;
 }
-.season {
+
+.sale2 {
     width: auto;
     height: 652px;
-    background-color: gainsboro;
+    background-color: rgb(241, 241, 241);
 }
+
 .lowprice {
     width: auto;
     height: 682px;
-    background-color: blueviolet;
+    background-color: rgb(241, 241, 241);
 }
-.diet {
+.lp_titleBox {
+    width: 1519.2px;
+    height: 63px;
+    padding: 79px 0 35px 0;
+    margin: 0;
+    text-align: center;
+}
+.lp_text {
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+}
+
+.season {
     width: auto;
     height: 682px;
-    background-color: gainsboro;
 }
+
 .recipe {
     width: auto;
     height: 449px;
-    background-color: blueviolet;
 }
+.rcpBox {
+    height: 303px;
+    margin: 0 234.6px 0 234.6px;
+}
+.rcpProduct {
+    width: 338px;
+    height: 303px;
+    margin-left: 18px;
+    list-style: none;
+}
+.rcpImg {
+    width: 338px;
+    height: 225px;
+    cursor: pointer;
+}
+.rcpInfo {
+    height: 32px;
+    text-align: center;
+}
+.rcp_text {
+    padding-top: 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .review {
     width: auto;
     height: 517.6px;
-    background-color: gainsboro;
 }
+.reviewBox {
+    margin: 0 234.6px 0 234.6px;
+}
+.reviewImg{
+    width: 1110px;
+    height: 161.1px;
+}
+.rtBox {
+    padding: 39px 0 100px 0;
+    display: flex;
+    flex-direction: column;
+}
+.review_text1 {
+    font-size: 16px;
+    text-align: center;
+    color: rgb(153, 153, 153);
+}
+.review_text2 {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
 .banner {
     width: auto;
     height: 161.6px;

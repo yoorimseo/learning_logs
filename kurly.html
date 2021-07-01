@@ -2,12 +2,15 @@
 <html>
   <head>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./kurly.js"></script>
+
     <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 
     <link rel="stylesheet" href="kurly.css" />
-    <link rel="javascipt" href="kurly.js" />
     <link rel="shortcut icon" href="https://play-lh.googleusercontent.com/TXQ-2Q-mkbnhlXUQl-oJjVe2-ISLg8PcYAivqCnGUOucBQJdkPnneCr-L3EtBym2404C" type="image/x-icon" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
       <div class="header">
@@ -18,49 +21,112 @@
                   <i class="fas fa-chevron-right fa-xs"></i>
                 </span>
               </div>
+
               <ul class="list_Menu">
-                  <li class="signUp"><a href="#">회원가입</a></li>
-                  <li class="logIn"><a href="#">로그인</a></li>
-                  <ul class="customer"><a href="#">고객센터</a>
+                  <li class="signUp">회원가입</li>
+                  <li class="logIn">로그인</li>
+                  <ul class="customer">고객센터
                     <ul class="sub_Menu">
-                      <li class="sub_text"><a href="#">공지사항</a></li>
-                      <li class="sub_text"><a href="#">자주하는 질문</a></li>
-                      <li class="sub_text"><a href="#">1:1 문의</a></li>
-                      <li class="sub_text"><a href="#">상품 제안</a></li>
-                      <li class="sub_text"><a href="#">에코포장 피드백</a></li>                        
+                      <li class="sub_text">공지사항</li>
+                      <li class="sub_text">자주하는 질문</li>
+                      <li class="sub_text">1:1 문의</li>
+                      <li class="sub_text">상품 제안</li>
+                      <li class="sub_text">에코포장 피드백</li>                        
                     </ul>
                   </ul>
               </ul>
           </div>
+
           <div class="headerLogo">
               <img class="logo" src="https://res.kurly.com/images/marketkurly/logo/logo_x2.png">
           </div>
-          <div class="gnb"><!--gnb: global navigation bar, 사이트 전체에 동일하게 적용되는 최상위 전체 공통 네비게이션-->
+          
+          <!--gnb: global navigation bar, 사이트 전체에 동일하게 적용되는 최상위 전체 공통 네비게이션-->
+          <div class="gnb">
               <div class="gnbMenu">
                   <ul class="gnbDetail">
                       <ul class="menu1">
-                        <i class="fas fa-bars fa-lg"></i>  
-                        <span class="menuName1"><a href="#">전체 카테고리</a></span>
+                        <div class="menu1_sub">
+                          <i class="fas fa-bars fa-lg"></i>
+                          <span class="menuName1">전체 카테고리</span>                        
+                        </div>
                         <ul class="category">
-                          <li class="category_text"><a href="#">채소</a></li>
-                          <li class="category_text"><a href="#">과일·견과·쌀</a></li>
-                          <li class="category_text"><a href="#">수산·해산·건어물</a></li>
-                          <li class="category_text"><a href="#">정육·계란</a></li>
-                          <li class="category_text"><a href="#">국·반찬·메인요리</a></li>
-                          <li class="category_text"><a href="#">샐러드·간편식</a></li>
-                          <li class="category_text"><a href="#">면·양념·오일</a></li>
-                          <li class="category_text"><a href="#">생수·음료·우유·커피</a></li>
-                          <li class="category_text"><a href="#">간식·과자·떡</a></li>
-                          <li class="category_text"><a href="#">베이커리·치즈·델리</a></li>
-                          <li class="category_text"><a href="#">건강식품</a></li>
-                          <li class="category_text"><a href="#">생활용품·리빙</a></li>
-                          <li class="category_text"><a href="#">스킨케어·메이크업</a></li>
-                          <li class="category_text"><a href="#">헤어·바디·구강</a></li>
-                          <li class="category_text"><a href="#">주방용품</a></li>
-                          <li class="category_text"><a href="#">가전제품</a></li>
-                          <li class="category_text"><a href="#">베이비·키즈</a></li>
-                          <li class="category_text"><a href="#">반려동물</a></li>
-                          <li class="category_text"><a href="#">컬리의 추천</a></li>                          
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_veggies.png">
+                            <span class="category_text">채소</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_fruit.png">
+                            <span class="category_text">과일·견과·쌀</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_seafood.png">
+                            <span class="category_text">수산·해산·건어물</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_meat.png">
+                            <span class="category_text">정육·계란</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_side.png">
+                            <span class="category_text">국·반찬·메인요리</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_convenient.png">
+                            <span class="category_text">샐러드·간편식</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_sauce.png">
+                            <span class="category_text">면·양념·오일</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_snacks.png">
+                            <span class="category_text">생수·음료·우유·커피</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_cookie.png">
+                            <span class="category_text">간식·과자·떡</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_deli.png">
+                            <span class="category_text">베이커리·치즈·델리</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_health.png">
+                            <span class="category_text">건강식품</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_living.png">
+                            <span class="category_text">생활용품·리빙</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_beauty.png">
+                            <span class="category_text">스킨케어·메이크업</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_body.png">
+                            <span class="category_text">헤어·바디·구강</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_kitchen.png">
+                            <span class="category_text">주방용품</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_electronic.png">
+                            <span class="category_text">가전제품</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_kids.png">
+                            <span class="category_text">베이비·키즈</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="./icon/icon_pet.png">
+                            <span class="category_text">반려동물</span>
+                          </li>
+                          <li class="category_sub">
+                            <img class="icon" src="https://res.kurly.com/pc/service/common/1908/ico_recommend_on_v2.png">
+                            <span class="category_text">컬리의 추천</span>
+                          </li>                     
                         </ul>
                       </ul>
                       <li class="menu2">신상품</li>
@@ -68,7 +134,8 @@
                       <li class="menu4">알뜰쇼핑</li>
                       <li class="menu5">특가/혜택</li>
                   </ul>
-                  <div class="search">
+                  <div class="searchBox">
+                    <input class="search">
                     <input type="image" class="searchIcon" src="https://res.kurly.com/pc/service/common/1908/ico_search_x2.png">
                   </div>
                   <div class="location">
@@ -80,29 +147,30 @@
               </div>
           </div>
       </div>
+
       <div class="main">
           <div class="slider">
-            <img class="sliderImg" src="slider1.PNG">
-            <!-- <img src="slider2.PNG">
-            <img src="slider3.PNG">
-            <img src="slider4.PNG">
-            <img src="slider5.PNG"> -->
+            <img class="sliderImg" src="./image/slider1.PNG">
+            <img class="sliderImg" src="./image/slider2.PNG">
+            <img class="sliderImg" src="./image/slider3.PNG">
+            <img class="sliderImg" src="./image/slider4.PNG">
+            <img class="sliderImg" src="./image/slider5.PNG">
           </div>
           <div class="recommend">
-            <div>
+            <div class="titleBox">
               <p class="title">이 상품 어때요?</p>
             </div>
             <div class="pdtBox">
               <ul class="pdtList">
                 <li class="product">
-                  <img class="pdtImg" src="./cheese.PNG">
+                  <img class="pdtImg" src="./image/cheese.PNG">
                   <div class="pdtInfo">
                     <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
                     <span class="price">11,900원</span>
                   </div>
                 </li>
                 <li class="product">
-                  <img class="pdtImg" src="./chicken.PNG">
+                  <img class="pdtImg" src="./image/chicken.PNG">
                   <div class="pdtInfo">
                     <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
                     <span class="price">
@@ -112,14 +180,14 @@
                   </div>
                 </li>
                 <li class="product">
-                  <img class="pdtImg" src="./ricecake.PNG">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
                   <div class="pdtInfo">
                     <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
                     <span class="price">4,300원</span>
                   </div>
                 </li>
                 <li class="product">
-                  <img class="pdtImg" src="./cleans.PNG">
+                  <img class="pdtImg" src="./image/cleans.PNG">
                   <div class="pdtInfo">
                     <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
                     <span class="price">
@@ -131,46 +199,385 @@
               </ul>
             </div>
           </div>
+
           <div class="benefits">
-            <div>
+            <div class="titleBox">
               <p class="title">특가/혜택
                 <i class="fas fa-chevron-right fa-sm"></i>
               </p>
             </div>
             <div class="pdtBox">
-              <ul>
-                <li>
-                  <img>
-                  <div class="bnf_info">
+              <ul class="pdtList">
+                <li class="bnfProduct">
+                  <img class="bnfImg" src="./image/soup.PNG">
+                  <div class="bnfInfo">
                     <span class="bnf_text1">외할머니댁 최대 15% 할인</span>
                     <span class="bnf_text2">할머니의 밥상을 그대로</span>
                   </div>
                 </li>
-              </ul>              
+                <li class="bnfProduct">
+                  <img class="bnfImg" src="./image/coffee.PNG">
+                  <div class="bnfInfo">
+                    <span class="bnf_text1">폴바셋 최대 28% 할인 & GIFT</span>
+                    <span class="bnf_text2">전문가가 전하는 스페셜티 커피</span>
+                  </div>
+                </li>
+                <li class="bnfProduct">
+                  <img class="bnfImg" src="./image/corn.PNG">
+                  <div class="bnfInfo">
+                    <span class="bnf_text1">금주의 과일·채소 최대 15% 할인</span>
+                    <span class="bnf_text2">신비 복숭아부터 찰 옥수수까지</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sale">
+            <div class="titleBox">
+              <p class="title">놓치면 후회할 가격
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>              
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="AD_1">
+            <img class="AdImg1" src="./image/AD1.PNG">
+          </div>
+
+          <div class="MD">
+            <div class="titleBox">
+              <p class="title">MD의 추천
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>              
+            </div>
+            
+            <div class="MD_menu">
+              <ul class="MD_list">
+                <p>소메뉴 들어가야됨</p>
+              </ul>
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="AD_2">
+            <img class="AdImg2" src="./image/AD2.PNG">
+          </div>
+
+          <div class="popular">
+            <div class="titleBox">
+              <p class="title">지금 가장 핫한 상품
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>              
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sale2">
+            <div class="titleBox">
+              <p class="title">필요한 것만 딱! 주방용품 특가
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>              
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="lowprice">
+            <div class="lp_titleBox">
+              <p class="title">365일 최저가 도전
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>
+              <span class="lp_text">최저가 도전, 365일 언제나 알뜰하게</span>
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="season">
+            <div class="lp_titleBox">
+              <p class="title">시원한 여름
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>
+              <span class="lp_text">여름의 열기를 식혀줄 별미부터 가전까지</span>
+            </div>
+
+            <div class="pdtBox">
+              <ul class="pdtList">
+                <li class="product">
+                  <img class="pdtImg" src="./image/cheese.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[그랑도르즈] 까망베르 2종</span>
+                    <span class="price">11,900원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/chicken.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[백년백계] 닭 아랫날개 300g(냉장)</span>
+                    <span class="price">
+                      <span class="percent">10%</span>
+                      5,400원</span>
+                    <span class="discount">6,000원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/ricecake.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[유기방아] 떡볶이떡 & 떡국떡(냉동)</span>
+                    <span class="price">4,300원</span>
+                  </div>
+                </li>
+                <li class="product">
+                  <img class="pdtImg" src="./image/cleans.PNG">
+                  <div class="pdtInfo">
+                    <span class="pdtName">[콜린스그린] 주말 클렌즈(7/3 토 수령)</span>
+                    <span class="price">
+                      <span class="percent">20%</span>
+                      68,400원</span>
+                    <span class="discount">85,000원</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="recipe">
+            <div class="titleBox">
+              <p class="title">컬리의 레시피
+                <i class="fas fa-chevron-right fa-sm"></i>
+              </p>              
+            </div>
+            <div class="rcpBox">
+              <ul class="pdtList">
+                <li class="rcpProduct">
+                  <img class="rcpImg" src="./image/yogurt.PNG">
+                  <div class="rcpInfo">
+                    <span class="rcp_text">그릭 복숭아</span>
+                  </div>
+                </li>
+                <li class="rcpProduct">
+                  <img class="rcpImg" src="./image/seaweeds.PNG">
+                  <div class="rcpInfo">
+                    <span class="rcp_text">해초면 냉채</span>
+                  </div>
+                </li>
+                <li class="rcpProduct">
+                  <img class="rcpImg" src="./image/sandwich.PNG">
+                  <div class="rcpInfo">
+                    <span class="rcp_text">플라워 과일 샌드</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="review">
+            <div class="titleBox">
+              <p class="title">인스타그램 고객 후기</p>              
+            </div>
+            <div class="reviewBox">
+              <img class="reviewImg" src="./image/instagram.PNG">
+              <div class="rtBox">
+                <span class="review_text1">더 많은 고객 후기가 궁금하다면?</span>
+                <span class="review_text2">@marketkurly_regram</span> 
+              </div>
+             
             </div>
 
           </div>
-          <div class="sale"></div>
-
-          <div class="AD_1">
-            <img class="AdImg1" src="./AD1.PNG">
-          </div>
-
-          <div class="MD"></div>
-
-          <div class="AD_2">
-            <img class="AdImg2" src="./AD2.PNG">
-          </div>
-
-          <div class="popular"></div>
-          <div class="season"></div>
-          <div class="lowprice"></div>
-          <div class="diet"></div>
-          <div class="recipe"></div>
-          <div class="review"></div>
 
           <div class="banner">
-            <img class="bannerImg" src="./banner.PNG">
+            <img class="bannerImg" src="./image/banner.PNG">
           </div>
       </div>
       <div class="footer"></div>
