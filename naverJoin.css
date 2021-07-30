@@ -38,6 +38,9 @@ input, select {
     background-color: white;
     display: flex;
 }
+.input-box:focus-within {
+    border: 1px solid #03c75a;
+}
 
 .naver-email {
     font-size: 15px;
@@ -47,13 +50,15 @@ input, select {
 
 .unavailable-icon {
     margin-left: 198px;
+    color: red;
 }
 .unavailable-icon > span {
-    color: red;
     font-size: 12px;
 }
 .lock-icon {
     margin: 3px 0 0 250px;
+    /* color: #03c75a; */
+    color: #dadada;
 }
 
 .select-gender {
@@ -76,6 +81,9 @@ input, select {
     padding: 11px 14px;
     border: solid 1px #dadada;
     background-color: white;
+}
+.input-bitrh-box:focus-within {
+    border: 1px solid #03c75a;
 }
 .input-bitrh-box > input {
     width: 91.688px;
@@ -111,6 +119,9 @@ input, select {
     background-color: white;
     margin-right: 10px;
 }
+.input-phone-number:focus-within {
+    border: 1px solid #03c75a;
+}
 .get-certified-number-btn {
     border: solid 1px rgba(0,0,0,.08);
     background-color: #03c75a;
@@ -136,6 +147,7 @@ input, select {
     color: white;
     font-size: 16px;
     margin: 30px 0 9px 0;
+    cursor: pointer;
 }
 
 .fnb {
