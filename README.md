@@ -1,2 +1,2 @@
-# naver-join
+# Naver 회원가입
  
