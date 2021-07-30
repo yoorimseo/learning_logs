@@ -16,7 +16,7 @@ body {
 }
 input, select {
     outline: none;
-    border: none;
+    /* border: none; */
 }
 
 .main-title {

@@ -22,7 +22,7 @@
                     <span>아이디</span>
                 </div>
                 <div class="input-box">
-                    <input>
+                    <input id="id">
                     <span class="naver-email">@naver.com</span>
                 </div>
                 <span class="alert-text">5~20자의 영문 소문자, 숫자의 특수기호(_), (-)만 사용 가능합니다.</span>
@@ -33,7 +33,7 @@
                     <span>비밀번호</span>
                 </div>
                 <div class="input-box">
-                    <input class="input-password">
+                    <input id="password">
                     <div class="unavailable-icon">
                         <span>사용불가</span>
                         <i class="fas fa-lock" color="red"></i>
@@ -47,7 +47,7 @@
                     <span>비밀번호 재확인</span>
                 </div>
                 <div class="input-box">
-                    <input>
+                    <input id="password2">
                     <div class="lock-icon">
                         <i class="fas fa-lock" color="#dadada"></i>
                     </div>
@@ -60,7 +60,7 @@
                     <span>이름</span>
                 </div>
                 <div class="input-box">
-                    <input>
+                    <input id="name">
                 </div>
                 <span class="alert-text">필수 정보입니다.</span>
                 <!-- <span class="alert-text">한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)</span> -->
@@ -71,10 +71,10 @@
                 </div>
                 <div class="input-birth-area">
                     <div class="input-bitrh-box">
-                        <input placeholder="년(4자)" maxlength="4">
+                        <input id="year" placeholder="년(4자)" maxlength="4">
                     </div>
                     <div class="input-bitrh-box birth-month">
-                        <select class="input-user-birth">
+                        <select class="input-user-birth" id="month">
                             <option>월</option>
                             <option>1</option>
                             <option>2</option>
@@ -91,7 +91,7 @@
                         </select>
                     </div>
                     <div class="input-bitrh-box birth-day">
-                        <input placeholder="일">
+                        <input id="day" placeholder="일">
                     </div>
                 </div>
                 <span class="alert-text">태어난 년도 4자리를 정확하게 입력하세요.</span>
@@ -103,7 +103,7 @@
                     <span>성별</span>
                 </div>
                 <div class="input-box">
-                    <select class="select-gender">
+                    <select class="select-gender" id="gender">
                         <option>성별</option>
                         <option>남자</option>
                         <option>여자</option>
@@ -117,7 +117,7 @@
                     <span>(선택)</span>
                 </div>
                 <div class="input-box">
-                    <input class="email-address" placeholder="선택입력">
+                    <input class="email-address" id="email" placeholder="선택입력">
                 </div>
                 <span class="alert-text">이메일 주소를 다시 확인해주세요.</span>
             </div>
@@ -126,7 +126,7 @@
                     <span>휴대전화</span>
                 </div>
                 <div class="input-box">
-                    <select class="select-country">
+                    <select class="select-country" id="country">
                         <option>대한민국 +82</option>
                         <option>미국/캐나다 +1</option>
                         <option>영국 +44</option>
@@ -134,12 +134,12 @@
                 </div>
                 <div class="input-phone-area">
                     <div class="input-phone-number">
-                        <input placeholder="전화번호 입력" maxlength="16">
+                        <input id="phone" placeholder="전화번호 입력" maxlength="16">
                     </div>
                     <button class="get-certified-number-btn">인증번호 받기</button>
                 </div>
                 <div class="input-certified-number">
-                    <input placeholder="인증번호를 입력하세요." disabled> 
+                    <input id="number" placeholder="인증번호를 입력하세요." disabled> 
                 </div>
                 <span class="alert-text">필수 정보입니다.</span>
             </div>
