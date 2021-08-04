@@ -26,9 +26,11 @@
                     <input id="id">
                     <span class="naver-email">@naver.com</span>
                 </div>
-                <span class="alert-text" id="id-alert">5~20자의 영문 소문자, 숫자의 특수기호(_), (-)만 사용 가능합니다.</span>
+                <span class="alert-text" id="id-alert"></span>
+                <!-- <span>5~20자의 영문 소문자, 숫자의 특수기호(_), (-)만 사용 가능합니다.</span> -->
                 <!-- <span>이미 사용중이거나 탈퇴한 아이디입니다.</span> -->
                 <!-- <span>필수 정보입니다.</span> -->
+                <!-- <span>멋진 아이디네요!</span> -->
             </div>
             <div class="user-password">
                 <div class="main-title">
@@ -36,7 +38,7 @@
                 </div>
                 <div class="input-box">
                     <input id="password">
-                    <div class="unavailable-icon" id="unavailable">
+                    <div class="password-condition-icon" id="password-condition">
                         <span>사용불가</span>
                         <!-- <span>위험</span>
                         <span>보통</span>
@@ -53,7 +55,7 @@
                 </div>
                 <div class="input-box">
                     <input id="password-recheck">
-                    <div class="lock-icon" id="available">
+                    <div class="lock-icon" id="password-recheck-condition">
                         <i class="fas fa-lock"></i>
                     </div>
                 </div>
@@ -164,5 +166,9 @@
                 </ul>
             </div>
         </div>
+        <script src="./naverjoin.js"></script>
+        <!-- 1. dom 가져오기
+        2. 이벤트 연결하기
+        3. dom 변경하기 -->
     </body>
 </html>

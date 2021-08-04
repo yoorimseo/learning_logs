@@ -16,7 +16,7 @@ body {
 }
 input, select {
     outline: none;
-    /* border: none; */
+    border: none;
 }
 
 .main-title {
@@ -28,7 +28,12 @@ input, select {
     margin: 9px 0 -2px;
     font-size: 12px;
     line-height: 14px;
+}
+.alert-red-text {
     color: red;
+}
+.alert-green-text {
+    color: #08a600;
 }
 .input-box {
     width: 96%;
@@ -48,11 +53,11 @@ input, select {
     margin: 3px 0 0 178px;
 }
 
-.unavailable-icon {
+.password-condition-icon {
     margin-left: 198px;
     color: red;
 }
-.unavailable-icon > span {
+.password-condition-icon > span {
     font-size: 12px;
 }
 .lock-icon {
