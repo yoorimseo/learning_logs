@@ -1,0 +1,148 @@
+.design {
+    position: relative;
+    width: 1440px;
+    height: 7235px;
+
+    background: #FFFFFF;
+}
+
+/* Backgound Image */
+.background {
+    position: absolute;
+}
+.rect-1 {
+    position: absolute;
+    width: 238px;
+    height: 213px;
+    left: 646px;
+    top: 147px;
+
+    background: #C9E7FF;
+    opacity: 0.4;
+    border-radius: 106.5px 5px 5px 5px;
+}
+.main-img {
+    position: absolute;
+    width: 647px;
+    height: 850px;
+    left: 743px;
+    top: 50px;
+
+    border-radius: 10px 10px 10px 300px;
+}
+
+/* GNB */
+.nav-ber {
+    position: absolute;
+    width: 1170px;
+    height: 38px;
+    left: 135px;
+    top: 70px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+}
+
+.logo {
+    width: 183px;
+    height: 38px;
+    left: 135px;
+    top: 70px;
+
+    font-size: 25px;
+    line-height: 38px;
+
+    letter-spacing: -0.06em;
+
+    color: #40A2D5;
+}
+
+.menu-home {
+    width: 55px;
+    height: 27px;
+    margin-left: 606px;
+    top: 74px;
+
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+
+    color: #FFFFFF;
+}
+.menu-about {
+    width: 81px;
+    height: 27px;
+    margin-left: 35px;
+    top: 74px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #FFFFFF;
+}
+.menu-service {
+    width: 75px;
+    height: 27px;
+    margin-left: 36px;
+    top: 74px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #FFFFFF;
+}
+.menu-project {
+    width: 62px;
+    height: 27px;
+    margin-left: 37px;
+    top: 74px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #FFFFFF;
+}
+
+/* Main */
+.main-content {
+    position: absolute;
+    width: 681px;
+    height: 624px;
+    left: 155px;
+    top: 226px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+}
+.main-text {
+    height: 231px;
+
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 120%;
+    /* or 77px */
+
+    letter-spacing: -0.04em;
+}
+.main-text-1 {
+    color: #40A2D5;
+}
+.main-text-2 {
+    color: #313131;
+}
+.sub-text {
+    width: 541px;
+    height: 56px;
+    margin-top: 40px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 156% */
+
+    color: #6B6B6B;
+}
