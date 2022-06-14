@@ -49,11 +49,16 @@ h1 {
     color: #FFFFFF;
 }
 
-/* Main 01 */
-main {
+/* MAIN */
+.main-01 {
     margin: 118px 0 0 155px;
     position: relative;
 }
+.main-02 {
+    margin-top: 140px;
+}
+
+/* MAIN 01 */
 .main-text-1 {
     font-weight: 700;
     font-size: 64px;
@@ -157,7 +162,7 @@ main {
     margin-right: 100px;
 }
 
-/* Main 02 */
+/* MAIN 02 */
 h2 {
     width: 521px;
     font-weight: 500;
@@ -213,7 +218,7 @@ h2 {
     margin: -26px 0 0 29px;
 }
 
-/* Main 03 */
+/* MAIN 03 */
 h3 {
     font-weight: 600;
     font-size: 54px;
@@ -233,7 +238,7 @@ h3 {
 .main-4-box {
     width: 1170px;
     height: 435px;
-    margin: 80px 0 80px 0;
+    margin: 80px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -331,7 +336,7 @@ h3 {
     font-size: 20px;
 }
 
-/* Main 04 */
+/* MAIN 04 */
 .bg-img-2 {
     height: 939px;
     background: url(../img/building_2.png);
@@ -345,6 +350,124 @@ h4 {
     padding-top: 176px;
     text-align: center;
 }
+.quotation-up {
+    margin-left: 201px;
+}
+.quotation-down {
+    float: right;
+    margin-right: 200px;
+}
+.text-box {
+    width: 857px;
+    margin-left: 292px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FAFAFA;
+}
+
+/* MAIN 05 */
+.main-5-box {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+form {
+    width: 489px;
+    height: 555px;
+}
+form input {
+    background: #F9F9F9;
+    border-radius: 7px;
+    width: 465px;
+    height: 64px;
+    border-style: none;
+    margin-bottom: 20px;
+    font-family: 'Poppins';
+    font-size: 18px;
+    line-height: 27px;
+    color: #313131;
+    padding: 0 0 0 24px;
+    size: 40;
+}
+.massage {
+    height: 200px;
+}
+.btn-send-message {
+    width: 214px;
+    height: 64px;
+    background: #40A2D5;
+    box-shadow: 0px 64.8148px 46.8519px rgba(64, 162, 213, 0.0759259), 0px 38.5185px 25.4815px rgba(64, 162, 213, 0.0607407), 0px 20px 13px rgba(64, 162, 213, 0.05), 0px 8.14815px 6.51852px rgba(64, 162, 213, 0.0392593), 0px 1.85185px 3.14815px rgba(64, 162, 213, 0.0240741);
+    border-radius: 40px 5px;
+    border-style: none;
+    color: #FAFAFA;
+    font-family: 'Poppins';
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    margin-top: 10px;
+}
+.map {
+    width: 782.45px;
+    height: 500.1px;
+    margin-left: 34px;
+}
+
+/* MAIN 06 */
+.main-6-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+}
+.blog {
+    width: 496px;
+    height: 467px;
+    text-align: center;
+    margin-right: 60px;
+}
+.blog p {
+    vertical-align: bottom;
+}
+.type-1 {
+    background: url(../img/building_3.png);
+}
+.type-2 {
+    background: url(../img/building_4.png);
+}
+.sub-text-4 {
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+.sub-text-5 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-top: 22px;
+}
+
+/* MAIN 07 */
+.btn-subscribe {
+    width: 220px;
+    height: 56px;
+    background: #40A2D5;
+    box-shadow: 0px 64.8148px 46.8519px rgba(64, 162, 213, 0.0759259), 0px 38.5185px 25.4815px rgba(64, 162, 213, 0.0607407), 0px 20px 13px rgba(64, 162, 213, 0.05), 0px 8.14815px 6.51852px rgba(64, 162, 213, 0.0392593), 0px 1.85185px 3.14815px rgba(64, 162, 213, 0.0240741);
+    border-radius: 40px 5px;
+    border-style: none;
+    color: #FAFAFA;
+    font-family: 'Poppins';
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    display: block;
+    margin: 40px auto;
+}
+
+/* Footer */
+
 
 /* Color */
 .text-blue {
