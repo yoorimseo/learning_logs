@@ -44,6 +44,15 @@ function problem1(pobi, crong) {
   // 포비와 크롱 점수들의 최댓값을 구하기
   let pobiMax = Math.max(...setScore(pobi));
   let crongMax = Math.max(...setScore(crong));
+
+  // 포비와 크롱의 점수를 비교하여 가장 큰 점수인 사람의 return 값 구하기
+  if (pobiMax > crongMax) {
+    return 1;
+  } else if (pobiMax < crongMax) {
+    return 2;
+  } else if (pobiMax === crongMax) {
+    return 0;
+  }
 }
 
 module.exports = problem1;
