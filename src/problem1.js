@@ -25,6 +25,16 @@ function multiplyOfDigits(num) {
   return result;
 }
 
+// 포비와 크롱의 합과 곱의 점수를 모아둔 배열을 구하는 함수
+function setScore(person) {
+  let personScore = [];
+  for (let i = 0; i < 2; i++) {
+    personScore.push(sumOfDigits(person[i]));
+    personScore.push(multiplyOfDigits(person[i]));
+  }
+  return personScore;
+}
+
 function problem1(pobi, crong) {
   // 예외처리 1) 펼친 페이지가 연속된 페이지가 아닐 경우
   if (exception(pobi) || exception(crong)) {
