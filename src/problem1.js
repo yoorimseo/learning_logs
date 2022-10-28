@@ -40,6 +40,10 @@ function problem1(pobi, crong) {
   if (exception(pobi) || exception(crong)) {
     return -1;
   }
+
+  // 포비와 크롱 점수들의 최댓값을 구하기
+  let pobiMax = Math.max(...setScore(pobi));
+  let crongMax = Math.max(...setScore(crong));
 }
 
 module.exports = problem1;
