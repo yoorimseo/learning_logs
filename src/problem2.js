@@ -35,6 +35,9 @@ function removeDup(array) {
 function problem2(cryptogram) {
   // cryptogram을 배열로 변환
   let array = cryptogram.split("");
+
+  // cryptogram의 중복을 모두 제거한 배열을 문자로 반환
+  return removeDup(array).join("");
 }
 
 module.exports = problem2;
