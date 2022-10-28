@@ -1,6 +1,6 @@
 function problem2(cryptogram) {
-  var answer;
-  return answer;
+  // cryptogram을 배열로 변환
+  let array = cryptogram.split("");
 }
 
 module.exports = problem2;
