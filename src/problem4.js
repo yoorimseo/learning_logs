@@ -7,6 +7,13 @@ function problem4(word) {
   let reverseAlphabet = ["z", "y", "x", "w", "v", "u", "t", "s", "r", "q", "p", "o", "n", "m", "l", "k", "j", "i", "h", "g", "f", "e", "d", "c", "b", "a"];
 
   for (i of word) {
+    // 알파벳인가?
+    if (/[a-zA-Z]/g.test(i)) {
+    } else if (i === " ") {
+      // 공백문자인가?
+    } else {
+      // 알파벳 이외의 문자인가(숫자 혹은 한글 등)?
+    }
   }
 
   return answer;
