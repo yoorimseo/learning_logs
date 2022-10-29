@@ -6,6 +6,9 @@ function problem4(word) {
   // 순서를 뒤집은 알파벳 배열
   let reverseAlphabet = ["z", "y", "x", "w", "v", "u", "t", "s", "r", "q", "p", "o", "n", "m", "l", "k", "j", "i", "h", "g", "f", "e", "d", "c", "b", "a"];
 
+  for (i of word) {
+  }
+
   return answer;
 }
 
