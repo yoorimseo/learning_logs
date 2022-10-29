@@ -15,6 +15,10 @@ function problem4(word) {
         answer += reverseAlphabet[index];
       } else {
         // 대문자인가?
+        let lowercase = i.toLowerCase();
+        let index = alphabet.indexOf(lowercase);
+        let reverse = reverseAlphabet[index];
+        answer += reverse.toUpperCase();
       }
     } else if (i === " ") {
       // 공백문자인가?
