@@ -1,5 +1,5 @@
 function problem4(word) {
-  var answer;
+  var answer = "";
 
   // 원래의 알파벳 배열
   let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -11,6 +11,8 @@ function problem4(word) {
     if (/[a-zA-Z]/g.test(i)) {
       // 소문자인가?
       if (/[a-z]/g.test(i)) {
+        let index = alphabet.indexOf(i);
+        answer += reverseAlphabet[index];
       } else {
         // 대문자인가?
       }
