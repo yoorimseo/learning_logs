@@ -22,8 +22,10 @@ function problem4(word) {
       }
     } else if (i === " ") {
       // 공백문자인가?
+      answer += " ";
     } else {
       // 알파벳 이외의 문자인가(숫자 혹은 한글 등)?
+      answer += i;
     }
   }
 
