@@ -9,6 +9,11 @@ function problem4(word) {
   for (i of word) {
     // 알파벳인가?
     if (/[a-zA-Z]/g.test(i)) {
+      // 소문자인가?
+      if (/[a-z]/g.test(i)) {
+      } else {
+        // 대문자인가?
+      }
     } else if (i === " ") {
       // 공백문자인가?
     } else {
