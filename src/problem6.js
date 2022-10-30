@@ -10,6 +10,24 @@ function sliceTwoWords(str) {
   return twoWords;
 }
 
+// 닉네임이 두 글자 이상 중복되는 것을 찾아 email을 answer에 push
+function findDup(array, nicknames, emails) {
+  let answer = [];
+  for (let i = 0; i < nicknames.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      if (nicknames[i].includes(array[j])) {
+        let emailIdx = emails[nicknames.indexOf(nicknames[i])];
+        // email의 중복 제거를 위한 조건문
+        if (!answer.includes(emailIdx)) {
+          answer.push(emailIdx);
+        }
+      }
+    }
+  }
+
+  return answer;
+}
+
 function problem6(forms) {
   let formsObj = Object.fromEntries(forms);
   let emails = Object.keys(formsObj);
