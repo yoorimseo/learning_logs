@@ -39,7 +39,7 @@ function problem6(forms) {
     answer = findDup(arr, nicknames, emails);
   }
 
-  return answer;
+  return answer.sort();
 }
 
 module.exports = problem6;
