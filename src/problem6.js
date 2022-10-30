@@ -33,6 +33,12 @@ function problem6(forms) {
   let emails = Object.keys(formsObj);
   let nicknames = Object.values(formsObj);
   let answer = [];
+
+  for (let i = 0; i < nicknames.length; i++) {
+    let arr = sliceTwoWords(nicknames[0]);
+    answer = findDup(arr, nicknames, emails);
+  }
+
   return answer;
 }
 
