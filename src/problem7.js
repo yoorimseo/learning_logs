@@ -83,6 +83,27 @@ function recommendsInVisitors(userFriends, visitors, recommends) {
   return recommends;
 }
 
+// 미스터코의 친구 추천 규칙에 따라 점수가 가장 높은 순으로 정렬
+function sortScore(recommends) {
+  var sortable = [];
+
+  for (var n in recommends) {
+    sortable.push([n, recommends[n]]);
+  }
+  sortable.sort();
+  sortable.sort((a, b) => b[1] - a[1]);
+
+  // 최대 5명을 return
+  let answerObj = Object.fromEntries(sortable);
+  let answer = Object.keys(answerObj);
+
+  if (answer.length > 5) {
+    return answer.slice(0, 6);
+  } else {
+    return answer;
+  }
+}
+
 function problem7(user, friends, visitors) {
   var answer;
   return answer;
