@@ -15,6 +15,26 @@ function findUserFriends(user, friends) {
   return userFriends;
 }
 
+// friends 배열에서 userFriends의 친구 찾기
+function findUserNeighbor(userFriends, friends, user) {
+  let neighbor = [];
+
+  for (i of userFriends) {
+    for (j of friends) {
+      if (j.includes(i) && !j.includes(user)) {
+        let userFriendIndex = j.indexOf(i);
+        if (userFriendIndex === 0) {
+          neighbor.push(j[1]);
+        } else {
+          neighbor.push(j[0]);
+        }
+      }
+    }
+  }
+
+  return neighbor;
+}
+
 function problem7(user, friends, visitors) {
   var answer;
   return answer;
