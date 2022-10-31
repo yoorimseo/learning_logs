@@ -105,8 +105,15 @@ function sortScore(recommends) {
 }
 
 function problem7(user, friends, visitors) {
-  var answer;
-  return answer;
+  let recommends = {};
+
+  let userFriends = findUserFriends(user, friends);
+  let neighbor = findUserNeighbor(userFriends, friends, user);
+
+  recommendsInNeihbor(neighbor, recommends);
+  recommendsInVisitors(userFriends, visitors, recommends);
+
+  return sortScore(recommends);
 }
 
 module.exports = problem7;
