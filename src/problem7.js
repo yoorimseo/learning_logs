@@ -53,6 +53,36 @@ function recommendsInNeihbor(neighbor, recommends) {
   return recommends;
 }
 
+// visitors에서 추천 친구 찾기
+// newVisitors가 0명 이하일 땐 추천하지 않음
+function recommendsInVisitors(userFriends, visitors, recommends) {
+  // visitors에서 user의 친구를 제외
+  let newVisitors = [];
+
+  visitors.filter((n) => {
+    if (!userFriends.includes(n)) {
+      newVisitors.push(n);
+    }
+  });
+
+  // visitors에서 점수
+  if (newVisitors.length > 0) {
+    newVisitors.forEach((n) => {
+      if (recommends[n] && userFriends.includes(n)) {
+        // recommends에 있으면 아이디에 점수 값 추가
+        recommends[n] = recommends[n] + 10;
+      } else if (recommends[n] && !userFriends.includes(n)) {
+        recommends[n] = recommends[n] + 1;
+      } else {
+        // recommends에 없으면 아이디와 점수 값 추가
+        recommends[n] = 0 + 1;
+      }
+    });
+  }
+
+  return recommends;
+}
+
 function problem7(user, friends, visitors) {
   var answer;
   return answer;
