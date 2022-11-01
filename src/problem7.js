@@ -24,9 +24,15 @@ function findUserNeighbor(userFriends, friends, user) {
       if (j.includes(i) && !j.includes(user)) {
         let userFriendIndex = j.indexOf(i);
         if (userFriendIndex === 0) {
-          neighbor.push(j[1]);
+          // user의 친구와 userFriends의 친구가 겹치는지 확인
+          if (!userFriends.includes(j[1])) {
+            neighbor.push(j[1]);
+          }
         } else {
-          neighbor.push(j[0]);
+          // user의 친구와 userFriends의 친구가 겹치는지 확인
+          if (!userFriends.includes(j[0])) {
+            neighbor.push(j[0]);
+          }
         }
       }
     }
