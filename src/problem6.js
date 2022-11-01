@@ -1,6 +1,10 @@
 // 닉네임을 연속된 두 글자로 나누어 배열로 반환하는 함수
-function sliceTwoWords(str) {
+function sliceTwoWords(str, emails, i) {
   let twoWords = [];
+  // 어떤 닉네임이 나눠진건지 확인하기 위해
+  twoWords.push(str);
+  // 완전히 동일한 닉네임이 있을 경우, 해당 닉네임의 이메일로 구분하기 위해
+  twoWords.push(emails[i]);
 
   for (let i = 0; i < str.length - 1; i++) {
     let sliceStr = str.slice(i, i + 2);
