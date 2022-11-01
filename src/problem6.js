@@ -38,8 +38,8 @@ function problem6(forms) {
   let answer = [];
 
   for (let i = 0; i < nicknames.length; i++) {
-    let arr = sliceTwoWords(nicknames[0]);
-    answer = findDup(arr, nicknames, emails);
+    let arr = sliceTwoWords(nicknames[i], emails, i);
+    answer = findDup(arr, nicknames, emails, answer);
   }
 
   return answer.sort();
