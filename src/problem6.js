@@ -15,15 +15,14 @@ function sliceTwoWords(str, emails, i) {
 }
 
 // 닉네임이 두 글자 이상 중복되는 것을 찾아 email을 answer에 push
-function findDup(array, nicknames, emails) {
-  let answer = [];
+function findDup(array, nicknames, emails, answer) {
   for (let i = 0; i < nicknames.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      if (nicknames[i].includes(array[j])) {
-        let emailIdx = emails[nicknames.indexOf(nicknames[i])];
+    for (let j = 2; j < array.length; j++) {
+      // 본인 닉네임을 제외하고, 닉네임이 2글자 이상 중복되는 경우
+      if (nicknames[i] !== array[0] && nicknames[i].includes(array[j])) {
         // email의 중복 제거를 위한 조건문
-        if (!answer.includes(emailIdx)) {
-          answer.push(emailIdx);
+        if (!answer.includes(emails[i])) {
+          answer.push(emails[i]);
         }
       }
     }
