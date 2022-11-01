@@ -104,7 +104,7 @@ function sortScore(recommends) {
   let answer = Object.keys(answerObj);
 
   if (answer.length > 5) {
-    return answer.slice(0, 6);
+    return answer.slice(0, 5);
   } else {
     return answer;
   }
