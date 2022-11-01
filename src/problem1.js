@@ -1,6 +1,16 @@
-// 예외처리 1) 펼친 페이지가 연속된 페이지가 아닐 경우
 function exception(array) {
+  // 예외처리 1) 펼친 페이지가 연속된 페이지가 아닐 경우
   if (array[0] + 1 !== array[1]) {
+    return true;
+  }
+
+  // 예외처리 2) 펼친 페이지가 첫 페이지(1)이거나 마지막 페이지(400)일 경우
+  if (array[0] === 1 || array[1] === 400) {
+    return true;
+  }
+
+  // 예외처리 3) 페이지의 길이가 2를 초과할 경우
+  if (array.length > 2) {
     return true;
   }
 }
