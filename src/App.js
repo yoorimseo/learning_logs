@@ -17,6 +17,7 @@ class App {
   }
 
   play() {
+    this.computer = this.pickRandomNumber();
     this.userInput(this.computer);
   }
 
