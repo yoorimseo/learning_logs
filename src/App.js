@@ -17,6 +17,8 @@ class App {
     MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
       let userAnswer = answer.split('').map((str) => parseInt(str));
       let result = this.compareOfValues(userAnswer, computer);
+
+      this.continueGame(computer, result);
     });
   }
 
@@ -37,6 +39,17 @@ class App {
     });
 
     return result;
+  }
+
+  continueGame(computer, result) {
+    while (result.strike !== 3) {
+      this.printResult(result);
+      return this.userInput(computer);
+    }
+
+    if (result.strike === 3) {
+      this.printResult(result);
+    }
   }
 }
 
