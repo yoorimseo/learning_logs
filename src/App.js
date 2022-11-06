@@ -7,7 +7,13 @@ class App {
   }
 
   pickRandomNumber() {
-    const computer = MissionUtils.Random.pickUniqueNumbersInRange(0, 9, 3);
+    const computer = [];
+    while (computer.length < 3) {
+      const number = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (!computer.includes(number)) {
+        computer.push(number);
+      }
+    }
     return computer;
   }
 
