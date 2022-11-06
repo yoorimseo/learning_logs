@@ -12,6 +12,12 @@ class App {
   }
 
   play() {}
+
+  userInput(computer) {
+    MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
+      let userAnswer = answer.split('').map((str) => parseInt(str));
+    });
+  }
 }
 
 module.exports = App;
