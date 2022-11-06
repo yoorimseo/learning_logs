@@ -51,6 +51,27 @@ class App {
       this.printResult(result);
     }
   }
+
+  printResult(result) {
+    if (result.strike === 3) {
+      MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+      this.restartGame();
+    } else if (0 < result.strike && result.strike < 3) {
+      // 1스트라이크 or 2스트라이크
+      if (0 < result.ball && result.ball < 3) {
+        // 1볼 or 2볼
+        MissionUtils.Console.print(`${result.ball}볼 ${result.strike}스트라이크`);
+      } else if (result.ball === 0) {
+        MissionUtils.Console.print(`${result.strike}스트라이크`);
+      }
+    } else if (result.strike === 0) {
+      if (0 < result.ball && result.ball < 4) {
+        MissionUtils.Console.print(`${result.ball}볼`);
+      } else if (result.ball === 0) {
+        MissionUtils.Console.print('낫싱');
+      }
+    }
+  }
 }
 
 module.exports = App;
