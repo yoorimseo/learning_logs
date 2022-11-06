@@ -11,7 +11,9 @@ class App {
     return computer;
   }
 
-  play() {}
+  play() {
+    this.userInput(this.computer);
+  }
 
   userInput(computer) {
     MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
