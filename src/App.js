@@ -56,7 +56,7 @@ class App {
 
   printResult(result) {
     if (result.strike === 3) {
-      MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+      MissionUtils.Console.print('3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료');
       this.restartGame();
     } else if (0 < result.strike && result.strike < 3) {
       // 1스트라이크 or 2스트라이크
