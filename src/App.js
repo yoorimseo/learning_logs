@@ -23,11 +23,40 @@ class App {
 
   userInput(computer) {
     MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
+      this.checkUserInput(answer);
+
       let userAnswer = answer.split('').map((str) => parseInt(str));
       let result = this.compareOfValues(userAnswer, computer);
 
       this.continueGame(computer, result);
     });
+  }
+
+  checkUserInput(string) {
+    if (string.length !== 3) {
+      throw new Error();
+    }
+    if (!/[0-9]/.test(string)) {
+      throw new Error();
+    }
+    if (parseInt(string) < 0) {
+      throw new Error();
+    }
+    if (this.checkDuplication(string) < 3) {
+      throw new Error();
+    }
+  }
+
+  checkDuplication(string) {
+    let test = [];
+    let array = string.split('');
+    array.forEach((number) => {
+      if (!test.includes(number)) {
+        test.push(number);
+      }
+    });
+
+    return test.length;
   }
 
   compareOfValues(userAnswer, computer) {
