@@ -50,7 +50,7 @@ class App {
   }
 
   continueGame(computer, result) {
-    while (result.strike !== 3) {
+    while (result.strike < 3) {
       this.printResult(result);
       return this.userInput(computer);
     }
