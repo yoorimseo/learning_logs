@@ -67,11 +67,8 @@ class App {
 
     userAnswer.forEach((num) => {
       if (computer.includes(num)) {
-        if (userAnswer.indexOf(num) === computer.indexOf(num)) {
-          result.strike += 1;
-        } else {
-          result.ball += 1;
-        }
+        if (userAnswer.indexOf(num) === computer.indexOf(num)) result.strike += 1;
+        else result.ball += 1;
       }
     });
 
