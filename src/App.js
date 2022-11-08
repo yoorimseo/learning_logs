@@ -115,7 +115,7 @@ class App {
       if (answer === '1') {
         this.play();
       } else if (answer === '2') {
-        return;
+        MissionUtils.Console.close();
       } else {
         throw new Error();
       }
@@ -124,3 +124,5 @@ class App {
 }
 
 module.exports = App;
+const app = new App();
+app.play();
