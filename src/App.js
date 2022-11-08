@@ -6,19 +6,19 @@ class App {
   }
 
   pickRandomNumber() {
-    const computer = [];
-    while (computer.length < 3) {
-      const number = MissionUtils.Random.pickNumberInRange(0, 9);
-      if (!computer.includes(number)) {
-        computer.push(number);
+    const COMPUTER = [];
+    while (COMPUTER.length < 3) {
+      const NUMBER = MissionUtils.Random.pickNumberInRange(0, 9);
+      if (!COMPUTER.includes(NUMBER)) {
+        COMPUTER.push(NUMBER);
       }
     }
-    return computer;
+    return COMPUTER;
   }
 
   play() {
-    this.computer = this.pickRandomNumber();
-    this.userInput(this.computer);
+    this.COMPUTER = this.pickRandomNumber();
+    this.userInput(this.COMPUTER);
   }
 
   userInput(computer) {
