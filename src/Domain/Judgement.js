@@ -9,8 +9,8 @@ class Judgement {
     }
     return result;
   }
-  hasPlace(computer, placeNumber, number) {
-    return false;
+  hasPlace(computer, placeIndex, number) {
+    return computer[placeIndex] == number;
   }
 }
 

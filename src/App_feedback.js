@@ -17,7 +17,8 @@ class App {
   constructor() {
     MissionUtils.Console.print('숫자 야구 게임을 시작합니다.');
     // MissionUtils.Console.print(numberGenerator.createRandomNumbers());
-    MissionUtils.Console.print(judgement.correctCount([2, 8, 9], [1, 2, 3]));
+    // MissionUtils.Console.print(judgement.correctCount([2, 8, 9], [1, 2, 3]));
+    MissionUtils.Console.print(judgement.hasPlace([7, 8, 9], 1, 7));
   }
 }
 
