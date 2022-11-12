@@ -1,8 +1,17 @@
 class Judgement {
   correctCount(computer, player) {
-    return 0;
+    let result = 0;
+    for (let i = 0; i < player.length; i++) {
+      let playerNumber = player[i];
+      if (computer.includes(playerNumber)) {
+        result++;
+      }
+    }
+    return result;
   }
-  hasPlace(place, number) {
+  hasPlace(computer, placeNumber, number) {
     return false;
   }
 }
+
+module.exports = { Judgement };
