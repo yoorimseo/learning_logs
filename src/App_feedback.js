@@ -21,7 +21,7 @@ class App {
     // MissionUtils.Console.print(numberGenerator.createRandomNumbers());
     // MissionUtils.Console.print(judgement.correctCount([2, 8, 9], [1, 2, 3]));
     // MissionUtils.Console.print(judgement.hasPlace([7, 8, 9], 1, 7));
-    MissionUtils.Console.print(referee.compare([3, 2, 1], [1, 2, 3]));
+    MissionUtils.Console.print(referee.compare([4, 5, 6], [1, 2, 3]));
   }
 }
 
