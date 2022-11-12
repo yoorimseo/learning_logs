@@ -1,9 +1,11 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const { NumberGenerator } = require('./Domain/NumberGenerator');
 const { Judgement } = require('./Domain/Judgement');
+const { Referee } = require('./Domain/Referee');
 
 const numberGenerator = new NumberGenerator();
 const judgement = new Judgement();
+const referee = new Referee();
 
 // const { Ball } = require('./Domain/Domain');
 // const ball = new Ball();
@@ -18,7 +20,8 @@ class App {
     MissionUtils.Console.print('숫자 야구 게임을 시작합니다.');
     // MissionUtils.Console.print(numberGenerator.createRandomNumbers());
     // MissionUtils.Console.print(judgement.correctCount([2, 8, 9], [1, 2, 3]));
-    MissionUtils.Console.print(judgement.hasPlace([7, 8, 9], 1, 7));
+    // MissionUtils.Console.print(judgement.hasPlace([7, 8, 9], 1, 7));
+    MissionUtils.Console.print(referee.compare([3, 2, 1], [1, 2, 3]));
   }
 }
 
