@@ -13,14 +13,6 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
-
-  inputWinningNumber() {
-    return winningNumber;
-  }
-
-  inputBonusNumber() {
-    return bonusNumber;
-  }
 }
 
 module.exports = Lotto;
