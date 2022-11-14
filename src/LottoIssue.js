@@ -3,21 +3,22 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const LotteryDraw = require('./LotteryDraw');
 const lottoDraw = new LotteryDraw();
 
+let price = 0;
+
+let lotto = [];
+
 class LottoIssue {
   lottoPurchase() {
-    let price = 0;
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       price = parseInt(answer);
-
       let lottoQuantity = this.calcLottoQuantity(price);
       this.printLottoQuantity(lottoQuantity);
 
-      const USER_NUMBERS = this.createUserNumbers(lottoQuantity);
-      this.printLottoNumber(USER_NUMBERS);
+      lotto = this.createUserNumbers(lottoQuantity);
+      this.printLottoNumber(lotto);
 
-      lottoDraw.userInput();
+      lottoDraw.userInput(lotto, price);
     });
-    return price;
   }
 
   calcLottoQuantity(price) {
@@ -48,9 +49,9 @@ class LottoIssue {
     return userNumbers;
   }
 
-  printLottoNumber(userNumbers) {
-    userNumbers.forEach((lotto) => {
-      MissionUtils.Console.print(lotto);
+  printLottoNumber(lotto) {
+    lotto.forEach((item) => {
+      MissionUtils.Console.print(item);
     });
   }
 }
