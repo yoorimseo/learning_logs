@@ -1,4 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
+
 const LotteryDraw = require('./LotteryDraw');
 const lottoDraw = new LotteryDraw();
 
@@ -11,7 +12,8 @@ class LottoIssue {
       let lottoQuantity = this.calcLottoQuantity(price);
       this.printLottoQuantity(lottoQuantity);
 
-      this.printLottoNumber(lottoQuantity);
+      const USER_NUMBERS = this.createUserNumbers(lottoQuantity);
+      this.printLottoNumber(USER_NUMBERS);
 
       lottoDraw.userInput();
     });
@@ -38,10 +40,18 @@ class LottoIssue {
     return LOTTO_NUMBER;
   }
 
-  printLottoNumber(lottoQuantity) {
+  createUserNumbers(lottoQuantity) {
+    let userNumbers = [];
     for (let i = 0; i < lottoQuantity; i++) {
-      MissionUtils.Console.print(this.createRandomNumbers());
+      userNumbers.push(this.createRandomNumbers());
     }
+    return userNumbers;
+  }
+
+  printLottoNumber(userNumbers) {
+    userNumbers.forEach((lotto) => {
+      MissionUtils.Console.print(lotto);
+    });
   }
 }
 
