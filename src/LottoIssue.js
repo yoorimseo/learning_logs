@@ -3,12 +3,15 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const LotteryDraw = require('./LotteryDraw');
 const lotteryDraw = new LotteryDraw();
 
+const Lotto = require('./Lotto');
+
 const ValidationCheck = require('./ValidationCheck');
 const validationCheck = new ValidationCheck();
 
 class LottoIssue {
   constructor() {
     this.price = 0;
+    this.lottoQuantity = 0;
     this.lotto = [];
   }
 
@@ -16,43 +19,30 @@ class LottoIssue {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       this.price = Number(answer);
       validationCheck.checkPrice(this.price);
+      this.lottoQuantity = this.price / 1000;
 
-      let lottoQuantity = this.calcLottoQuantity(this.price);
-      this.printLottoQuantity(lottoQuantity);
-
-      this.createUserNumbers(lottoQuantity, this.lotto);
-      this.printLottoNumber(this.lotto);
-
+      this.printLottoQuantity();
+      this.createLottoNumbers();
       lotteryDraw.userInput(this.lotto, this.price);
     });
   }
 
-  calcLottoQuantity() {
-    let lottoQuantity = this.price / 1000;
-    return lottoQuantity;
+  printLottoQuantity() {
+    MissionUtils.Console.print(`${this.lottoQuantity}개를 구매했습니다.`);
   }
 
-  printLottoQuantity(lottoQuantity) {
-    MissionUtils.Console.print(`${lottoQuantity}개를 구매했습니다.`);
-  }
-
-  createRandomNumbers() {
-    const LOTTO_NUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-    return LOTTO_NUMBER.sort((a, b) => a - b);
-  }
-
-  createUserNumbers(lottoQuantity) {
-    for (let i = 0; i < lottoQuantity; i++) {
-      this.lotto.push(this.createRandomNumbers());
+  createLottoNumbers() {
+    for (let i = 0; i < this.lottoQuantity; i++) {
+      let lottoNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+      new Lotto(lottoNumber);
+      lottoNumber.sort((a, b) => a - b);
+      MissionUtils.Console.print(`[${lottoNumber.join(', ')}]`);
+      this.lotto.push(lottoNumber);
     }
-    return this.lotto;
-  }
-
-  printLottoNumber() {
-    this.lotto.forEach((item) => {
-      MissionUtils.Console.print(item);
-    });
   }
 }
 
 module.exports = LottoIssue;
+
+// const app = new LottoIssue();
+// app.lottoPurchase();
