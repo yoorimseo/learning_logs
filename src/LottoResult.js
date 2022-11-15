@@ -46,6 +46,10 @@ class LottoResult {
 
     profit = (profit / price) * 100;
 
+    if (profit % 10 === 0) {
+      return profit;
+    }
+
     return profit.toFixed(1);
   }
 
