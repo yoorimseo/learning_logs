@@ -38,7 +38,7 @@ class LottoIssue {
         LOTTO_NUMBER.push(NUMBER);
       }
     }
-    return LOTTO_NUMBER;
+    return LOTTO_NUMBER.sort((a, b) => a - b);
   }
 
   createUserNumbers(lottoQuantity) {
