@@ -1,14 +1,16 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
-const RANK = {
-  RANK_5: '5000',
-  RANK_4: '50,000',
-  RANK_3: '1,500,000',
-  RANK_2: '30,000,000',
-  RANK_1: '2,000,000,000',
-};
-
 class LottoResult {
+  constructor() {
+    this.rank = {
+      rank_5: '5000',
+      rank_4: '50,000',
+      rank_3: '1,500,000',
+      rank_2: '30,000,000',
+      rank_1: '2,000,000,000',
+    };
+  }
+
   compare(lotto, winningNumbers, winningHistory) {
     let correctNumbers = [];
     for (let i = 0; i < lotto.length; i++) {
@@ -30,7 +32,7 @@ class LottoResult {
   printCompareResult(winningHistory) {
     MissionUtils.Console.print('당첨 통계\n---');
     for (let i = 0; i < Object.keys(winningHistory).length; i++) {
-      MissionUtils.Console.print(`${Object.keys(winningHistory)[i]} (${Object.values(RANK)[i]}원) - ${Object.values(winningHistory)[i]}개`);
+      MissionUtils.Console.print(`${Object.keys(winningHistory)[i]} (${Object.values(this.rank)[i]}원) - ${Object.values(winningHistory)[i]}개`);
     }
     MissionUtils.Console.close();
   }
@@ -38,7 +40,7 @@ class LottoResult {
   calcLottoReturn(winningHistory, price) {
     let profit = 0;
     for (let i = 0; i < 5; i++) {
-      profit += Object.values(winningHistory)[i] * parseInt(Object.values(RANK)[i]);
+      profit += Object.values(winningHistory)[i] * parseInt(Object.values(this.rank)[i]);
     }
 
     profit = (profit / price) * 100;

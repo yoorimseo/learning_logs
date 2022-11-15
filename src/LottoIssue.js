@@ -6,28 +6,29 @@ const lotteryDraw = new LotteryDraw();
 const ValidationCheck = require('./ValidationCheck');
 const validationCheck = new ValidationCheck();
 
-let price = 0;
-
-let lotto = [];
-
 class LottoIssue {
+  constructor() {
+    this.price = 0;
+    this.lotto = [];
+  }
+
   lottoPurchase() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      price = Number(answer);
-      validationCheck.checkPrice(price);
+      this.price = Number(answer);
+      validationCheck.checkPrice(this.price);
 
-      let lottoQuantity = this.calcLottoQuantity(price);
+      let lottoQuantity = this.calcLottoQuantity(this.price);
       this.printLottoQuantity(lottoQuantity);
 
-      this.createUserNumbers(lottoQuantity, lotto);
-      this.printLottoNumber(lotto);
+      this.createUserNumbers(lottoQuantity, this.lotto);
+      this.printLottoNumber(this.lotto);
 
-      lotteryDraw.userInput(lotto, price);
+      lotteryDraw.userInput(this.lotto, this.price);
     });
   }
 
-  calcLottoQuantity(price) {
-    let lottoQuantity = price / 1000;
+  calcLottoQuantity() {
+    let lottoQuantity = this.price / 1000;
     return lottoQuantity;
   }
 
@@ -40,15 +41,15 @@ class LottoIssue {
     return LOTTO_NUMBER.sort((a, b) => a - b);
   }
 
-  createUserNumbers(lottoQuantity, lotto) {
+  createUserNumbers(lottoQuantity) {
     for (let i = 0; i < lottoQuantity; i++) {
-      lotto.push(this.createRandomNumbers());
+      this.lotto.push(this.createRandomNumbers());
     }
-    return lotto;
+    return this.lotto;
   }
 
-  printLottoNumber(lotto) {
-    lotto.forEach((item) => {
+  printLottoNumber() {
+    this.lotto.forEach((item) => {
       MissionUtils.Console.print(item);
     });
   }
