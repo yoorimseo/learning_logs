@@ -32,7 +32,7 @@ class LottoIssue {
   }
 
   printLottoQuantity(lottoQuantity) {
-    MissionUtils.Console.print(`\n${lottoQuantity}개를 구매했습니다.`);
+    MissionUtils.Console.print(`${lottoQuantity}개를 구매했습니다.`);
   }
 
   createRandomNumbers() {

@@ -28,7 +28,7 @@ class LottoResult {
   }
 
   printCompareResult(winningHistory) {
-    MissionUtils.Console.print('\n당첨 통계\n---');
+    MissionUtils.Console.print('당첨 통계\n---');
     for (let i = 0; i < Object.keys(winningHistory).length; i++) {
       MissionUtils.Console.print(`${Object.keys(winningHistory)[i]} (${Object.values(RANK)[i]}원) - ${Object.values(winningHistory)[i]}개`);
     }
