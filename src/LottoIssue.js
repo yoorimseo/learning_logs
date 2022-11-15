@@ -1,7 +1,7 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 
 const LotteryDraw = require('./LotteryDraw');
-const lottoDraw = new LotteryDraw();
+const lotteryDraw = new LotteryDraw();
 
 const ValidationCheck = require('./ValidationCheck');
 const validationCheck = new ValidationCheck();
@@ -21,7 +21,7 @@ class LottoIssue {
       lotto = this.createUserNumbers(lottoQuantity);
       this.printLottoNumber(lotto);
 
-      lottoDraw.userInput(lotto, price);
+      lotteryDraw.userInput(lotto, price);
     });
   }
 
