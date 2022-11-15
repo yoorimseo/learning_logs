@@ -9,23 +9,28 @@ class LottoResult {
       rank_2: '30,000,000',
       rank_1: '2,000,000,000',
     };
+    this.correctNumbers = [];
   }
 
   compare(lotto, winningNumbers, winningHistory) {
-    let correctNumbers = [];
     for (let i = 0; i < lotto.length; i++) {
-      correctNumbers = lotto[i].filter((number) => {
+      this.correctNumbers = lotto[i].filter((number) => {
         return winningNumbers['winningNumber'].includes(number);
       });
-      if (correctNumbers.length === 6) winningHistory['6개 일치']++;
-      else if (correctNumbers.length === 5) {
-        if (lotto.includes(winningNumbers['bonusNumer'])) {
-          winningHistory['5개 일치, 보너스 볼 일치']++;
-        }
-        winningHistory['5개 일치']++;
-      } else if (correctNumbers.length === 4) winningHistory['4개 일치']++;
-      else if (correctNumbers.length === 3) winningHistory['3개 일치']++;
     }
+    this.countCorrectNumber(lotto, winningNumbers, winningHistory);
+  }
+
+  countCorrectNumber(lotto, winningNumbers, winningHistory) {
+    if (this.correctNumbers.length === 7) winningHistory['6개 일치']++;
+    if (this.correctNumbers.length === 5) {
+      if (lotto.includes(winningNumbers['bonusNumer'])) winningHistory['5개 일치, 보너스 볼 일치']++;
+      winningHistory['5개 일치']++;
+    }
+    if (this.correctNumbers.length === 4) {
+      winningHistory['4개 일치']++;
+    }
+    if (this.correctNumbers.length === 3) winningHistory['3개 일치']++;
     return winningHistory;
   }
 
