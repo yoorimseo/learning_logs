@@ -15,6 +15,7 @@ class LottoIssue {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
       price = Number(answer);
       validationCheck.checkPrice(price);
+
       let lottoQuantity = this.calcLottoQuantity(price);
       this.printLottoQuantity(lottoQuantity);
 
@@ -35,13 +36,7 @@ class LottoIssue {
   }
 
   createRandomNumbers() {
-    const LOTTO_NUMBER = [];
-    while (LOTTO_NUMBER.length < 6) {
-      const NUMBER = MissionUtils.Random.pickNumberInRange(1, 45);
-      if (!LOTTO_NUMBER.includes(NUMBER)) {
-        LOTTO_NUMBER.push(NUMBER);
-      }
-    }
+    const LOTTO_NUMBER = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
     return LOTTO_NUMBER.sort((a, b) => a - b);
   }
 
