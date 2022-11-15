@@ -15,12 +15,14 @@ class LottoResult {
       correctNumbers = lotto[i].filter((number) => {
         return winningNumbers['winningNumber'].includes(number);
       });
-      if (correctNumbers.length === 3) winningHistory['3개 일치']++;
-      else if (correctNumbers.length === 4) winningHistory['4개 일치']++;
-      else if (correctNumbers.length === 5) winningHistory['5개 일치']++;
-      else if (correctNumbers.length === 5 && lotto.includes(winningNumbers['bonusNumer'])) {
-        winningHistory['5개 일치, 보너스 볼 일치']++;
-      } else if (correctNumbers.length === 6) winningHistory['6개 일치']++;
+      if (correctNumbers.length === 6) winningHistory['6개 일치']++;
+      else if (correctNumbers.length === 5) {
+        if (lotto.includes(winningNumbers['bonusNumer'])) {
+          winningHistory['5개 일치, 보너스 볼 일치']++;
+        }
+        winningHistory['5개 일치']++;
+      } else if (correctNumbers.length === 4) winningHistory['4개 일치']++;
+      else if (correctNumbers.length === 3) winningHistory['3개 일치']++;
     }
     return winningHistory;
   }
