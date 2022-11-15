@@ -19,7 +19,7 @@ class LottoIssue {
       let lottoQuantity = this.calcLottoQuantity(price);
       this.printLottoQuantity(lottoQuantity);
 
-      lotto = this.createUserNumbers(lottoQuantity);
+      this.createUserNumbers(lottoQuantity, lotto);
       this.printLottoNumber(lotto);
 
       lotteryDraw.userInput(lotto, price);
@@ -40,12 +40,11 @@ class LottoIssue {
     return LOTTO_NUMBER.sort((a, b) => a - b);
   }
 
-  createUserNumbers(lottoQuantity) {
-    let userNumbers = [];
+  createUserNumbers(lottoQuantity, lotto) {
     for (let i = 0; i < lottoQuantity; i++) {
-      userNumbers.push(this.createRandomNumbers());
+      lotto.push(this.createRandomNumbers());
     }
-    return userNumbers;
+    return lotto;
   }
 
   printLottoNumber(lotto) {
