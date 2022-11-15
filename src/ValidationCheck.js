@@ -25,6 +25,16 @@ class ValidationCheck {
       }
     });
   }
+
+  checkBonusNumber(bonusNumer) {
+    let testNumber = bonusNumer.split(',').length;
+    if (testNumber !== 1) {
+      throw Error('[ERROR] 보너스 번호는 1개의 숫자여야 합니다.');
+    }
+    if (1 > bonusNumer || bonusNumer > 45) {
+      throw Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+    }
+  }
 }
 
 module.exports = ValidationCheck;

@@ -25,6 +25,7 @@ class LotteryDraw {
       validationCheck.checkWinningNumber(answer);
       WINNING_NUMBERS['winningNumber'] = answer.split(',').map((str) => parseInt(str));
       MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
+        validationCheck.checkBonusNumber(answer);
         WINNING_NUMBERS['bonusNumer'] = parseInt(answer);
         this.showResult(WINNING_NUMBERS, lotto, price);
       });
