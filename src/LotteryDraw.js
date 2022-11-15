@@ -3,6 +3,9 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const LottoResult = require('./LottoResult');
 const lottoResult = new LottoResult();
 
+const ValidationCheck = require('./ValidationCheck');
+const validationCheck = new ValidationCheck();
+
 const WINNING_NUMBERS = {
   winningNumber: [],
   bonusNumer: 0,
@@ -19,6 +22,7 @@ const WINNING_HISTORY = {
 class LotteryDraw {
   userInput(lotto, price) {
     MissionUtils.Console.readLine('\n당첨 번호를 입력해 주세요.\n', (answer) => {
+      validationCheck.checkWinningNumber(answer);
       WINNING_NUMBERS['winningNumber'] = answer.split(',').map((str) => parseInt(str));
       MissionUtils.Console.readLine('\n보너스 번호를 입력해 주세요.\n', (answer) => {
         WINNING_NUMBERS['bonusNumer'] = parseInt(answer);
