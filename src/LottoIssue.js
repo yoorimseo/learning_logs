@@ -3,6 +3,9 @@ const MissionUtils = require('@woowacourse/mission-utils');
 const LotteryDraw = require('./LotteryDraw');
 const lottoDraw = new LotteryDraw();
 
+const ValidationCheck = require('./ValidationCheck');
+const validationCheck = new ValidationCheck();
+
 let price = 0;
 
 let lotto = [];
@@ -10,7 +13,8 @@ let lotto = [];
 class LottoIssue {
   lottoPurchase() {
     MissionUtils.Console.readLine('구입금액을 입력해 주세요.\n', (answer) => {
-      price = parseInt(answer);
+      price = Number(answer);
+      validationCheck.checkPrice(price);
       let lottoQuantity = this.calcLottoQuantity(price);
       this.printLottoQuantity(lottoQuantity);
 
