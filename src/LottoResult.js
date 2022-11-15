@@ -3,7 +3,7 @@ const MissionUtils = require('@woowacourse/mission-utils');
 class LottoResult {
   constructor() {
     this.rank = {
-      rank_5: '5000',
+      rank_5: '5,000',
       rank_4: '50,000',
       rank_3: '1,500,000',
       rank_2: '30,000,000',
@@ -40,12 +40,13 @@ class LottoResult {
   calcLottoReturn(winningHistory, price) {
     let profit = 0;
     for (let i = 0; i < 5; i++) {
-      profit += Object.values(winningHistory)[i] * parseInt(Object.values(this.rank)[i]);
+      let money = Object.values(this.rank)[i].split(',').join('');
+      profit += Object.values(winningHistory)[i] * parseInt(money);
     }
 
     profit = (profit / price) * 100;
 
-    return Math.round(profit * 100) / 100;
+    return profit.toFixed(1);
   }
 
   printCalcResult(profit) {
