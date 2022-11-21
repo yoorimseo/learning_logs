@@ -16,9 +16,9 @@ const BridgeMaker = {
   makeBridge(size, generateRandomNumber) {
     let bridgeShape = [];
     for (let index = 0; index < size; index++) {
-      const BRIDGE_BLOCK = generateRandomNumber().toString();
-      if (BRIDGE_BLOCK === '1') bridgeShape[index] = 'U';
-      else if (BRIDGE_BLOCK === '0') bridgeShape[index] = 'D';
+      const BRIDGE_BLOCK = generateRandomNumber();
+      if (BRIDGE_BLOCK === 1) bridgeShape[index] = 'U';
+      else if (BRIDGE_BLOCK === 0) bridgeShape[index] = 'D';
     }
 
     return bridgeShape;
