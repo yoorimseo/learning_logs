@@ -23,6 +23,15 @@ class BridgeGame {
     this.path.push(movingState);
   }
 
+  makeBridgeMap() {
+    const bridgeMap = [
+      this.path.map((state, index) => this.compare(state, index, 'U'), this.bridge),
+      this.path.map((state, index) => this.compare(state, index, 'D', this.bridge)),
+    ];
+
+    return bridgeMap;
+  }
+
   compare(state, index, block) {
     if (state !== block) {
       // console.log('건너지 않았다.');
