@@ -13,7 +13,7 @@ class App {
   constructor() {
     this.#bridgeLength = 0;
     this.#step = 0;
-    this.#count = 0;
+    this.#count = 1;
   }
   play() {
     // 게임 시작 출력
@@ -54,15 +54,15 @@ class App {
     const checkPlayerBridge = playerBridge.reduce((acc, cur) => [...acc, ...cur]);
     if (checkPlayerBridge.includes(' X ')) {
       // 게임 실패, 재시작하거나 종료
-      return this.inputGameCommand(bridgeGame);
+      return this.inputGameCommand(bridgeGame, playerBridge);
     }
     // 다리를 끝까지 건넜는지 확인
-    const arrivalState = this.checkArrivalState(this.#bridgeLength, this.#step);
+    const arrivalState = this.checkArrivalState(this.#bridgeLength, this.#step, playerBridge);
     // 게임 계속 진행 여부 확인
     return arrivalState ? Console.close() : this.inputMoveBlock(bridgeGame);
   }
 
-  inputGameCommand(bridgeGame) {
+  inputGameCommand(bridgeGame, playerBridge) {
     InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
       switch (answer) {
         case 'R':
@@ -70,20 +70,24 @@ class App {
           this.#step = 0;
           // 플레이어가 이동한 다리 초기화
           bridgeGame.path = [];
+          // 시도한 횟수 추가
+          this.#count++;
           // 이동할 칸 재입력
           return this.inputMoveBlock(bridgeGame);
         case 'Q':
           // 최종 결과 출력
+          this.printFinalResult(playerBridge, '실패');
           return Console.close();
       }
     });
   }
 
-  checkArrivalState(bridgeLength, step) {
+  checkArrivalState(bridgeLength, step, playerBridge) {
     // 다리를 끝까지 건넜는지 확인
     // console.log(`bridgeLength: ${bridgeLength}, step: ${step}`);
     if (bridgeLength === step) {
       // 끝까지 건넜다면 최종 게임 결과 출력
+      this.printFinalResult(playerBridge, '성공');
       // 게임 종료
       return true;
     }
@@ -93,6 +97,11 @@ class App {
   printBridgeMap(playerBridge) {
     // 상태 출력
     OutputView.printMap(playerBridge);
+  }
+
+  printFinalResult(playerBridge, successStatus) {
+    const totalAttempts = this.#count;
+    OutputView.printResult(playerBridge, successStatus, totalAttempts);
   }
 }
 
