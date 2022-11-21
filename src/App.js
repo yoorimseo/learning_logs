@@ -6,6 +6,15 @@ const BridgeGame = require('./service/BridgeGame');
 const OutputView = require('./view/OutputView');
 
 class App {
+  #bridgeLength;
+  #step;
+  #count;
+
+  constructor() {
+    this.#bridgeLength = 0;
+    this.#step = 0;
+    this.#count = 0;
+  }
   play() {
     // 게임 시작 출력
     OutputView.printGameStart();
@@ -14,11 +23,11 @@ class App {
       // BridgeMaker 생성
       const BRIDGE = BridgeMaker.makeBridge(answer, BridgeRandomNumberGenerator.generate);
       console.log(BRIDGE);
-
+      this.#bridgeLength += BRIDGE.length;
       const bridgeGame = new BridgeGame(BRIDGE);
 
       // 이동 입력
-      this.inputMoveBlock(bridgeGame);
+      this.inputMoveBlock(bridgeGame, BRIDGE);
 
       // 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 출력해야 한다.
     });
@@ -33,7 +42,9 @@ class App {
       const playerBridge = bridgeGame.makeBridgeMap();
       // 상태 출력
       this.printBridgeMap(playerBridge);
-      // 게임 계속 진행 여부 확인
+      // 몇 번째 다리를 건너고 있는지 확인하기 위한 step 추가
+      this.#step++;
+      // 현재까지 건넌 다리의 상태를 확인
       this.checkMovingState(playerBridge, bridgeGame);
     });
   }
@@ -45,8 +56,21 @@ class App {
       // 게임 실패, 재시작하거나 종료
       return Console.close();
     }
-    // 게임 계속 진행
-    return this.inputMoveBlock(bridgeGame);
+    // 다리를 끝까지 건넜는지 확인
+    const arrivalState = this.checkArrivalState(this.#bridgeLength, this.#step);
+    // 게임 계속 진행 여부 확인
+    return arrivalState ? Console.close() : this.inputMoveBlock(bridgeGame);
+  }
+
+  checkArrivalState(bridgeLength, step) {
+    // 다리를 끝까지 건넜는지 확인
+    console.log(`bridgeLength: ${bridgeLength}, step: ${step}`);
+    if (bridgeLength === step) {
+      // 끝까지 건넜다면 최종 게임 결과 출력
+      // 게임 종료
+      return true;
+    }
+    return false;
   }
 
   printBridgeMap(playerBridge) {
