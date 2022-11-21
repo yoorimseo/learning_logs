@@ -4,6 +4,7 @@ const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./domain/BridgeRandomNumberGenerator');
 const BridgeGame = require('./service/BridgeGame');
 const OutputView = require('./view/OutputView');
+// const InputValidation = require('./InputValidation');
 
 class App {
   #bridgeLength;
@@ -19,18 +20,34 @@ class App {
     // 게임 시작 출력
     OutputView.printGameStart();
     // 길이 입력
-    InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
-      // BridgeMaker 생성
-      const BRIDGE = BridgeMaker.makeBridge(answer, BridgeRandomNumberGenerator.generate);
-      this.#bridgeLength += BRIDGE.length;
-      const bridgeGame = new BridgeGame(BRIDGE);
-
-      // 이동 입력
-      this.inputMoveBlock(bridgeGame, BRIDGE);
-
-      // 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 출력해야 한다.
-    });
+    this.inputBridgeLength();
     //
+  }
+
+  inputBridgeLength() {
+    InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
+      // 입력값 확인
+      try {
+        if (isNaN(answer)) {
+          throw Error();
+        }
+        this.makeBridge(answer);
+      } catch {
+        Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
+        this.inputBridgeLength();
+      }
+    });
+  }
+
+  makeBridge(bridgeLength) {
+    // BridgeMaker 생성
+    const BRIDGE = BridgeMaker.makeBridge(bridgeLength, BridgeRandomNumberGenerator.generate);
+    this.#bridgeLength += BRIDGE.length;
+    const bridgeGame = new BridgeGame(BRIDGE);
+
+    // 이동 입력
+    this.inputMoveBlock(bridgeGame, BRIDGE);
+    // 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 출력해야 한다.
   }
 
   inputMoveBlock(bridgeGame) {
