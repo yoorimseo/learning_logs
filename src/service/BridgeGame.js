@@ -34,14 +34,11 @@ class BridgeGame {
 
   compare(state, index, block) {
     if (state !== block) {
-      // console.log('건너지 않았다.');
       return '   ';
     }
     if (state !== this.bridge[index]) {
-      // console.log('잘못 건넜다');
       return ' X ';
     }
-    // console.log('제대로 건넜다');
     return ' O ';
   }
 

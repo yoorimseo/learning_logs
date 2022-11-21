@@ -22,7 +22,6 @@ class App {
     InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
       // BridgeMaker 생성
       const BRIDGE = BridgeMaker.makeBridge(answer, BridgeRandomNumberGenerator.generate);
-      console.log(BRIDGE);
       this.#bridgeLength += BRIDGE.length;
       const bridgeGame = new BridgeGame(BRIDGE);
 
@@ -84,7 +83,6 @@ class App {
 
   checkArrivalState(bridgeLength, step, playerBridge) {
     // 다리를 끝까지 건넜는지 확인
-    // console.log(`bridgeLength: ${bridgeLength}, step: ${step}`);
     if (bridgeLength === step) {
       // 끝까지 건넜다면 최종 게임 결과 출력
       this.printFinalResult(playerBridge, '성공');

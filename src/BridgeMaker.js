@@ -20,7 +20,6 @@ const BridgeMaker = {
       if (BRIDGE_BLOCK === 1) bridgeShape[index] = 'U';
       else if (BRIDGE_BLOCK === 0) bridgeShape[index] = 'D';
     }
-
     return bridgeShape;
   },
 };
