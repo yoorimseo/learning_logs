@@ -29,7 +29,7 @@ const OutputView = {
    */
   printResult(finalBridge, successStatus, totalAttempts) {
     Console.print('최종 게임 결과');
-    Console.print(finalBridge);
+    finalBridge.forEach((map) => Console.print(`[${map.join('|')}]`));
     Console.print(`게임 성공 여부: ${successStatus}`);
     Console.print(`총 시도한 횟수: ${totalAttempts}`);
   },
