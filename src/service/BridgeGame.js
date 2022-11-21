@@ -23,6 +23,19 @@ class BridgeGame {
     this.path.push(movingState);
   }
 
+  compare(state, index, block) {
+    if (state !== block) {
+      // console.log('건너지 않았다.');
+      return '   ';
+    }
+    if (state !== this.bridge[index]) {
+      // console.log('잘못 건넜다');
+      return ' X ';
+    }
+    // console.log('제대로 건넜다');
+    return ' O ';
+  }
+
   /**
    * 사용자가 게임을 다시 시도할 때 사용하는 메서드
    * <p>
