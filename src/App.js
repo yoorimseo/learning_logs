@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const InputView = require('./view/InputView');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./domain/BridgeRandomNumberGenerator');
@@ -35,6 +36,17 @@ class App {
       // 게임 계속 진행 여부 확인
       this.checkMovingState(playerBridge, bridgeGame);
     });
+  }
+
+  checkMovingState(playerBridge, bridgeGame) {
+    // 현재까지 건넌 다리의 상태를 확인한 후, 게임 진행 여부 결정
+    const checkPlayerBridge = playerBridge.reduce((acc, cur) => [...acc, ...cur]);
+    if (checkPlayerBridge.includes(' X ')) {
+      // 게임 실패, 재시작하거나 종료
+      return Console.close();
+    }
+    // 게임 계속 진행
+    return this.inputMoveBlock(bridgeGame);
   }
 
   printBridgeMap(playerBridge) {
