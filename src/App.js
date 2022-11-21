@@ -54,7 +54,7 @@ class App {
     const checkPlayerBridge = playerBridge.reduce((acc, cur) => [...acc, ...cur]);
     if (checkPlayerBridge.includes(' X ')) {
       // 게임 실패, 재시작하거나 종료
-      return Console.close();
+      return this.inputGameCommand(bridgeGame);
     }
     // 다리를 끝까지 건넜는지 확인
     const arrivalState = this.checkArrivalState(this.#bridgeLength, this.#step);
@@ -62,9 +62,26 @@ class App {
     return arrivalState ? Console.close() : this.inputMoveBlock(bridgeGame);
   }
 
+  inputGameCommand(bridgeGame) {
+    InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
+      switch (answer) {
+        case 'R':
+          // step 초기화
+          this.#step = 0;
+          // 플레이어가 이동한 다리 초기화
+          bridgeGame.path = [];
+          // 이동할 칸 재입력
+          return this.inputMoveBlock(bridgeGame);
+        case 'Q':
+          // 최종 결과 출력
+          return Console.close();
+      }
+    });
+  }
+
   checkArrivalState(bridgeLength, step) {
     // 다리를 끝까지 건넜는지 확인
-    console.log(`bridgeLength: ${bridgeLength}, step: ${step}`);
+    // console.log(`bridgeLength: ${bridgeLength}, step: ${step}`);
     if (bridgeLength === step) {
       // 끝까지 건넜다면 최종 게임 결과 출력
       // 게임 종료
