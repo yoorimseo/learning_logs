@@ -3,7 +3,7 @@ const InputView = require('./view/InputView');
 const BridgeGame = require('./service/BridgeGame');
 const bridgeGame = new BridgeGame();
 const OutputView = require('./view/OutputView');
-// const InputValidation = require('./InputValidation');
+const InputValidation = require('./InputValidation');
 
 class App {
   #bridgeLength;
@@ -27,17 +27,23 @@ class App {
     InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
       // 입력값 확인
       try {
-        if (isNaN(answer)) {
-          throw Error();
-        }
+        this.checkInputValidation(answer);
         const BRIDGE = bridgeGame.makeBridge(answer);
         console.log(BRIDGE);
         this.inputMoveBlock(bridgeGame, BRIDGE);
       } catch {
-        Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
+        Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n');
         this.inputBridgeLength();
       }
     });
+  }
+
+  checkInputValidation(answer) {
+    if (!InputValidation.isNumber(answer)) {
+      throw Error();
+    } else if (!InputValidation.isvalidrange(answer)) {
+      throw Error();
+    }
   }
 
   inputMoveBlock(bridgeGame) {
