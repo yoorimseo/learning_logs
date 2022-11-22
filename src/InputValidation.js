@@ -15,6 +15,14 @@ const InputValidation = {
     }
     return true;
   },
+
+  isUpOrDown(answer) {
+    // 플레이어가 이동할 칸이 U와 D가 아닐 경우 예외 처리 한다.
+    if (answer === 'U' || answer === 'D') {
+      return true;
+    }
+    return false;
+  },
 };
 
 module.exports = InputValidation;
