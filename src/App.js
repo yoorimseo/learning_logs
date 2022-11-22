@@ -81,12 +81,24 @@ class App {
 
   inputGameCommand(playerBridge) {
     InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
-      if (bridgeGame.retry(answer)) {
-        return this.inputMoveBlock();
+      try {
+        this.checkGameCommandValidation(answer);
+        if (bridgeGame.retry(answer)) {
+          return this.inputMoveBlock();
+        }
+        this.printFinalResult(playerBridge, '실패');
+        return Console.close();
+      } catch {
+        Console.print('[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.\n');
+        this.inputGameCommand(playerBridge);
       }
-      this.printFinalResult(playerBridge, '실패');
-      return Console.close();
     });
+  }
+
+  checkGameCommandValidation(answer) {
+    if (!InputValidation.isRestartOrQuit(answer)) {
+      throw Error('[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.');
+    }
   }
 
   checkArrivalState(bridgeLength, step, playerBridge) {
