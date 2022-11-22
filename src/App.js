@@ -68,10 +68,7 @@ class App {
       // 게임 실패, 재시작하거나 종료
       return this.inputGameCommand(bridgeGame, playerBridge);
     }
-    // 다리를 끝까지 건넜는지 확인
-    const arrivalState = this.checkArrivalState(bridgeGame.bridgeLength, this.#step, playerBridge);
-    // 게임 계속 진행 여부 확인
-    return arrivalState ? Console.close() : this.inputMoveBlock(bridgeGame);
+    return this.checkArrivalState(bridgeGame.bridgeLength, this.#step, playerBridge);
   }
 
   inputGameCommand(bridgeGame, playerBridge) {
@@ -100,9 +97,10 @@ class App {
       // 끝까지 건넜다면 최종 게임 결과 출력
       this.printFinalResult(playerBridge, '성공');
       // 게임 종료
-      return true;
+      return Console.close();
     }
-    return false;
+    // 재시작
+    return this.inputMoveBlock(bridgeGame);
   }
 
   printBridgeMap(playerBridge) {
