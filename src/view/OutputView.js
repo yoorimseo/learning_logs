@@ -1,11 +1,13 @@
 const { Console } = require('@woowacourse/mission-utils');
+const REQUEST_MESSAGE = require('../constants/massage');
+const { BRIDGE_DIVIDING_LINE } = require('../constants/consition');
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 const OutputView = {
   printGameStart() {
-    Console.print('다리 건너기 게임을 시작합니다.');
+    Console.print(REQUEST_MESSAGE.gameStart);
   },
 
   printError(errorMessage) {
@@ -18,7 +20,7 @@ const OutputView = {
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   printMap(playerBridge) {
-    playerBridge.forEach((map) => Console.print(`[${map.join('|')}]`));
+    playerBridge.forEach((map) => Console.print(`[${map.join(BRIDGE_DIVIDING_LINE)}]`));
   },
 
   /**
@@ -27,10 +29,10 @@ const OutputView = {
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   printResult(finalBridge, successStatus, totalAttempts) {
-    Console.print('최종 게임 결과');
-    finalBridge.forEach((map) => Console.print(`[${map.join('|')}]`));
-    Console.print(`게임 성공 여부: ${successStatus}`);
-    Console.print(`총 시도한 횟수: ${totalAttempts}`);
+    Console.print(REQUEST_MESSAGE.finalGameResult);
+    finalBridge.forEach((map) => Console.print(`[${map.join(BRIDGE_DIVIDING_LINE)}]`));
+    Console.print(`${REQUEST_MESSAGE.gameSuccessState}${successStatus}`);
+    Console.print(`${REQUEST_MESSAGE.totalAttempts}${totalAttempts}`);
   },
 };
 

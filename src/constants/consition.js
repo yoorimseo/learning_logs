@@ -1,13 +1,19 @@
+const BRIDGE_MIN_LENGTH = 3;
+const BRIDGE_MAX_LENGTH = 20;
 const UP = 'U';
 const DOWN = 'D';
-const BRIDGE_DIVIDING_LINE = ' | ';
-const MOVEABLE = 'O';
-const UNABLE_TO_MOVE = 'X';
-const BLANK = ' ';
+const BRIDGE_DIVIDING_LINE = '|';
+const MOVEABLE = ' O ';
+const UNABLE_TO_MOVE = ' X ';
+const BLANK = '   ';
 const RESTART = 'R';
 const QUIT = 'Q';
+const SUCCESS = '성공';
+const FAIL = '실패';
 
-const INPUT_VALUE = Object.fromEntries({
+module.exports = {
+  BRIDGE_MIN_LENGTH,
+  BRIDGE_MAX_LENGTH,
   UP,
   DOWN,
   BRIDGE_DIVIDING_LINE,
@@ -16,6 +22,6 @@ const INPUT_VALUE = Object.fromEntries({
   BLANK,
   RESTART,
   QUIT,
-});
-
-module.exports = { INPUT_VALUE };
+  SUCCESS,
+  FAIL,
+};

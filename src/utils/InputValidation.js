@@ -1,3 +1,5 @@
+const { BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH, UP, DOWN, RESTART, QUIT } = require('../constants/consition');
+
 const InputValidation = {
   isNumber(answer) {
     if (isNaN(answer)) {
@@ -8,24 +10,18 @@ const InputValidation = {
 
   isvalidrange(answer) {
     const bridgeLengthNumber = parseInt(answer);
-    if (bridgeLengthNumber < 3 || 20 < bridgeLengthNumber) {
+    if (bridgeLengthNumber < BRIDGE_MIN_LENGTH || BRIDGE_MAX_LENGTH < bridgeLengthNumber) {
       return false;
     }
     return true;
   },
 
   isUpOrDown(answer) {
-    if (answer === 'U' || answer === 'D') {
-      return true;
-    }
-    return false;
+    return answer === UP || answer === DOWN;
   },
 
   isRestartOrQuit(answer) {
-    if (answer === 'R' || answer === 'Q') {
-      return true;
-    }
-    return false;
+    return answer === RESTART || answer === QUIT;
   },
 };
 

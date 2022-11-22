@@ -1,5 +1,6 @@
 const BridgeMaker = require('../BridgeMaker');
 const BridgeRandomNumberGenerator = require('../BridgeRandomNumberGenerator');
+const { UP, DOWN, MOVEABLE, UNABLE_TO_MOVE, BLANK, RESTART, QUIT } = require('../constants/consition');
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -30,8 +31,8 @@ class BridgeGame {
 
   makeBridgeMap() {
     const bridgeMap = [
-      this.path.map((state, index) => this.compare(state, index, 'U'), this.bridge),
-      this.path.map((state, index) => this.compare(state, index, 'D', this.bridge)),
+      this.path.map((state, index) => this.compare(state, index, UP), this.bridge),
+      this.path.map((state, index) => this.compare(state, index, DOWN, this.bridge)),
     ];
 
     return bridgeMap;
@@ -39,12 +40,12 @@ class BridgeGame {
 
   compare(state, index, block) {
     if (state !== block) {
-      return '   ';
+      return BLANK;
     }
     if (state !== this.bridge[index]) {
-      return ' X ';
+      return UNABLE_TO_MOVE;
     }
-    return ' O ';
+    return MOVEABLE;
   }
 
   /**
@@ -54,12 +55,12 @@ class BridgeGame {
    */
   retry(answer) {
     switch (answer) {
-      case 'R':
+      case RESTART:
         this.step = 0;
         this.path = [];
         this.count++;
         return true;
-      case 'Q':
+      case QUIT:
         return false;
     }
   }
