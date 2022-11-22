@@ -30,7 +30,7 @@ class App {
         this.checkInputValidation(answer);
         const BRIDGE = bridgeGame.makeBridge(answer);
         console.log(BRIDGE);
-        this.inputMoveBlock(bridgeGame, BRIDGE);
+        this.inputMoveBlock();
       } catch {
         Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n');
         this.inputBridgeLength();
@@ -46,7 +46,7 @@ class App {
     }
   }
 
-  inputMoveBlock(bridgeGame) {
+  inputMoveBlock() {
     InputView.readMoving('이동할 칸을 선택해주세요. (위: U, 아래: D)\n', (answer) => {
       // 이동
       bridgeGame.move(answer);
@@ -57,21 +57,21 @@ class App {
       // 몇 번째 다리를 건너고 있는지 확인하기 위한 step 추가
       this.#step++;
       // 현재까지 건넌 다리의 상태를 확인
-      this.checkMovingState(playerBridge, bridgeGame);
+      this.checkMovingState(playerBridge);
     });
   }
 
-  checkMovingState(playerBridge, bridgeGame) {
+  checkMovingState(playerBridge) {
     // 현재까지 건넌 다리의 상태를 확인한 후, 게임 진행 여부 결정
     const checkPlayerBridge = playerBridge.flat();
     if (checkPlayerBridge.includes(' X ')) {
       // 게임 실패, 재시작하거나 종료
-      return this.inputGameCommand(bridgeGame, playerBridge);
+      return this.inputGameCommand(playerBridge);
     }
     return this.checkArrivalState(bridgeGame.bridgeLength, this.#step, playerBridge);
   }
 
-  inputGameCommand(bridgeGame, playerBridge) {
+  inputGameCommand(playerBridge) {
     InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
       switch (answer) {
         case 'R':
