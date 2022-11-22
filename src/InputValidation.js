@@ -23,6 +23,14 @@ const InputValidation = {
     }
     return false;
   },
+
+  isRestartOrQuit(answer) {
+    // 게임 재시작/종료 여부 입력시, R과 Q가 아닐 경우 예외 처리 한다.
+    if (answer === 'R' || answer === 'Q') {
+      return true;
+    }
+    return false;
+  },
 };
 
 module.exports = InputValidation;
