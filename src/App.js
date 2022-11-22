@@ -6,12 +6,6 @@ const OutputView = require('./view/OutputView');
 const InputValidation = require('./InputValidation');
 
 class App {
-  #bridgeLength;
-
-  constructor() {
-    this.#bridgeLength = 0;
-  }
-
   play() {
     OutputView.printGameStart();
     this.inputBridgeLength();
@@ -30,8 +24,7 @@ class App {
   }
 
   makeBridgeAndContinue(answer) {
-    const BRIDGE = bridgeGame.makeBridge(answer);
-    console.log(BRIDGE);
+    bridgeGame.makeBridge(answer);
     this.inputMoveBlock();
   }
 
