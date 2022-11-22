@@ -23,7 +23,7 @@ class App {
     InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
       // 입력값 확인
       try {
-        this.checkInputValidation(answer);
+        this.checkBridgeLengthValidation(answer);
         const BRIDGE = bridgeGame.makeBridge(answer);
         console.log(BRIDGE);
         this.inputMoveBlock();
@@ -34,8 +34,7 @@ class App {
     });
   }
 
-  // 다리길이 유효성 검사로 이름 변경해야 함
-  checkInputValidation(answer) {
+  checkBridgeLengthValidation(answer) {
     if (!InputValidation.isNumber(answer)) {
       throw Error();
     } else if (!InputValidation.isvalidrange(answer)) {
