@@ -17,7 +17,7 @@ class App {
         this.checkBridgeLengthValidation(answer);
         this.makeBridgeAndContinue(answer);
       } catch {
-        Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n');
+        OutputView.printError('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n');
         this.inputBridgeLength();
       }
     });
@@ -42,7 +42,7 @@ class App {
         this.checkMoveBlockValidation(answer);
         this.moveBlockAndContinue(answer);
       } catch {
-        Console.print('[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.\n');
+        OutputView.printError('[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.\n');
         this.inputMoveBlock();
       }
     });
@@ -76,7 +76,7 @@ class App {
         this.checkGameCommandValidation(answer);
         this.restartOrQuit(answer, playerBridge);
       } catch {
-        Console.print('[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.\n');
+        OutputView.printError('[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.\n');
         this.inputGameCommand(playerBridge);
       }
     });
