@@ -23,6 +23,10 @@ const InputValidation = {
   isRestartOrQuit(answer) {
     return answer === RESTART || answer === QUIT;
   },
+
+  isZeroOrOne(number) {
+    return number === 0 || number === 1;
+  },
 };
 
 module.exports = InputValidation;

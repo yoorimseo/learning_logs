@@ -21,6 +21,12 @@ const CheckValidation = {
       throw Error(ERROR_MESSAGE.invalidGameRestartState);
     }
   },
+
+  checkRandomNumber(answer) {
+    if (!InputValidation.isZeroOrOne(answer)) {
+      throw Error(ERROR_MESSAGE.invalidRandomNumber);
+    }
+  },
 };
 
 module.exports = CheckValidation;

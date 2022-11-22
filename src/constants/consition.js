@@ -1,3 +1,5 @@
+const ZERO = 0;
+const ONE = 1;
 const BRIDGE_MIN_LENGTH = 3;
 const BRIDGE_MAX_LENGTH = 20;
 const UP = 'U';
@@ -12,6 +14,8 @@ const SUCCESS = '성공';
 const FAIL = '실패';
 
 module.exports = {
+  ZERO,
+  ONE,
   BRIDGE_MIN_LENGTH,
   BRIDGE_MAX_LENGTH,
   UP,
