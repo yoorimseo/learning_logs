@@ -13,14 +13,18 @@ const bridgeGame = new BridgeGame();
 const BridgeGameController = {
   inputBridgeLength() {
     InputView.readBridgeSize(REQUEST_MESSAGE.inputBridgeLength, (answer) => {
-      try {
-        CheckValidation.checkBridgeLengthValidation(answer);
-        this.makeBridgeAndContinue(answer);
-      } catch {
-        OutputView.printError(ERROR_MESSAGE.invalidBridgeLengthRange);
-        this.inputBridgeLength();
-      }
+      this.checkValidationBridgeLength(answer);
     });
+  },
+
+  checkValidationBridgeLength(answer) {
+    try {
+      CheckValidation.checkBridgeLengthValidation(answer);
+      this.makeBridgeAndContinue(answer);
+    } catch {
+      OutputView.printError(ERROR_MESSAGE.invalidBridgeLengthRange);
+      this.inputBridgeLength();
+    }
   },
 
   makeBridgeAndContinue(answer) {
@@ -30,14 +34,18 @@ const BridgeGameController = {
 
   inputMoveBlock() {
     InputView.readMoving(REQUEST_MESSAGE.selectMovingBlock, (answer) => {
-      try {
-        CheckValidation.checkMoveBlockValidation(answer);
-        this.moveBlockAndContinue(answer);
-      } catch {
-        OutputView.printError(ERROR_MESSAGE.invalidMovingBlock);
-        this.inputMoveBlock();
-      }
+      this.checkValidationMoveBlock(answer);
     });
+  },
+
+  checkValidationMoveBlock(answer) {
+    try {
+      CheckValidation.checkMoveBlockValidation(answer);
+      this.moveBlockAndContinue(answer);
+    } catch {
+      OutputView.printError(ERROR_MESSAGE.invalidMovingBlock);
+      this.inputMoveBlock();
+    }
   },
 
   moveBlockAndContinue(answer) {
@@ -45,10 +53,10 @@ const BridgeGameController = {
     const playerBridge = bridgeGame.makeBridgeMap();
     OutputView.printMap(playerBridge);
     bridgeGame.step++;
-    this.checkMovingState(playerBridge);
+    this.checkMoveState(playerBridge);
   },
 
-  checkMovingState(playerBridge) {
+  checkMoveState(playerBridge) {
     const checkPlayerBridge = playerBridge.flat();
     if (checkPlayerBridge.includes(UNABLE_TO_MOVE)) {
       return this.inputGameCommand(playerBridge);
@@ -58,14 +66,18 @@ const BridgeGameController = {
 
   inputGameCommand(playerBridge) {
     InputView.readGameCommand(REQUEST_MESSAGE.inputRestartOrQuit, (answer) => {
-      try {
-        CheckValidation.checkGameCommandValidation(answer);
-        this.restartOrQuit(answer, playerBridge);
-      } catch {
-        OutputView.printError(ERROR_MESSAGE.invalidGameRestartState);
-        this.inputGameCommand(playerBridge);
-      }
+      this.checkValidationGameCommand(answer, playerBridge);
     });
+  },
+
+  checkValidationGameCommand(answer, playerBridge) {
+    try {
+      CheckValidation.checkGameCommandValidation(answer);
+      this.restartOrQuit(answer, playerBridge);
+    } catch {
+      OutputView.printError(ERROR_MESSAGE.invalidGameRestartState);
+      this.inputGameCommand(playerBridge);
+    }
   },
 
   restartOrQuit(answer, playerBridge) {
