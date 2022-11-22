@@ -9,7 +9,6 @@ const ERROR_MESSAGE = require('../constants/error');
 
 const bridgeGame = new BridgeGame();
 
-// 사용자의 입력을 받고 처리하는 부분
 const BridgeGameController = {
   inputBridgeLength() {
     InputView.readBridgeSize(REQUEST_MESSAGE.inputBridgeLength, (answer) => {
