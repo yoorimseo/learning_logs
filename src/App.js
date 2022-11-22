@@ -11,6 +11,7 @@ class App {
   constructor() {
     this.#bridgeLength = 0;
   }
+
   play() {
     OutputView.printGameStart();
     this.inputBridgeLength();
@@ -20,14 +21,18 @@ class App {
     InputView.readBridgeSize('다리의 길이를 입력해주세요.\n', (answer) => {
       try {
         this.checkBridgeLengthValidation(answer);
-        const BRIDGE = bridgeGame.makeBridge(answer);
-        console.log(BRIDGE);
-        this.inputMoveBlock();
+        this.makeBridgeAndContinue(answer);
       } catch {
         Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n');
         this.inputBridgeLength();
       }
     });
+  }
+
+  makeBridgeAndContinue(answer) {
+    const BRIDGE = bridgeGame.makeBridge(answer);
+    console.log(BRIDGE);
+    this.inputMoveBlock();
   }
 
   checkBridgeLengthValidation(answer) {
@@ -42,16 +47,20 @@ class App {
     InputView.readMoving('이동할 칸을 선택해주세요. (위: U, 아래: D)\n', (answer) => {
       try {
         this.checkMoveBlockValidation(answer);
-        bridgeGame.move(answer);
-        const playerBridge = bridgeGame.makeBridgeMap();
-        this.printBridgeMap(playerBridge);
-        bridgeGame.step++;
-        this.checkMovingState(playerBridge);
+        this.moveBlockAndContinue(answer);
       } catch {
         Console.print('[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.\n');
         this.inputMoveBlock();
       }
     });
+  }
+
+  moveBlockAndContinue(answer) {
+    bridgeGame.move(answer);
+    const playerBridge = bridgeGame.makeBridgeMap();
+    this.printBridgeMap(playerBridge);
+    bridgeGame.step++;
+    this.checkMovingState(playerBridge);
   }
 
   checkMoveBlockValidation(answer) {
@@ -72,16 +81,20 @@ class App {
     InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
       try {
         this.checkGameCommandValidation(answer);
-        if (bridgeGame.retry(answer)) {
-          return this.inputMoveBlock();
-        }
-        this.printFinalResult(playerBridge, '실패');
-        return Console.close();
+        this.restartOrQuit(answer, playerBridge);
       } catch {
         Console.print('[ERROR] 게임 재시작/종료 여부는 R(재시작)과 Q(종료) 중 하나의 문자여야 합니다.\n');
         this.inputGameCommand(playerBridge);
       }
     });
+  }
+
+  restartOrQuit(answer, playerBridge) {
+    if (bridgeGame.retry(answer)) {
+      return this.inputMoveBlock();
+    }
+    this.printFinalResult(playerBridge, '실패');
+    return Console.close();
   }
 
   checkGameCommandValidation(answer) {
@@ -109,6 +122,3 @@ class App {
 }
 
 module.exports = App;
-
-// const app = new App();
-// app.play();
