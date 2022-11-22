@@ -20,6 +20,8 @@ class BridgeGame {
     this.bridge = bridge;
     this.bridgeLength = 0;
     this.path = [];
+    this.step = 0;
+    this.count = 1;
   }
 
   makeBridge(bridgeLength) {
@@ -57,7 +59,21 @@ class BridgeGame {
    * <p>
    * 재시작을 위해 필요한 메서드의 반환 값(return value), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-  retry() {}
+  retry(answer) {
+    switch (answer) {
+      case 'R':
+        // step 초기화
+        this.step = 0;
+        // 플레이어가 이동한 다리 초기화
+        this.path = [];
+        // 시도한 횟수 추가
+        this.count++;
+        // 이동할 칸 재입력
+        return true;
+      case 'Q':
+        return false;
+    }
+  }
 }
 
 module.exports = BridgeGame;

@@ -7,13 +7,9 @@ const InputValidation = require('./InputValidation');
 
 class App {
   #bridgeLength;
-  #step;
-  #count;
 
   constructor() {
     this.#bridgeLength = 0;
-    this.#step = 0;
-    this.#count = 1;
   }
   play() {
     // 게임 시작 출력
@@ -55,7 +51,7 @@ class App {
       // 상태 출력
       this.printBridgeMap(playerBridge);
       // 몇 번째 다리를 건너고 있는지 확인하기 위한 step 추가
-      this.#step++;
+      bridgeGame.step++;
       // 현재까지 건넌 다리의 상태를 확인
       this.checkMovingState(playerBridge);
     });
@@ -68,26 +64,16 @@ class App {
       // 게임 실패, 재시작하거나 종료
       return this.inputGameCommand(playerBridge);
     }
-    return this.checkArrivalState(bridgeGame.bridgeLength, this.#step, playerBridge);
+    return this.checkArrivalState(bridgeGame.bridgeLength, bridgeGame.step, playerBridge);
   }
 
   inputGameCommand(playerBridge) {
     InputView.readGameCommand('게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n', (answer) => {
-      switch (answer) {
-        case 'R':
-          // step 초기화
-          this.#step = 0;
-          // 플레이어가 이동한 다리 초기화
-          bridgeGame.path = [];
-          // 시도한 횟수 추가
-          this.#count++;
-          // 이동할 칸 재입력
-          return this.inputMoveBlock(bridgeGame);
-        case 'Q':
-          // 최종 결과 출력
-          this.printFinalResult(playerBridge, '실패');
-          return Console.close();
+      if (bridgeGame.retry(answer)) {
+        return this.inputMoveBlock();
       }
+      this.printFinalResult(playerBridge, '실패');
+      return Console.close();
     });
   }
 
@@ -109,7 +95,7 @@ class App {
   }
 
   printFinalResult(playerBridge, successStatus) {
-    const totalAttempts = this.#count;
+    const totalAttempts = bridgeGame.count;
     OutputView.printResult(playerBridge, successStatus, totalAttempts);
   }
 }
