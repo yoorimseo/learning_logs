@@ -1,8 +1,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const InputView = require('./view/InputView');
-const BridgeMaker = require('./BridgeMaker');
-const BridgeRandomNumberGenerator = require('./domain/BridgeRandomNumberGenerator');
 const BridgeGame = require('./service/BridgeGame');
+const bridgeGame = new BridgeGame();
 const OutputView = require('./view/OutputView');
 // const InputValidation = require('./InputValidation');
 
@@ -31,23 +30,14 @@ class App {
         if (isNaN(answer)) {
           throw Error();
         }
-        this.makeBridge(answer);
+        const BRIDGE = bridgeGame.makeBridge(answer);
+        console.log(BRIDGE);
+        this.inputMoveBlock(bridgeGame, BRIDGE);
       } catch {
         Console.print('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
         this.inputBridgeLength();
       }
     });
-  }
-
-  makeBridge(bridgeLength) {
-    // BridgeMaker 생성
-    const BRIDGE = BridgeMaker.makeBridge(bridgeLength, BridgeRandomNumberGenerator.generate);
-    this.#bridgeLength += BRIDGE.length;
-    const bridgeGame = new BridgeGame(BRIDGE);
-
-    // 이동 입력
-    this.inputMoveBlock(bridgeGame, BRIDGE);
-    // 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 출력해야 한다.
   }
 
   inputMoveBlock(bridgeGame) {
@@ -67,13 +57,13 @@ class App {
 
   checkMovingState(playerBridge, bridgeGame) {
     // 현재까지 건넌 다리의 상태를 확인한 후, 게임 진행 여부 결정
-    const checkPlayerBridge = playerBridge.reduce((acc, cur) => [...acc, ...cur]);
+    const checkPlayerBridge = playerBridge.flat();
     if (checkPlayerBridge.includes(' X ')) {
       // 게임 실패, 재시작하거나 종료
       return this.inputGameCommand(bridgeGame, playerBridge);
     }
     // 다리를 끝까지 건넜는지 확인
-    const arrivalState = this.checkArrivalState(this.#bridgeLength, this.#step, playerBridge);
+    const arrivalState = this.checkArrivalState(bridgeGame.bridgeLength, this.#step, playerBridge);
     // 게임 계속 진행 여부 확인
     return arrivalState ? Console.close() : this.inputMoveBlock(bridgeGame);
   }

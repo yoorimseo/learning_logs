@@ -1,3 +1,5 @@
+const BridgeMaker = require('../BridgeMaker');
+const BridgeRandomNumberGenerator = require('../domain/BridgeRandomNumberGenerator');
 // 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
 // BridgeGame에 필드(인스턴스 변수)를 추가할 수 있다.
 // BridgeGame의 파일 경로는 변경할 수 있다.
@@ -16,7 +18,15 @@ class BridgeGame {
    */
   constructor(bridge) {
     this.bridge = bridge;
+    this.bridgeLength = 0;
     this.path = [];
+  }
+
+  makeBridge(bridgeLength) {
+    // BridgeMaker 생성
+    this.bridge = BridgeMaker.makeBridge(bridgeLength, BridgeRandomNumberGenerator.generate);
+    this.bridgeLength += this.bridge.length;
+    return this.bridge;
   }
 
   move(movingState) {
