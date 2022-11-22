@@ -51,7 +51,7 @@ class App {
   moveBlockAndContinue(answer) {
     bridgeGame.move(answer);
     const playerBridge = bridgeGame.makeBridgeMap();
-    this.printBridgeMap(playerBridge);
+    OutputView.printMap(playerBridge);
     bridgeGame.step++;
     this.checkMovingState(playerBridge);
   }
@@ -86,7 +86,7 @@ class App {
     if (bridgeGame.retry(answer)) {
       return this.inputMoveBlock();
     }
-    this.printFinalResult(playerBridge, '실패');
+    OutputView.printResult(playerBridge, '실패', bridgeGame.count);
     return Console.close();
   }
 
@@ -98,19 +98,10 @@ class App {
 
   checkArrivalState(bridgeLength, step, playerBridge) {
     if (bridgeLength === step) {
-      this.printFinalResult(playerBridge, '성공');
+      OutputView.printResult(playerBridge, '성공', bridgeGame.count);
       return Console.close();
     }
     return this.inputMoveBlock(bridgeGame);
-  }
-
-  printBridgeMap(playerBridge) {
-    OutputView.printMap(playerBridge);
-  }
-
-  printFinalResult(playerBridge, successStatus) {
-    const totalAttempts = bridgeGame.count;
-    OutputView.printResult(playerBridge, successStatus, totalAttempts);
   }
 }
 
