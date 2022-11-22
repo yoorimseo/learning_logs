@@ -1,9 +1,9 @@
 const { Console } = require('@woowacourse/mission-utils');
 const InputView = require('./view/InputView');
-const BridgeGame = require('./service/BridgeGame');
+const BridgeGame = require('./model/BridgeGame');
 const bridgeGame = new BridgeGame();
 const OutputView = require('./view/OutputView');
-const InputValidation = require('./InputValidation');
+const InputValidation = require('./utils/InputValidation');
 
 class App {
   play() {
