@@ -36,9 +36,9 @@ class App {
 
   checkBridgeLengthValidation(answer) {
     if (!InputValidation.isNumber(answer)) {
-      throw Error();
+      throw Error('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
     } else if (!InputValidation.isvalidrange(answer)) {
-      throw Error();
+      throw Error('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
     }
   }
 
@@ -65,7 +65,7 @@ class App {
 
   checkMoveBlockValidation(answer) {
     if (!InputValidation.isUpOrDown(answer)) {
-      throw Error();
+      throw Error('[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.');
     }
   }
 
