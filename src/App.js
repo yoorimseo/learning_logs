@@ -34,6 +34,7 @@ class App {
     });
   }
 
+  // 다리길이 유효성 검사로 이름 변경해야 함
   checkInputValidation(answer) {
     if (!InputValidation.isNumber(answer)) {
       throw Error();
@@ -44,17 +45,29 @@ class App {
 
   inputMoveBlock() {
     InputView.readMoving('이동할 칸을 선택해주세요. (위: U, 아래: D)\n', (answer) => {
-      // 이동
-      bridgeGame.move(answer);
-      // 상태 저장
-      const playerBridge = bridgeGame.makeBridgeMap();
-      // 상태 출력
-      this.printBridgeMap(playerBridge);
-      // 몇 번째 다리를 건너고 있는지 확인하기 위한 step 추가
-      bridgeGame.step++;
-      // 현재까지 건넌 다리의 상태를 확인
-      this.checkMovingState(playerBridge);
+      try {
+        this.checkMoveBlockValidation(answer);
+        // 이동
+        bridgeGame.move(answer);
+        // 상태 저장
+        const playerBridge = bridgeGame.makeBridgeMap();
+        // 상태 출력
+        this.printBridgeMap(playerBridge);
+        // 몇 번째 다리를 건너고 있는지 확인하기 위한 step 추가
+        bridgeGame.step++;
+        // 현재까지 건넌 다리의 상태를 확인
+        this.checkMovingState(playerBridge);
+      } catch {
+        Console.print('[ERROR] 이동할 칸은 U(위 칸)와 D(아래 칸) 중 하나의 문자여야 합니다.\n');
+        this.inputMoveBlock();
+      }
     });
+  }
+
+  checkMoveBlockValidation(answer) {
+    if (!InputValidation.isUpOrDown(answer)) {
+      throw Error();
+    }
   }
 
   checkMovingState(playerBridge) {
