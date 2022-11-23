@@ -20,6 +20,24 @@ const BridgeMaker = {
       else if (BRIDGE_BLOCK === ZERO) bridgeShape[index] = DOWN;
     }
     return bridgeShape;
+
+    // 1. 객체와 map 함수를 이용하여 한 줄로 만드는 방법
+    // return Array.from({length: size}).map(() => generateRandomNumber() ? 'D' : 'U');
+
+    // 2. 조건문을 switch 문으로 사용하는 방법
+    /*
+      let bridgeShape = [];
+
+      for (let index = 0; index < size; index++) {
+        const bridgeBlock = generateRandomNumber();
+
+        switch (bridgeBlock) {
+          case 0: bridgeShape[index] = 'D'; break;
+          case 1: bridgeShape[index] = 'U'; break;
+        }
+      }
+      return bridgeShape;
+    */
   },
 };
 
