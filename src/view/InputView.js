@@ -3,9 +3,10 @@ const { stdin: input, stdout: output } = require('process');
 
 const rl = readline.createInterface({ input, output });
 
-rl.question('What do you think of Node.js? ', (answer) => {
-  // TODO: Log the answer in a database
-  console.log(`Thank you for your valuable feedback: ${answer}`);
+const InputView = {
+  inputOrder(question, callback) {
+    rl.question(question, callback);
+  },
+};
 
-  rl.close();
-});
+module.exports = InputView;
