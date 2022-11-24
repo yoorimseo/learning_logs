@@ -1,11 +1,19 @@
-const readline = require('readline');
-const { stdin: input, stdout: output } = require('process');
+const OutputView = {
+  printMenu() {
+    console.log('[ 메뉴 : 아메리카노, 카페라떼, 에이드, 스무디 ]');
+  },
 
-const rl = readline.createInterface({ input, output });
+  printMakingBevarage(bevarage, time) {
+    console.log(`${bevarage} 제조중...(${time})`);
+  },
 
-rl.question('What do you think of Node.js? ', (answer) => {
-  // TODO: Log the answer in a database
-  console.log(`Thank you for your valuable feedback: ${answer}`);
+  printPickUp() {
+    console.log('주문하신 음료가 나왔습니다.');
+  },
 
-  rl.close();
-});
+  printOrderHistory(bevarage, cup) {
+    console.log(`주문 내역 : ${bevarage} ${cup}잔`);
+  },
+};
+
+module.exports = OutputView;
