@@ -1,0 +1,38 @@
+button {
+  cursor: pointer;
+}
+
+.ir {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.app {
+  width: 450px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: lightslategrey;
+}
+
+.app .txt-title {
+  padding: 20px 0;
+  font-size: x-large;
+  font-weight: 700;
+  background-color: lightsteelblue;
+}
+
+.list .todo::before {
+  content: '🔲';
+}
+
+.list .done {
+  color: white;
+  text-decoration: line-through;
+}
+
+.list .done::before {
+  content: '☑️';
+}

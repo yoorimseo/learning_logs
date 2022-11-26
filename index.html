@@ -11,7 +11,26 @@
 </head>
 
 <body>
+  <section class='app'>
+    <h1 class='txt-title'>오늘의 할 일은 무엇인가요?</h1>
 
+    <label for='inp-todo' class='ir'>오늘 할 일을 입력해주세요.</label>
+    <input type='text' id='inp-todo'>
+    <button type='button' class='btn-add'>추가하기</button>
+
+    <ul class='list'>
+      <li class='todo'>
+        끝내주게 숨 쉬기
+        <button type='button' class='btn-delete'>삭제하기</button>
+      </li>
+      <li class='done'>
+        뒤집어지게 놀기
+        <button type='button' class='btn-delete'>삭제하기</button>
+      </li>
+    </ul>
+  </section>
+
+  <script src='./src/js/index.js'></script>
 </body>
 
 </html>
