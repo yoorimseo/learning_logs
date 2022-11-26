@@ -31,3 +31,6 @@ liEl.addEventListener('click', () => {
 });
 
 // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
+btnDelete.addEventListener('click', () => {
+  liEl.remove();
+});
