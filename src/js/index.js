@@ -26,5 +26,8 @@ btnAdd.addEventListener('click', () => {
 });
 
 // 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
+liEl.addEventListener('click', () => {
+  liEl.classList.toggle('done');
+});
 
 // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
