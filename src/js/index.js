@@ -24,7 +24,17 @@ btnAdd.addEventListener('click', () => {
       window.localStorage.setItem(index, item);
     });
 
-    // 2-4. 할 일이 추가되면, input창에 빈 내용으로 바뀌어야 한다.
+    // 2-4. 로컬 스토리지에 저장된 할 일을 불러와 화면에 띄운다.
+    for (let key = 0; key < localStorage.length; key++) {
+      // console.log(localStorage.getItem(key));
+      liEl.innerText = localStorage[key];
+      liEl.classList.add('todo');
+      btnDelete.innerText = '삭제하기';
+      list.appendChild(liEl);
+      liEl.appendChild(btnDelete);
+    }
+
+    // 2-5. 할 일이 추가되면, input창에 빈 내용으로 바뀌어야 한다.
     inpTodo.value = '';
 
     // 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
