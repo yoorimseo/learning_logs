@@ -4,7 +4,7 @@ const btnAdd = app.querySelector('.btn-add');
 const list = app.querySelector('.list');
 
 // 0. 새로고침 하면 로컬스토리지에 있는 내 투두 리스트가 불러와져야 한다.
-console.log(localStorage);
+// console.log(localStorage);
 if (localStorage.length !== 0) {
   for (let index = 0; index < localStorage.length; index++) {
     const liEl = document.createElement('li');
@@ -48,16 +48,20 @@ btnAdd.addEventListener('click', () => {
 
     // 2-5. 할 일이 추가되면, input창에 빈 내용으로 바뀌어야 한다.
     inpTodo.value = '';
-
-    // 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
-    liEl.addEventListener('click', (e) => {
-      liEl.classList.toggle('done');
-      console.log(e.currentTarget);
-    });
-
-    // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
-    btnDelete.addEventListener('click', () => {
-      liEl.remove();
-    });
   }
 });
+
+// 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
+const todoEl = document.querySelectorAll('.todo');
+console.log(todoEl);
+todoEl.forEach((element) => {
+  element.addEventListener('click', () => {
+    console.log(element);
+    element.classList.toggle('done');
+  });
+});
+
+// 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
+// btnDelete.addEventListener('click', () => {
+//   liEl.remove();
+// });
