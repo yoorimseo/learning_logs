@@ -5,7 +5,18 @@ const list = app.querySelector('.list');
 const todoList = [];
 
 // 0. 새로고침 하면 로컬스토리지에 있는 내 투두 리스트가 불러와져야 한다.
-
+console.log(localStorage);
+if (localStorage.length !== 0) {
+  for (let index = 0; index < localStorage.length; index++) {
+    const liEl = document.createElement('li');
+    const btnDelete = document.createElement('button');
+    liEl.innerText = localStorage[index];
+    liEl.classList.add('todo');
+    btnDelete.innerText = '삭제하기';
+    list.appendChild(liEl);
+    liEl.appendChild(btnDelete);
+  }
+}
 // 1. input창에 할 일을 입력할 수 있어야 한다.
 
 // 2. 추가하기 버튼을 클릭하면, 하단에 빈 박스 아이콘과 할 일의 내용, 그리고 삭제하기 버튼이 있는 리스트 하나가 추가되어야 한다.
@@ -38,8 +49,9 @@ btnAdd.addEventListener('click', () => {
     inpTodo.value = '';
 
     // 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
-    liEl.addEventListener('click', () => {
+    liEl.addEventListener('click', (e) => {
       liEl.classList.toggle('done');
+      console.log(e.currentTarget);
     });
 
     // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
