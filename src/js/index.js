@@ -12,7 +12,7 @@ if (localStorage.length !== 0) {
     const btnDelete = document.createElement('button');
 
     todoBtnEl.classList.add('todo');
-    btnDelete.classList.add('.btn-delete');
+    btnDelete.classList.add('btn-delete');
 
     todoBtnEl.innerText = localStorage[index];
     btnDelete.innerText = '삭제하기';
@@ -37,7 +37,7 @@ btnAdd.addEventListener('click', () => {
 
     // liEl.classList.add('todo');
     todoBtnEl.classList.add('todo');
-    btnDelete.classList.add('.btn-delete');
+    btnDelete.classList.add('btn-delete');
 
     // 2-3. 사용자가 입력한 할 일을 로컬 스토리지에 저장한다.
     if (localStorage.length === 0) {
@@ -72,6 +72,14 @@ todoEl.forEach((element) => {
 });
 
 // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
+const deleteBtnEl = list.querySelectorAll('.btn-delete');
+console.log(deleteBtnEl);
+// todoEl.forEach((element) => {
+//   element.addEventListener('click', () => {
+//     // console.log(element);
+//     element.classList.toggle('done');
+//   });
+// });
 // btnDelete.addEventListener('click', () => {
 //   liEl.remove();
 // });
