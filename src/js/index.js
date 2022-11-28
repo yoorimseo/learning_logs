@@ -29,6 +29,9 @@ btnAdd.addEventListener('click', () => {
     const liEl = document.createElement('li');
     const btnDelete = document.createElement('button');
 
+    liEl.classList.add('todo');
+    btnDelete.classList.add('.btn-delete');
+
     // 2-3. 사용자가 입력한 할 일을 로컬 스토리지에 저장한다.
     if (localStorage.length === 0) {
       window.localStorage.setItem(0, inpTodo.value);
@@ -40,7 +43,6 @@ btnAdd.addEventListener('click', () => {
     for (let key = 0; key < localStorage.length; key++) {
       // console.log(localStorage.getItem(key));
       liEl.innerText = localStorage[key];
-      liEl.classList.add('todo');
       btnDelete.innerText = '삭제하기';
       list.appendChild(liEl);
       liEl.appendChild(btnDelete);
@@ -53,7 +55,7 @@ btnAdd.addEventListener('click', () => {
 
 // 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
 const todoEl = document.querySelectorAll('.todo');
-console.log(todoEl);
+// console.log(todoEl);
 todoEl.forEach((element) => {
   element.addEventListener('click', () => {
     console.log(element);
