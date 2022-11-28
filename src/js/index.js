@@ -72,14 +72,12 @@ todoEl.forEach((element) => {
 });
 
 // 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
+const liEl = document.querySelectorAll('li');
 const deleteBtnEl = list.querySelectorAll('.btn-delete');
-console.log(deleteBtnEl);
-// todoEl.forEach((element) => {
-//   element.addEventListener('click', () => {
-//     // console.log(element);
-//     element.classList.toggle('done');
-//   });
-// });
-// btnDelete.addEventListener('click', () => {
-//   liEl.remove();
-// });
+
+deleteBtnEl.forEach((element, index) => {
+  element.addEventListener('click', () => {
+    liEl[index].remove();
+    localStorage.removeItem(index);
+  });
+});
