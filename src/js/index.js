@@ -2,7 +2,6 @@ const app = document.querySelector('.app');
 const inpTodo = app.querySelector('#inp-todo');
 const btnAdd = app.querySelector('.btn-add');
 const list = app.querySelector('.list');
-const todoList = [];
 
 // 0. 새로고침 하면 로컬스토리지에 있는 내 투두 리스트가 불러와져야 한다.
 console.log(localStorage);
@@ -17,6 +16,7 @@ if (localStorage.length !== 0) {
     liEl.appendChild(btnDelete);
   }
 }
+
 // 1. input창에 할 일을 입력할 수 있어야 한다.
 
 // 2. 추가하기 버튼을 클릭하면, 하단에 빈 박스 아이콘과 할 일의 내용, 그리고 삭제하기 버튼이 있는 리스트 하나가 추가되어야 한다.
@@ -30,10 +30,11 @@ btnAdd.addEventListener('click', () => {
     const btnDelete = document.createElement('button');
 
     // 2-3. 사용자가 입력한 할 일을 로컬 스토리지에 저장한다.
-    todoList.push(inpTodo.value);
-    todoList.forEach((item, index) => {
-      window.localStorage.setItem(index, item);
-    });
+    if (localStorage.length === 0) {
+      window.localStorage.setItem(0, inpTodo.value);
+    } else {
+      window.localStorage.setItem(localStorage.length, inpTodo.value);
+    }
 
     // 2-4. 로컬 스토리지에 저장된 할 일을 불러와 화면에 띄운다.
     for (let key = 0; key < localStorage.length; key++) {
