@@ -8,11 +8,16 @@ const list = app.querySelector('.list');
 if (localStorage.length !== 0) {
   for (let index = 0; index < localStorage.length; index++) {
     const liEl = document.createElement('li');
+    const todoBtnEl = document.createElement('button');
     const btnDelete = document.createElement('button');
-    liEl.innerText = localStorage[index];
-    liEl.classList.add('todo');
+
+    todoBtnEl.classList.add('todo');
+    btnDelete.classList.add('.btn-delete');
+
+    todoBtnEl.innerText = localStorage[index];
     btnDelete.innerText = '삭제하기';
     list.appendChild(liEl);
+    liEl.appendChild(todoBtnEl);
     liEl.appendChild(btnDelete);
   }
 }
@@ -27,9 +32,11 @@ btnAdd.addEventListener('click', () => {
   } else {
     // 2-2. 하단에 빈 박스 아이콘과 할 일의 내용, 그리고 삭제하기 버튼이 있는 리스트 하나가 추가되어야 한다.
     const liEl = document.createElement('li');
+    const todoBtnEl = document.createElement('button');
     const btnDelete = document.createElement('button');
 
-    liEl.classList.add('todo');
+    // liEl.classList.add('todo');
+    todoBtnEl.classList.add('todo');
     btnDelete.classList.add('.btn-delete');
 
     // 2-3. 사용자가 입력한 할 일을 로컬 스토리지에 저장한다.
@@ -42,9 +49,10 @@ btnAdd.addEventListener('click', () => {
     // 2-4. 로컬 스토리지에 저장된 할 일을 불러와 화면에 띄운다.
     for (let key = 0; key < localStorage.length; key++) {
       // console.log(localStorage.getItem(key));
-      liEl.innerText = localStorage[key];
+      todoBtnEl.innerText = localStorage[key];
       btnDelete.innerText = '삭제하기';
       list.appendChild(liEl);
+      liEl.appendChild(todoBtnEl);
       liEl.appendChild(btnDelete);
     }
 
@@ -58,7 +66,7 @@ const todoEl = document.querySelectorAll('.todo');
 // console.log(todoEl);
 todoEl.forEach((element) => {
   element.addEventListener('click', () => {
-    console.log(element);
+    // console.log(element);
     element.classList.toggle('done');
   });
 });
