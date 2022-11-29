@@ -1,8 +1,10 @@
 const InputView = require('./view/InputView');
+const MakeBeverage = require('./MakeBeverage');
 
 class Order {
   constructor() {
     this.orderList = {};
+    this.makeBeverage = new MakeBeverage();
   }
 
   orderInput() {
@@ -15,7 +17,7 @@ class Order {
         }
       }
       this.orderList = Object.fromEntries(customerOrderList);
-      return this.orderList;
+      this.makeBeverage.calcTime(this.orderList);
     });
   }
 }

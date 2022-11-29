@@ -10,8 +10,17 @@ class MakeBeverage {
     };
   }
 
-  make(bevarage, time) {
+  makingBeverage(bevarage, time) {
     OutputView.printMakingBevarage(bevarage, time);
+  }
+
+  calcTime(orderList) {
+    let time = 0;
+
+    for (const menu in orderList) {
+      time = this.makingBeverageList[menu] * orderList[menu];
+      this.makingBeverage(menu, time);
+    }
   }
 }
 

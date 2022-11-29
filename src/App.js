@@ -8,7 +8,7 @@ class App {
   }
 
   play() {
-    const orderList = this.order.orderInput();
+    this.order.orderInput();
   }
 }
 

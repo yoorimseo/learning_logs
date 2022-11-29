@@ -4,7 +4,7 @@ const OutputView = {
   },
 
   printMakingBevarage(bevarage, time) {
-    console.log(`${bevarage} 제조중...(${time})`);
+    console.log(`${bevarage} 제조중...(${time}초)`);
   },
 
   printPickUp() {
