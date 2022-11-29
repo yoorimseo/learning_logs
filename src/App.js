@@ -1,8 +1,14 @@
 const OutputView = require('./view/OutputView');
+const Order = require('./Order');
 
 class App {
-  play() {
+  constructor() {
     OutputView.printMenu();
+    this.order = new Order();
+  }
+
+  play() {
+    const orderList = this.order.orderInput();
   }
 }
 
