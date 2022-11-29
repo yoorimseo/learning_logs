@@ -24,15 +24,15 @@ button {
   background-color: lightsteelblue;
 }
 
-.list .todo::before {
+.list .btn-todo::before {
   content: '🔲';
 }
 
-.list .done {
+.list .txt-done {
   color: white;
   text-decoration: line-through;
 }
 
-.list .done::before {
+.list .btn-done::before {
   content: '☑️';
 }
