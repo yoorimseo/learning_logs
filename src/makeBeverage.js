@@ -1,6 +1,6 @@
 const OutputView = require('./view/OutputView');
 
-class makeBeverage {
+class MakeBeverage {
   constructor() {
     this.makingBeverageList = {
       아메리카노: 1,
@@ -15,4 +15,4 @@ class makeBeverage {
   }
 }
 
-module.exports = makeBeverage;
+module.exports = MakeBeverage;
