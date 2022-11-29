@@ -1,83 +1,81 @@
 const app = document.querySelector('.app');
 const inpTodo = app.querySelector('#inp-todo');
 const btnAdd = app.querySelector('.btn-add');
-const list = app.querySelector('.list');
+const todoList = app.querySelector('.list');
+const todoStorage = JSON.parse(localStorage.getItem('todoList')) || [];
 
-// 0. 새로고침 하면 로컬스토리지에 있는 내 투두 리스트가 불러와져야 한다.
-// console.log(localStorage);
-if (localStorage.length !== 0) {
-  for (let index = 0; index < localStorage.length; index++) {
-    const liEl = document.createElement('li');
-    const todoBtnEl = document.createElement('button');
-    const btnDelete = document.createElement('button');
-
-    todoBtnEl.classList.add('todo');
-    btnDelete.classList.add('btn-delete');
-
-    todoBtnEl.innerText = localStorage[index];
-    btnDelete.innerText = '삭제하기';
-    list.appendChild(liEl);
-    liEl.appendChild(todoBtnEl);
-    liEl.appendChild(btnDelete);
-  }
+if (todoStorage.length > 0) {
+  todoStorage.forEach((task) => {
+    readTodo(task);
+  });
 }
 
-// 1. input창에 할 일을 입력할 수 있어야 한다.
+function readTodo(value) {
+  const listEl = document.createElement('li');
+  const btnCheck = document.createElement('button');
+  const txtTodo = document.createElement('span');
+  const btnDelete = document.createElement('button');
 
-// 2. 추가하기 버튼을 클릭하면, 하단에 빈 박스 아이콘과 할 일의 내용, 그리고 삭제하기 버튼이 있는 리스트 하나가 추가되어야 한다.
+  btnCheck.classList.add('btn-todo');
+  txtTodo.innerText = value;
+  btnDelete.innerText = '삭제하기';
+
+  listEl.append(btnCheck);
+  listEl.append(txtTodo);
+  listEl.append(btnDelete);
+  todoList.append(listEl);
+  todoStorage.push(listEl);
+
+  doneTodo(btnCheck, txtTodo);
+  deleteTodo(btnDelete, listEl);
+}
+
 btnAdd.addEventListener('click', () => {
-  // 2-1. 사용자가 할 일을 입력하지 않으면, '할 일을 입력해주세요.'라는 경고창을 띄운다.
   if (inpTodo.value === '') {
     alert('할 일을 입력해주세요.');
-  } else {
-    // 2-2. 하단에 빈 박스 아이콘과 할 일의 내용, 그리고 삭제하기 버튼이 있는 리스트 하나가 추가되어야 한다.
-    const liEl = document.createElement('li');
-    const todoBtnEl = document.createElement('button');
-    const btnDelete = document.createElement('button');
-
-    // liEl.classList.add('todo');
-    todoBtnEl.classList.add('todo');
-    btnDelete.classList.add('btn-delete');
-
-    // 2-3. 사용자가 입력한 할 일을 로컬 스토리지에 저장한다.
-    if (localStorage.length === 0) {
-      window.localStorage.setItem(0, inpTodo.value);
-    } else {
-      window.localStorage.setItem(localStorage.length, inpTodo.value);
-    }
-
-    // 2-4. 로컬 스토리지에 저장된 할 일을 불러와 화면에 띄운다.
-    for (let key = 0; key < localStorage.length; key++) {
-      // console.log(localStorage.getItem(key));
-      todoBtnEl.innerText = localStorage[key];
-      btnDelete.innerText = '삭제하기';
-      list.appendChild(liEl);
-      liEl.appendChild(todoBtnEl);
-      liEl.appendChild(btnDelete);
-    }
-
-    // 2-5. 할 일이 추가되면, input창에 빈 내용으로 바뀌어야 한다.
-    inpTodo.value = '';
+    return;
   }
+  crateTodo();
 });
 
-// 3. 할 일을 완료하고 해당 리스트를 클릭하면, 할 일을 완료했다는 의미의 체크박스 아이콘과 취소선이 생겨야 한다.
-const todoEl = document.querySelectorAll('.todo');
-// console.log(todoEl);
-todoEl.forEach((element) => {
-  element.addEventListener('click', () => {
-    // console.log(element);
-    element.classList.toggle('done');
+function crateTodo() {
+  const listEl = document.createElement('li');
+  const btnCheck = document.createElement('button');
+  const txtTodo = document.createElement('span');
+  const btnDelete = document.createElement('button');
+
+  btnCheck.classList.add('btn-todo');
+  txtTodo.innerText = inpTodo.value;
+  btnDelete.innerText = '삭제하기';
+
+  todoStorage.push(inpTodo.value);
+  saveTodo(todoStorage);
+
+  listEl.append(btnCheck);
+  listEl.append(txtTodo);
+  listEl.append(btnDelete);
+  todoList.append(listEl);
+
+  inpTodo.value = '';
+
+  doneTodo(btnCheck, txtTodo);
+  deleteTodo(btnDelete, listEl);
+}
+
+function saveTodo(array) {
+  return localStorage.setItem('todoList', JSON.stringify(array));
+}
+
+function doneTodo(btnEl, spanEl) {
+  btnEl.addEventListener('click', () => {
+    btnEl.classList.toggle('btn-done');
+    spanEl.classList.toggle('txt-done');
   });
-});
+}
 
-// 4. 삭제하기 버튼을 클릭하면, 해당 리스트가 삭제되어야 한다.
-const liEl = document.querySelectorAll('li');
-const deleteBtnEl = list.querySelectorAll('.btn-delete');
-
-deleteBtnEl.forEach((element, index) => {
-  element.addEventListener('click', () => {
-    liEl[index].remove();
-    localStorage.removeItem(index);
+function deleteTodo(btnEl, liEl) {
+  btnEl.addEventListener('click', () => {
+    liEl.remove();
+    // TODO: 로컬스토리지에도 삭제되는 기능 구현
   });
-});
+}
