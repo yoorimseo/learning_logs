@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import mainLogo from '../assets/logo-hodu.png';
-import searchIcon from '../assets/icon-search.png';
-import cartIcon from '../assets/icon-shopping-cart.svg';
-import userIcon from '../assets/icon-user.svg';
+import mainLogo from '../../../assets/logo-hodu.png';
+import searchIcon from '../../../assets/icon-search.png';
+import cartIcon from '../../../assets/icon-shopping-cart.svg';
+import userIcon from '../../../assets/icon-user.svg';
 
 const SNav = styled.nav`
   display: flex;

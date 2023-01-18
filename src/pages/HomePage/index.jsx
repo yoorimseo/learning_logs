@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navigation from '../../components';
+import Navigation from '../../components/common/Navigation';
 import Banner from '../../components/Banner';
 
 function Home() {
