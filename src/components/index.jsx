@@ -10,7 +10,7 @@ const SNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.6rem 3.2rem;
+  padding: 2.6rem 32rem;
 `;
 
 const SLeftCont = styled.div`
