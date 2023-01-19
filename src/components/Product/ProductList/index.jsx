@@ -7,7 +7,7 @@ import dummyData from './dummyData';
 const SContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 8rem 32rem;
+  margin: 8rem 32rem 18rem;
   gap: 7.8rem 7rem;
 `;
 
