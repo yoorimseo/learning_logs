@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html{
+    font-size: 10px;
+  }
+
   body {
     font-family: 'SpoqaHanSansNeo-Regular';
     min-height: 100vh;
