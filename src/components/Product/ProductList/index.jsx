@@ -5,7 +5,6 @@ import ProductItem from '../ProductItem';
 import dummyData from './dummyData';
 
 const SContainer = styled.div`
-  cursor: pointer;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 8rem 32rem;

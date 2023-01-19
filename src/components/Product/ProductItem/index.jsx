@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const SProductItem = styled.button`
+  text-align: left;
+`;
+
 const SProductImg = styled.img`
   width: 38rem;
   height: 38rem;
@@ -17,6 +21,7 @@ const SThemeTitle = styled.p`
 `;
 
 const SProductTitle = styled.p`
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -24,6 +29,7 @@ const SProductTitle = styled.p`
 `;
 
 const SPrice = styled.p`
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;
@@ -31,6 +37,7 @@ const SPrice = styled.p`
 `;
 
 const SMonetaryUnit = styled.span`
+  font-family: 'SpoqaHanSansNeo-Regular';
   margin-left: 0.2rem;
   font-weight: 400;
   font-size: 16px;
@@ -39,7 +46,7 @@ const SMonetaryUnit = styled.span`
 
 function ProductItem({ img, theme, title, price }) {
   return (
-    <div>
+    <SProductItem>
       <SProductImg
         src={img}
         alt={title}
@@ -50,7 +57,7 @@ function ProductItem({ img, theme, title, price }) {
         {price.toLocaleString()}
         <SMonetaryUnit>원</SMonetaryUnit>
       </SPrice>
-    </div>
+    </SProductItem>
   );
 }
 
