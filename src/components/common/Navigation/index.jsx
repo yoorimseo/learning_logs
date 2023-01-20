@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { IR } from '../../../styles/Util';
+
 import mainLogo from '../../../assets/logo-hodu.png';
 import searchIcon from '../../../assets/icon-search.png';
 import cartIcon from '../../../assets/icon-shopping-cart.svg';
@@ -37,6 +39,10 @@ const SSearchBar = styled.div`
   border-radius: 5rem;
   border: 0.2rem solid ${({ theme }) => theme.color.GREEN};
   background-color: ${({ theme }) => theme.color.WHITE};
+
+  label {
+    ${IR}
+  }
 `;
 
 const SInput = styled.input`
@@ -81,8 +87,10 @@ function Navigation() {
             alt='HODU'
           />
           <SSearchBar>
+            <label htmlFor='search'>상품 검색</label>
             <SInput
               type='text'
+              id='search'
               placeholder='상품을 검색해보세요!'
             />
             <SBtnSearch type='submit'></SBtnSearch>
