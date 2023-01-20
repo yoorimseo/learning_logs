@@ -1,47 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SProductItem = styled.button`
+const SProductItem = styled.li`
   text-align: left;
+  cursor: pointer;
 `;
 
 const SProductImg = styled.img`
-  width: 38rem;
-  height: 38rem;
-  border: 1px solid ${({ theme }) => theme.color.LIGHT_GRAY};
+  border: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
   border-radius: ${({ theme }) => theme.borderRadius.BASE};
 `;
 
 const SThemeTitle = styled.p`
   color: ${({ theme }) => theme.color.GRAY};
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
   margin-top: 1.6rem;
 `;
 
 const SProductTitle = styled.p`
-  font-family: 'SpoqaHanSansNeo-Regular';
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  font-size: 1.8rem;
+  line-height: 2.2rem;
   margin-top: 1rem;
 `;
 
 const SPrice = styled.p`
-  font-family: 'SpoqaHanSansNeo-Regular';
   font-weight: 700;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 2.4rem;
+  line-height: 3rem;
   margin-top: 1rem;
 `;
 
 const SMonetaryUnit = styled.span`
-  font-family: 'SpoqaHanSansNeo-Regular';
   margin-left: 0.2rem;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1.6rem;
+  line-height: 2rem;
 `;
 
 function ProductItem({ img, theme, title, price }) {
