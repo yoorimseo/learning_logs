@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+    font-family: 'SpoqaHanSansNeo-Regular';
   }
 
   html{
@@ -17,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'SpoqaHanSansNeo-Regular';
     min-height: 100vh;
     overflow-x: hidden;
     box-sizing: border-box;
