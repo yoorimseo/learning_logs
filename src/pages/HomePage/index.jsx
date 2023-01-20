@@ -1,18 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Navigation from '../../components/common/Navigation';
 import Banner from '../../components/Banner';
 import ProductList from '../../components/Product/ProductList';
 import Footer from '../../components/common/Footer';
 
+const SContainer = styled.div`
+  min-height: calc(100% - 31.2rem);
+`;
+
 function Home() {
   return (
-    <div>
+    <SContainer>
       <Navigation />
       <Banner />
       <ProductList />
       <Footer />
-    </div>
+    </SContainer>
   );
 }
 

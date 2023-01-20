@@ -7,10 +7,13 @@ import cartIcon from '../../../assets/icon-shopping-cart.svg';
 import userIcon from '../../../assets/icon-user.svg';
 
 const SNav = styled.nav`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.6rem 32rem;
+  background-color: ${({ theme }) => theme.color.WHITE};
 `;
 
 const SLeftCont = styled.div`
