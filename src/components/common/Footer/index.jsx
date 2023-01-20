@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { IR } from '../../../styles/Util';
+
 import instaIcon from '../../../assets/icon-insta.svg';
 import fbIcon from '../../../assets/icon-fb.svg';
 import ytIcon from '../../../assets/icon-yt.svg';
 
 const SContainer = styled.article`
   background-color: #f2f2f2;
+
+  h2 {
+    ${IR}
+  }
 `;
 
 const SWebInfo = styled.div`
@@ -59,6 +65,7 @@ const SCompanyInfo = styled.ul`
 function Footer() {
   return (
     <SContainer>
+      <h2>호두샵 정보</h2>
       <SWebInfo>
         <ul>
           <li>호두샵 소개</li>
