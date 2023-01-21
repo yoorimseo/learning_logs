@@ -27,6 +27,7 @@ const SInput = styled.input`
   ${({ noneBorder }) =>
     noneBorder &&
     css`
+      padding-left: 0;
       border: none;
       border-bottom: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
       border-radius: 0;
@@ -39,7 +40,7 @@ const SInput = styled.input`
     `}
 `;
 
-function Input({ id, labelText, noneBorder, placeholder }) {
+function Input({ id, labelText, noneBorder, placeholder, ...rest }) {
   return (
     <>
       <SLabel
@@ -53,6 +54,7 @@ function Input({ id, labelText, noneBorder, placeholder }) {
         type='text'
         noneBorder={noneBorder}
         placeholder={placeholder}
+        {...rest}
       />
     </>
   );
