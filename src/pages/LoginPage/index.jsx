@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
-import { IR } from '../../styles/Util';
 
 import mainLogo from '../../assets/logo-hodu.png';
 
@@ -50,10 +49,6 @@ const SContent = styled.div`
   border: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
   border-radius: ${({ theme }) => theme.borderRadius.BASE};
   z-index: 2;
-
-  label {
-    ${IR}
-  }
 `;
 
 const SInput = styled(Input)`
