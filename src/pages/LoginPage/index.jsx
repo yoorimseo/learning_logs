@@ -85,13 +85,11 @@ function Login({ tabActive }) {
       </div>
       <SContent>
         <Input
-          type='text'
           id='userId'
           placeholder='아이디'
           noneBorder
         />
         <SInput
-          type='text'
           id='password'
           placeholder='비밀번호'
           noneBorder
