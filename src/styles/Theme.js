@@ -17,6 +17,7 @@ const color = {
   WHITE: '#FFFFFF',
   LIGHT_GRAY: '#C4C4C4',
   GRAY: '#767676',
+  DARK_GRAY: '#333333',
   BLACK: '#000000',
 };
 
