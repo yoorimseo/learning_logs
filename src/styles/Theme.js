@@ -21,6 +21,7 @@ const color = {
 };
 
 const borderRadius = {
+  HALF_BASE: '0.5rem',
   BASE: '1rem',
   ROUND: '50%',
 };

@@ -20,7 +20,7 @@ const SInput = styled.input`
   width: 100%;
   padding: 1.7rem 1.6rem;
   border: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
-  border-radius: 0.5rem;
+  border-radius: ${({ theme }) => theme.borderRadius.HALF_BASE};
   font-size: 1.6rem;
   line-height: 2rem;
 
