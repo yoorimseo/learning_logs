@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { IR } from '../../../styles/Util';
 
 const SLabel = styled.label`
+  display: inline-block;
   margin-bottom: 1rem;
   font-size: 1.6rem;
   line-height: 2rem;
