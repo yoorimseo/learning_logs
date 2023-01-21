@@ -89,14 +89,12 @@ function Login({ tabActive }) {
         <SBtnTab>판매회원 로그인</SBtnTab>
       </div>
       <SContent>
-        <label htmlFor='userId'>아이디</label>
         <Input
           type='text'
           id='userId'
           placeholder='아이디'
           noneBorder
         />
-        <label htmlFor='userId'>비밀번호</label>
         <SInput
           type='text'
           id='password'
