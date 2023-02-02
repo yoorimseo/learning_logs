@@ -139,7 +139,7 @@ const SAgreeToJoin = styled.div`
 `;
 
 const SBtnJoin = styled(Button)`
-  margin-top: 3.4rem;
+  margin: 3.4rem 0 11rem;
 `;
 
 function SignUp({ tabActive }) {
