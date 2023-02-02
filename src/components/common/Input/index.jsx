@@ -3,7 +3,13 @@ import styled, { css } from 'styled-components';
 
 import { IR } from '../../../styles/Util';
 
+const SContainer = styled.div`
+  display: inline-block;
+  width: 100%;
+`;
+
 const SLabel = styled.label`
+  display: inline-block;
   margin-bottom: 1rem;
   font-size: 1.6rem;
   line-height: 2rem;
@@ -17,7 +23,7 @@ const SLabel = styled.label`
 `;
 
 const SInput = styled.input`
-  width: 100%;
+  width: inherit;
   padding: 1.7rem 1.6rem;
   border: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
   border-radius: ${({ theme }) => theme.borderRadius.HALF_BASE};
@@ -27,6 +33,7 @@ const SInput = styled.input`
   ${({ noneBorder }) =>
     noneBorder &&
     css`
+      padding-left: 0;
       border: none;
       border-bottom: 0.1rem solid ${({ theme }) => theme.color.LIGHT_GRAY};
       border-radius: 0;
@@ -39,9 +46,9 @@ const SInput = styled.input`
     `}
 `;
 
-function Input({ id, labelText, noneBorder, placeholder }) {
+function Input({ id, type = 'text', labelText, noneBorder, placeholder, ...rest }) {
   return (
-    <>
+    <SContainer>
       <SLabel
         htmlFor={id}
         noneBorder={noneBorder}
@@ -50,11 +57,12 @@ function Input({ id, labelText, noneBorder, placeholder }) {
       </SLabel>
       <SInput
         id={id}
-        type='text'
+        type={type}
         noneBorder={noneBorder}
         placeholder={placeholder}
+        {...rest}
       />
-    </>
+    </SContainer>
   );
 }
 

@@ -53,7 +53,8 @@ const SBtn = styled.button`
       background-color: ${({ theme }) => theme.color.WHITE};
       color: ${({ theme }) => theme.color.GREEN};
 
-      :hover {
+      :hover,
+      :active {
         border-color: #1b9539;
         background-color: ${({ theme }) => theme.color.WHITE};
         color: #1b9539;
@@ -72,7 +73,7 @@ const SImg = styled.img`
   width: 3.2rem;
 `;
 
-function Button({ text, disabled, darkBtn, whiteBtn, tabBtn, imgSrc }) {
+function Button({ text, disabled, darkBtn, whiteBtn, tabBtn, imgSrc, onClick, ...rest }) {
   return (
     <SBtn
       type='button'
@@ -80,11 +81,15 @@ function Button({ text, disabled, darkBtn, whiteBtn, tabBtn, imgSrc }) {
       darkBtn={darkBtn}
       whiteBtn={whiteBtn}
       tabBtn={tabBtn}
+      onClick={onClick}
+      {...rest}
     >
-      <SImg
-        src={imgSrc}
-        alt=''
-      />
+      {imgSrc && (
+        <SImg
+          src={imgSrc}
+          alt=''
+        />
+      )}
       {text}
     </SBtn>
   );
