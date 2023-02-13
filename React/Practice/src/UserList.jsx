@@ -1,15 +1,12 @@
 import React from 'react';
-import users from './users';
 
-function UserList() {
+function UserList({ id, username, email }) {
   return (
     <>
-      {users.map((item) => (
-        <div key={item.id}>
-          <b>{item.username} | </b>
-          <span>{item.email}</span>
-        </div>
-      ))}
+      <div key={id}>
+        <b>{username} </b>
+        <span>({email})</span>
+      </div>
     </>
   );
 }
