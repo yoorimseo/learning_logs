@@ -51,6 +51,9 @@ function App() {
     });
     nextId.current += 1;
   };
+  const onRemove = (id) => {
+    setUserList(userList.filter((user) => user.id !== id));
+  };
 
   return (
     <div className='App'>
@@ -65,6 +68,7 @@ function App() {
           key={item.id}
           username={item.username}
           email={item.email}
+          onRemove={() => onRemove(item.id)}
         />
       ))}
     </div>
