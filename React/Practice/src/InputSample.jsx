@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function InputSample() {
   // const [text, setText] = useState('');
@@ -6,14 +6,15 @@ function InputSample() {
     name: '',
     nickname: '',
   });
-  const { name, nickname } = inputs;
+  const nameInput = useRef();
+  const { name, nickname } = inputs; // 비구조화 할당을 통해 값 추출
 
   const handleChangeText = (e) => {
     // setText(e.target.value);
-    const { name, value } = e.target;
+    const { name, value } = e.target; // 우선 e.target에서 name과 value를 추출
     setInputs({
-      ...inputs,
-      [name]: value,
+      ...inputs, // 기존의 input 객체를 복사한 뒤
+      [name]: value, // name 키를 가진 값을 value로 설정
     });
   };
   const handleReset = () => {
@@ -23,6 +24,7 @@ function InputSample() {
       name: '',
       nickname: '',
     });
+    nameInput.current.focus();
   };
 
   return (
@@ -43,6 +45,7 @@ function InputSample() {
         value={name}
         placeholder='이름'
         onChange={handleChangeText}
+        ref={nameInput}
       />
       <input
         type='text'
