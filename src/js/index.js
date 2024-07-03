@@ -8,9 +8,9 @@ todoForm.addEventListener('submit', function (e) {
 
   if (todoInput.value === '') {
     alert('할 일을 입력해주세요.');
+  } else {
+    addTodoItem(todoInput);
   }
-
-  addTodoItem(todoInput);
 });
 
 function addTodoItem(input) {
