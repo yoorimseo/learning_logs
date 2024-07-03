@@ -4,7 +4,7 @@ const todoList = document.querySelector('#todoList');
 todoForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  let todoInput = todoForm.elements.todo;
+  const todoInput = todoForm.elements.todo;
 
   if (todoInput.value === '') {
     alert('할 일을 입력해주세요.');
@@ -15,8 +15,19 @@ todoForm.addEventListener('submit', function (e) {
 
 function addTodoItem(input) {
   const todoItem = document.createElement('li');
-  todoItem.innerText = input.value;
+  const todoItemText = document.createElement('span');
+  const doneTodoBtn = document.createElement('button');
+  const removeTodoBtn = document.createElement('button');
+
+  todoItemText.innerText = input.value;
+  doneTodoBtn.textContent = '완료';
+  removeTodoBtn.textContent = '삭제';
+
+  todoItem.append(todoItemText);
+  todoItem.append(doneTodoBtn);
+  todoItem.append(removeTodoBtn);
 
   todoList.append(todoItem);
+
   input.value = '';
 }
