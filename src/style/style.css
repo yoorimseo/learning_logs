@@ -9,3 +9,8 @@ button {
   height: 1px;
   overflow: hidden;
 }
+
+.done {
+  color: darkgrey;
+  text-decoration: line-through;
+}

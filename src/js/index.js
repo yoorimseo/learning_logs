@@ -9,25 +9,30 @@ todoForm.addEventListener('submit', function (e) {
   if (todoInput.value === '') {
     alert('할 일을 입력해주세요.');
   } else {
-    addTodoItem(todoInput);
+    const todo = createTodo(todoInput);
+    addTodoItem(...todo);
   }
+
+  todoInput.value = '';
 });
 
-function addTodoItem(input) {
+function createTodo(input) {
   const todoItem = document.createElement('li');
   const todoItemText = document.createElement('span');
   const doneTodoBtn = document.createElement('button');
   const removeTodoBtn = document.createElement('button');
 
-  todoItemText.innerText = input.value;
   doneTodoBtn.textContent = '완료';
+  todoItemText.innerText = input.value;
   removeTodoBtn.textContent = '삭제';
 
-  todoItem.append(todoItemText);
+  return [todoItem, todoItemText, doneTodoBtn, removeTodoBtn];
+}
+
+function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
   todoItem.append(doneTodoBtn);
+  todoItem.append(todoItemText);
   todoItem.append(removeTodoBtn);
 
   todoList.append(todoItem);
-
-  input.value = '';
 }
