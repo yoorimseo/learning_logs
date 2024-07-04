@@ -35,4 +35,8 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
   todoItem.append(removeTodoBtn);
 
   todoList.append(todoItem);
+
+  doneTodoBtn.addEventListener('click', function () {
+    todoItemText.classList.toggle('done');
+  });
 }
