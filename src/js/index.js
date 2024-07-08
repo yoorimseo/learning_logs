@@ -9,21 +9,23 @@ todoForm.addEventListener('submit', function (e) {
   if (todoInput.value === '') {
     alert('할 일을 입력해주세요.');
   } else {
-    const todo = createTodo(todoInput);
+    const todo = createTodo(todoInput.value);
+
     addTodoItem(...todo);
+    saveTodoItem();
   }
 
   todoInput.value = '';
 });
 
-function createTodo(input) {
+function createTodo(text) {
   const todoItem = document.createElement('li');
   const todoItemText = document.createElement('span');
   const doneTodoBtn = document.createElement('button');
   const removeTodoBtn = document.createElement('button');
 
   doneTodoBtn.textContent = '완료';
-  todoItemText.innerText = input.value;
+  todoItemText.innerText = text;
   removeTodoBtn.textContent = '삭제';
 
   return [todoItem, todoItemText, doneTodoBtn, removeTodoBtn];
@@ -43,4 +45,19 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
   removeTodoBtn.addEventListener('click', function () {
     todoItem.remove();
   });
+}
+
+function saveTodoItem() {
+  const todoItems = [];
+
+  for (let i = 0; i < todoList.children.length; i++) {
+    const todoObj = {
+      contents: todoList.children[i].querySelector('span').textContent,
+      done: todoList.children[i].classList.contains('done'),
+    };
+
+    todoItems.push(todoObj);
+  }
+
+  localStorage.setItem('data', JSON.stringify(todoItems));
 }
