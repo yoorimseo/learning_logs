@@ -6,7 +6,12 @@ const storageItems = JSON.parse(localStorage.getItem('data'));
 if (storageItems) {
   for (let i = 0; i < storageItems.length; i++) {
     const text = storageItems[i].contents;
+    const state = storageItems[i].done;
     const savedItemEl = createTodo(text);
+
+    if (state) {
+      savedItemEl[1].classList.add('done');
+    }
 
     addTodoItem(...savedItemEl);
   }
@@ -51,10 +56,12 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
 
   doneTodoBtn.addEventListener('click', function () {
     todoItemText.classList.toggle('done');
+    saveTodoItem();
   });
 
   removeTodoBtn.addEventListener('click', function () {
     todoItem.remove();
+    saveTodoItem();
   });
 }
 
@@ -64,7 +71,7 @@ function saveTodoItem() {
   for (let i = 0; i < todoList.children.length; i++) {
     const todoObj = {
       contents: todoList.children[i].querySelector('span').textContent,
-      done: todoList.children[i].classList.contains('done'),
+      done: todoList.children[i].querySelector('span').classList.contains('done'),
     };
 
     todoItems.push(todoObj);
