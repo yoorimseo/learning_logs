@@ -1,5 +1,10 @@
 const todoForm = document.querySelector('#todoForm');
 const todoList = document.querySelector('#todoList');
+const icons = {
+  circle: './src/img/icons/circle-icon.png',
+  check: './src/img/icons/check-circle-icon.png',
+  trash: './src/img/icons/trash-icon.png',
+};
 
 const storageItems = JSON.parse(localStorage.getItem('data'));
 
@@ -11,6 +16,7 @@ if (storageItems) {
 
     if (state) {
       savedItemEl[1].classList.add('done');
+      savedItemEl[2].querySelector('img').src = icons.check;
     }
 
     addTodoItem(...savedItemEl);
@@ -38,11 +44,16 @@ function createTodo(text) {
   const todoItem = document.createElement('li');
   const todoItemText = document.createElement('span');
   const doneTodoBtn = document.createElement('button');
+  const checkTodoImg = document.createElement('img');
   const removeTodoBtn = document.createElement('button');
+  const removeTodoImg = document.createElement('img');
 
-  doneTodoBtn.textContent = '완료';
+  checkTodoImg.src = icons.circle;
   todoItemText.innerText = text;
-  removeTodoBtn.textContent = '삭제';
+  removeTodoImg.src = icons.trash;
+
+  doneTodoBtn.append(checkTodoImg);
+  removeTodoBtn.append(removeTodoImg);
 
   return [todoItem, todoItemText, doneTodoBtn, removeTodoBtn];
 }
@@ -56,6 +67,14 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
 
   doneTodoBtn.addEventListener('click', function () {
     todoItemText.classList.toggle('done');
+    const checkTodoImg = doneTodoBtn.querySelector('img');
+
+    if (todoItemText.classList.contains('done')) {
+      checkTodoImg.src = icons.check;
+    } else {
+      checkTodoImg.src = icons.circle;
+    }
+
     saveTodoItem();
   });
 
