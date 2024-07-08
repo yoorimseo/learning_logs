@@ -1,6 +1,17 @@
 const todoForm = document.querySelector('#todoForm');
 const todoList = document.querySelector('#todoList');
 
+const storageItems = JSON.parse(localStorage.getItem('data'));
+
+if (storageItems) {
+  for (let i = 0; i < storageItems.length; i++) {
+    const text = storageItems[i].contents;
+    const savedItemEl = createTodo(text);
+
+    addTodoItem(...savedItemEl);
+  }
+}
+
 todoForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
