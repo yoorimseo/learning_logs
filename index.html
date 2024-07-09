@@ -10,20 +10,103 @@
 
 <body>
   <section class="container">
-    <h1 class="title">To-do List</h1>
+    <h1 class="ir">To-do List & Calendar</h1>
 
-    <form action="/todolist" id="todoForm">
-      <label for="addTodo" class="ir">
-        To-do List
-      </label>
-      <input type="text" name="todo" id="addTodo" placeholder="할 일을 입력하세요.">
-      <button id="addTodoBtn">
-        <img src="./src/img/icons/plus-circle-icon.png" alt="추가">
-      </button>
-    </form>
+    <section class="calendar">
+      <nav class="calendarNav">
+        <p class="date">
+          <span id="year">2024</span>년
+          <span id="month">7</span>월
+        </p>
 
-    <ul id="todoList">
-    </ul>
+        <div class="calendarBtnGroup">
+          <button id="previousMonthBtn" class="dateMoveBtnBox">
+            <img src="./src/img/icons/chevron-left-icon.png" alt="이전 월로 이동">
+          </button>
+          <button id="todayBtn" class="dateMoveBtnBox">오늘</button>
+          <button id="nextMonthBtn" class="dateMoveBtnBox">
+            <img src="./src/img/icons/chevron-right-icon.png" alt="이후 월로 이동">
+          </button>
+        </div>
+      </nav>
+
+      <table id="calendarTable">
+        <thead>
+          <tr>
+            <th class="sunday">일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th class="saturday">토</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="todoList">
+      <h2 class="todoListTitle">To-do List</h2>
+      <form action="/todolist" id="todoForm">
+        <label for="addTodo" class="ir">
+          To-do List
+        </label>
+        <input type="text" name="todo" id="addTodo" placeholder="할 일을 입력하세요.">
+        <button id="addTodoBtn">
+          <img src="./src/img/icons/plus-circle-icon.png" alt="추가">
+        </button>
+      </form>
+
+      <ul id="list">
+      </ul>
+    </section>
   </section>
 
   <script src="./src/js/index.js"></script>

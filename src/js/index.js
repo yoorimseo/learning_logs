@@ -1,5 +1,5 @@
 const todoForm = document.querySelector('#todoForm');
-const todoList = document.querySelector('#todoList');
+const list = document.querySelector('#list');
 const icons = {
   circle: './src/img/icons/circle-icon.png',
   check: './src/img/icons/check-circle-icon.png',
@@ -63,7 +63,7 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
   todoItem.append(todoItemText);
   todoItem.append(removeTodoBtn);
 
-  todoList.append(todoItem);
+  list.append(todoItem);
 
   doneTodoBtn.addEventListener('click', function () {
     todoItemText.classList.toggle('done');
@@ -87,10 +87,10 @@ function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
 function saveTodoItem() {
   const todoItems = [];
 
-  for (let i = 0; i < todoList.children.length; i++) {
+  for (let i = 0; i < list.children.length; i++) {
     const todoObj = {
-      contents: todoList.children[i].querySelector('span').textContent,
-      done: todoList.children[i].querySelector('span').classList.contains('done'),
+      contents: list.children[i].querySelector('span').textContent,
+      done: list.children[i].querySelector('span').classList.contains('done'),
     };
 
     todoItems.push(todoObj);
