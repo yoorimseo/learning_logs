@@ -22,12 +22,20 @@ for (let week = 0; week < 6; week++) {
   for (let day = 0; day < 7; day++) {
     const dayCell = document.createElement('td');
 
+    if (day === 0) {
+      dayCell.classList.add('sunday');
+    } else if (day === 6) {
+      dayCell.classList.add('saturday');
+    }
+
     if (week === 0 && day < firstDay) {
       dayCell.innerText = lastMonthDay - lastDayInlastMonth;
       lastDayInlastMonth--;
+      dayCell.classList.add('opacity');
     } else if (now > daysInThisMonth) {
       dayCell.innerText = nextMonthDay;
       nextMonthDay++;
+      dayCell.classList.add('opacity');
     } else {
       dayCell.innerText = now;
       now++;

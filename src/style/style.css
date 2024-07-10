@@ -96,6 +96,10 @@ button {
   color: #ff004a;
 }
 
+.opacity {
+  opacity: 50%;
+}
+
 /* todoList Style */
 .todoList {
   width: 30%;
