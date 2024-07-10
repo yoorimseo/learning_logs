@@ -22,6 +22,10 @@ for (let week = 0; week < 6; week++) {
   for (let day = 0; day < 7; day++) {
     const dayCell = document.createElement('td');
 
+    if (now == today) {
+      dayCell.classList.add('today');
+    }
+
     if (day === 0) {
       dayCell.classList.add('sunday');
     } else if (day === 6) {

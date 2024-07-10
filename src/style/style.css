@@ -84,7 +84,7 @@ button {
 #calendarTable tbody,
 #calendarTable th,
 #calendarTable td {
-  border: 0.15em solid#374553;
+  /* border: 0.15em solid#374553; */
   padding: 1em;
 }
 
@@ -98,6 +98,14 @@ button {
 
 .opacity {
   opacity: 50%;
+}
+
+.today {
+  width: 1.125em;
+  height: 1.125em;
+  border-radius: 50%;
+  color: white;
+  background-color: #656f7c;
 }
 
 /* todoList Style */
