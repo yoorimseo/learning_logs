@@ -140,11 +140,11 @@ if (storageItems) {
     const savedItemEl = createTodo(text);
 
     if (state) {
-      savedItemEl[1].classList.add('done');
-      savedItemEl[2].querySelector('img').src = icons.check;
+      savedItemEl.todoItemText.classList.add('done');
+      savedItemEl.doneTodoBtn.querySelector('img').src = icons.check;
     }
 
-    addTodoItem(...savedItemEl);
+    addTodoItem(savedItemEl);
   }
 }
 
@@ -180,14 +180,14 @@ function createTodo(text) {
   doneTodoBtn.append(checkTodoImg);
   removeTodoBtn.append(removeTodoImg);
 
-  return [todoItem, todoItemText, doneTodoBtn, removeTodoBtn];
-}
-
-function addTodoItem(...[todoItem, todoItemText, doneTodoBtn, removeTodoBtn]) {
   todoItem.append(doneTodoBtn);
   todoItem.append(todoItemText);
   todoItem.append(removeTodoBtn);
 
+  return { todoItem, todoItemText, doneTodoBtn, removeTodoBtn };
+}
+
+function addTodoItem({ todoItem, todoItemText, doneTodoBtn, removeTodoBtn }) {
   list.append(todoItem);
 
   doneTodoBtn.addEventListener('click', function () {
