@@ -1,3 +1,47 @@
+// 캘린더
+const calendarTable = document.querySelector('#calendarTable');
+const calendarTableTbody = calendarTable.children[1];
+
+const date = new Date();
+const thisYear = date.getFullYear();
+const thisMonth = date.getMonth() + 1;
+const today = date.getDay() + 7;
+
+const firstDay = new Date(thisYear, thisMonth - 1, 1).getDay();
+const daysInThisMonth = new Date(thisYear, thisMonth, 0).getDate();
+const lastMonthDate = new Date(thisYear, thisMonth, 0);
+const lastMonthDay = lastMonthDate.getDate();
+let lastDayInlastMonth = new Date(thisYear, thisMonth - 1, 0).getDay();
+const nextMonthDate = new Date(thisYear, thisMonth + 1, 1);
+let nextMonthDay = nextMonthDate.getDate();
+let now = 1;
+
+for (let week = 0; week < 6; week++) {
+  const weekRow = document.createElement('tr');
+
+  for (let day = 0; day < 7; day++) {
+    const dayCell = document.createElement('td');
+
+    if (week === 0 && day < firstDay) {
+      dayCell.innerText = lastMonthDay - lastDayInlastMonth;
+      lastDayInlastMonth--;
+    } else if (now > daysInThisMonth) {
+      dayCell.innerText = nextMonthDay;
+      nextMonthDay++;
+    } else {
+      dayCell.innerText = now;
+      now++;
+    }
+
+    weekRow.appendChild(dayCell);
+  }
+
+  calendarTableTbody.appendChild(weekRow);
+
+  if (now > daysInThisMonth) break;
+}
+
+// 투두리스트
 const todoForm = document.querySelector('#todoForm');
 const list = document.querySelector('#list');
 const icons = {
@@ -5,7 +49,6 @@ const icons = {
   check: './src/img/icons/check-circle-icon.png',
   trash: './src/img/icons/trash-icon.png',
 };
-
 const storageItems = JSON.parse(localStorage.getItem('data'));
 
 if (storageItems) {
