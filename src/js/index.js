@@ -43,8 +43,6 @@ function makeCalendar() {
   let lastMonthDayCounter = lastMonthDay - lastDayInlastMonth;
   let nextMonthDayCounter = nextMonthDay;
 
-  console.log(lastMonthDay, lastDayInlastMonth, nextMonthDayCounter);
-
   for (let week = 0; week < 6; week++) {
     const weekRow = document.createElement('tr');
 
