@@ -27,21 +27,27 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: flex-start;
   margin: 10em auto;
 }
 
-/* Calendar Style */
-.calendar {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Common Style */
+.box {
+  width: 20em;
   padding: 1.5em;
-  text-align: center;
   border: 0.1rem solid #c5c8ce;
   border-radius: 0.5em;
   background-color: white;
   color: #374553;
+}
+
+/* Calendar Style */
+.calendar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .calendarNav {
@@ -110,12 +116,9 @@ button {
 
 /* todoList Style */
 .todoList {
-  width: 30%;
-  padding: 1.5em;
-  border: 0.1rem solid #c5c8ce;
-  border-radius: 0.5em;
-  background-color: white;
-  color: #646f7c;
+  max-width: 25em;
+  min-width: 20em;
+  flex: 1;
 }
 
 .todoListTitle {
@@ -180,4 +183,19 @@ button {
 .done {
   color: #c5c8ce;
   text-decoration: line-through;
+}
+
+/* media query */
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    margin: 5em auto;
+  }
+  .box {
+    width: 20em;
+  }
+  .calendar {
+    margin-bottom: 3em;
+  }
 }
