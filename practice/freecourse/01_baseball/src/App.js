@@ -6,6 +6,8 @@ class App {
   constructor() {
     this.computerNumbers = null;
     this.userNumbers = null;
+    this.strikes = 0;
+    this.balls = 0;
   }
 
   async play() {
@@ -17,10 +19,18 @@ class App {
     this.computerNumbers = computer.generateRandomNumber();
     console.log(this.computerNumbers);
 
-    // 사용자로부터 서로 다른 3개의 숫자를 입력받음
-    const user = new User();
-    this.userNumbers = await user.getUserNumber();
-    console.log(this.userNumbers);
+    // 컴퓨터의 값과 사용자 입력값이 동일할 때까지 비교하여 계산 결과 출력
+    while (true) {
+      // 사용자로부터 서로 다른 3개의 숫자를 입력받음
+      const user = new User();
+      this.userNumbers = await user.getUserNumber();
+
+      const [strikes, balls] = computer.calculateScore(this.computerNumbers, this.userNumbers);
+      this.strikes = strikes;
+      this.balls = balls;
+
+      console.log(strikes, balls);
+    }
   }
 }
 
