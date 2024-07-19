@@ -10,4 +10,16 @@ export default class User {
       });
     });
   }
+
+  askForRestart() {
+    return new Promise((resolve) => {
+      MissionUtils.Console.readLine('게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n', (answer) => {
+        if (parseInt(answer) === 1) {
+          resolve(true);
+        } else if (parseInt(answer) === 2) {
+          resolve(false);
+        }
+      });
+    });
+  }
 }
