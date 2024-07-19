@@ -22,4 +22,16 @@ export default class Computer {
 
     return [strikes, balls];
   }
+
+  printScore(strikes, balls) {
+    if (strikes === 0 && balls === 0) {
+      console.log('낫싱');
+    } else if (strikes === 0) {
+      console.log(`${balls}볼`);
+    } else if (balls === 0) {
+      console.log(`${strikes}스트라이크`);
+    } else {
+      console.log(`${balls}볼 ${strikes}스트라이크`);
+    }
+  }
 }
