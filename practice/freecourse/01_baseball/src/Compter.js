@@ -25,13 +25,13 @@ export default class Computer {
 
   printScore(strikes, balls) {
     if (strikes === 0 && balls === 0) {
-      console.log('낫싱');
+      MissionUtils.Console.print('낫싱');
     } else if (strikes === 0) {
-      console.log(`${balls}볼`);
+      MissionUtils.Console.print(`${balls}볼`);
     } else if (balls === 0) {
-      console.log(`${strikes}스트라이크`);
+      MissionUtils.Console.print(`${strikes}스트라이크`);
     } else {
-      console.log(`${balls}볼 ${strikes}스트라이크`);
+      MissionUtils.Console.print(`${balls}볼 ${strikes}스트라이크`);
     }
   }
 }

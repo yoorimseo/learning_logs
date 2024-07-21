@@ -19,7 +19,7 @@ class App {
       // 랜덤한 3개의 숫자 생성
       const computer = new Computer();
       this.computerNumbers = computer.generateRandomNumber();
-      console.log(this.computerNumbers);
+      //  MissionUtils.Console.print(this.computerNumbers);
 
       const user = new User();
 
@@ -35,7 +35,7 @@ class App {
         computer.printScore(this.strikes, this.balls);
 
         if (this.strikes === 3) {
-          console.log('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+          MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
           break;
         }
       }
@@ -43,7 +43,7 @@ class App {
       // 게임 재시작 여부 확인
       this.playAgain = await user.askForRestart();
     }
-    console.log('게임을 종료합니다.');
+    MissionUtils.Console.print('게임을 종료합니다.');
   }
 }
 
