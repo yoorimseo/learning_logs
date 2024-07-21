@@ -23,6 +23,10 @@ class App {
 
       const user = new User();
 
+      // 게임 루프 초기화
+      this.strikes = 0;
+      this.balls = 0;
+
       // 사용자와의 게임 루프
       while (this.strikes < 3) {
         // 사용자로부터 서로 다른 3개의 숫자를 입력받음
@@ -42,6 +46,7 @@ class App {
 
       // 게임 재시작 여부 확인
       this.playAgain = await user.askForRestart();
+      console.log(this.playAgain);
     }
     Console.print('게임을 종료합니다.');
   }
