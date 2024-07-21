@@ -19,7 +19,7 @@ class App {
       // 랜덤한 3개의 숫자 생성
       const computer = new Computer();
       this.computerNumbers = computer.generateRandomNumber();
-      //  MissionUtils.Console.print(this.computerNumbers);
+      MissionUtils.Console.print(this.computerNumbers);
 
       const user = new User();
 
