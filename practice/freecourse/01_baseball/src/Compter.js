@@ -1,9 +1,15 @@
-import MissionUtils from '@woowacourse/mission-utils';
+import { Console, Random } from '@woowacourse/mission-utils';
 
 export default class Computer {
   generateRandomNumber() {
     // 서로 다른 랜덤한 3개의 숫자 생성
-    const computerNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
+    const computerNumbers = [];
+    while (computerNumbers.length < 3) {
+      const number = Random.pickNumberInRange(1, 9);
+      if (!computerNumbers.includes(number)) {
+        computerNumbers.push(number);
+      }
+    }
     return computerNumbers;
   }
 
@@ -25,13 +31,13 @@ export default class Computer {
 
   printScore(strikes, balls) {
     if (strikes === 0 && balls === 0) {
-      MissionUtils.Console.print('낫싱');
+      Console.print('낫싱');
     } else if (strikes === 0) {
-      MissionUtils.Console.print(`${balls}볼`);
+      Console.print(`${balls}볼`);
     } else if (balls === 0) {
-      MissionUtils.Console.print(`${strikes}스트라이크`);
+      Console.print(`${strikes}스트라이크`);
     } else {
-      MissionUtils.Console.print(`${balls}볼 ${strikes}스트라이크`);
+      Console.print(`${balls}볼 ${strikes}스트라이크`);
     }
   }
 }

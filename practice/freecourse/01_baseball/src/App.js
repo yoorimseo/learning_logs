@@ -1,4 +1,4 @@
-import MissionUtils from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import Computer from './Compter.js';
 import User from './User.js';
 
@@ -13,13 +13,13 @@ class App {
 
   async play() {
     // 게임 시작 문구 출력
-    MissionUtils.Console.print('숫자 야구 게임을 시작합니다.');
+    Console.print('숫자 야구 게임을 시작합니다.');
 
     while (this.playAgain) {
       // 랜덤한 3개의 숫자 생성
       const computer = new Computer();
       this.computerNumbers = computer.generateRandomNumber();
-      MissionUtils.Console.print(this.computerNumbers);
+      // Console.print(this.computerNumbers);
 
       const user = new User();
 
@@ -35,7 +35,7 @@ class App {
         computer.printScore(this.strikes, this.balls);
 
         if (this.strikes === 3) {
-          MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+          Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
           break;
         }
       }
@@ -43,7 +43,7 @@ class App {
       // 게임 재시작 여부 확인
       this.playAgain = await user.askForRestart();
     }
-    MissionUtils.Console.print('게임을 종료합니다.');
+    Console.print('게임을 종료합니다.');
   }
 }
 
