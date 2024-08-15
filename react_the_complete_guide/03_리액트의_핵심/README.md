@@ -1023,3 +1023,220 @@ function App() {
 
 export default App;
 ```
+
+## 18. 조건적 콘텐츠 렌더링
+
+- 삼항 조건 연산자를 사용
+
+  ```jsx
+  // 방법 1
+  {
+    !selectedTopic ? <p>Please select a topic.</p> : null;
+  }
+  {
+    selectedTopic ? (
+      <div id='tab-content'>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    ) : null;
+  }
+
+  // 방법 2
+  {
+    !selectedTopic ? (
+      <p>Please select a topic.</p>
+    ) : (
+      <div id='tab-content'>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
+  ```
+
+- AND 연산자를 사용
+
+  ```jsx
+  {
+    !selectedTopic && <p>Please select a topic.</p>;
+  }
+  {
+    selectedTopic && (
+      <div id='tab-content'>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
+  ```
+
+  - else의 null 조건을 사용하지 않고 더 간략하게 작성 가능
+  - 조건이 사실이라면 AND 연산자 바로 뒤에 나오는 값을 출력
+  - 삼항 연산자를 사용하는 것보다 읽기 편하고 이해하기 쉬운 코드
+
+- 변수에 JSX 코드를 저장하여 사용
+
+  ```jsx
+    let tabContent = <p>Please select a topic.</p>;
+
+    if (selectedTopic) {
+      tabContent = <div id='tab-content'>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    }
+
+    ...
+
+    {tabContent}
+  ```
+
+  - if문과 변수를 사용하여 동일한 기능을 유지하면서 JSX 코드가 더 깔끔하게 정리됨
+
+## 19. CSS 스타일링 및 동적 스타일링
+
+- className 속성을 사용하여 요소에 스타일 적용 가능
+- 동적 스타일링
+
+  ```jsx
+  // App.jsx
+  ...
+
+  function App() {
+    ...
+
+    return (
+      <div>
+        <Header />
+        <main>
+          ...
+          <section id='examples'>
+            <h2>Examples</h2>
+            <menu>
+              <TabButton
+                isSelected={selectedTopic === 'components'}
+                onSelect={() => handleSelect('components')}
+              >
+                Components
+              </TabButton>
+              <TabButton
+                isSelected={selectedTopic === 'jsx'}
+                onSelect={() => handleSelect('jsx')}
+              >
+                JSX
+              </TabButton>
+              <TabButton
+                isSelected={selectedTopic === 'props'}
+                onSelect={() => handleSelect('props')}
+              >
+                Props
+              </TabButton>
+              <TabButton
+                isSelected={selectedTopic === 'state'}
+                onSelect={() => handleSelect('state')}
+              >
+                State
+              </TabButton>
+            </menu>
+            ...
+          </section>
+        </main>
+      </div>
+    );
+  }
+
+  export default App;
+
+  // TabButton.jsx
+  export default function TabButton({ children, onSelect, isSelected }) {
+    return (
+      <li>
+        <button
+          className={isSelected && 'active'}
+          onClick={onSelect}
+        >
+          {children}
+        </button>
+      </li>
+    );
+  }
+  ```
+
+  - isSelected 변수를 사용하여 버튼이 선택되었는지 상태를 확인
+    - 선택되었다면 active 스타일 적용
+
+## 20. List(리스트) 데이터 동적 출력
+
+- JSX로 데이터 배열을 출력할 수 있다는 것을 이해하는 것이 중요
+  - JSX는 렌더링 가능한 데이터 배열을 처리할 수 있는 능력이 있음
+  - JSX가 JSX 요소 배열을 출력할 수 있으므로, 객체 배열을 JSX 요소 배열로 변환할 수 있음
+- 자바스크립트 배열은 내장된 map 메서드를 사용하여, 원본 배열에 기반한 새로운 배열을 생성할 수 있음
+
+  ```jsx
+  // 변경 전
+  function App() {
+    const [selectedTopic, setSelectedTopic] = useState();
+   ...
+    return (
+      <div>
+        <Header />
+        <main>
+          <section id='core-concepts'>
+            <h2>Core Concepts</h2>
+            <ul>
+              <CoreConcept {...CORE_CONCEPTS[0]} />
+              <CoreConcept {...CORE_CONCEPTS[1]} />
+              <CoreConcept {...CORE_CONCEPTS[2]} />
+              <CoreConcept {...CORE_CONCEPTS[3]} />
+            </ul>
+          </section>
+          ...
+        </main>
+      </div>
+    );
+  }
+
+  export default App;
+
+  // 변경 후
+  function App() {
+    const [selectedTopic, setSelectedTopic] = useState();
+   ...
+    return (
+      <div>
+        <Header />
+        <main>
+          <section id='core-concepts'>
+            <h2>Core Concepts</h2>
+            <ul>
+              {CORE_CONCEPTS.map((conceptItem) => (
+                <CoreConcept {...conceptItem} />
+              ))}
+            </ul>
+          </section>
+          ...
+        </main>
+      </div>
+    );
+  }
+
+  export default App;
+  ```
+
+- 리액트에서는 데이터 목록을 출력하는 경우가 많기 때문에, 거의 항상 map 메서드를 사용하여 JSX 요소로 변환함
+- 각각의 목록에 있는 각 자식 요소들이 고유의 key prop을 가져야 한다는 경고가 뜨는 것을 확인할 수 있음
+  - key prop의 값은 해당 항목을 식별할 수 있는 고유한 값이어야 함
+  - 리액트가 시스템 내부에서 이 목록을 효율적으로 렌더링하고, 업데이트하기 위해 사용
