@@ -769,3 +769,127 @@ export default App;
 - 이것이 유용한 이유
   - 예를 들어 Player 1의 정보를 입력할 때, Player 2의 정보가 수정된다면 문제가 심각해질 것
   - 이런 식으로 작동한다면 컴포넌트 자체가 무용지물의 개념이 될 것
+
+## 12. 조건적 콘텐츠 & State(상태) 업데이트를 위한 차선책
+
+### 1) 방법 1 : 부정 연산자 사용하여 상태값 변경하기
+
+```jsx
+function handleEditClick() {
+  // setIsEditing(isEditing ? false : true);
+  setIsEditing(!isEditing);
+}
+```
+
+- 현재 isEditing의 값이 어떤 것이냐에 따라 반대가 되도록 하는 코드
+- 그러나 최선의 방법은 아님
+
+## 13. 이전의 State(상태)를 기반으로 올바르게 상태 업데이트 하기
+
+### 1) 방법 2: 해당 상태를 업데이트 하는 함수로 새로운 함수를 보내기
+
+- 리액트에서 state(상태)를 변경할 때, 해당 상태의 이전 값을 변경하는 경우 부정 연산자를 사용하여 작업해서는 안됨
+  - 만약 상태를 이전 값에 기반하여 변경하는 경우, 해당 상태를 업데이트 하는 함수로 새로운 함수를 보내야 함
+    ```jsx
+    function handleEditClick() {
+      setIsEditing() => { });
+    }
+    ```
+    → 리액트 생태계에서는 이것이 최적의 방식
+- 상태를 이전 값에 기반하여 변경하는 경우, 해당 상태를 업데이트 하는 함수로 새로운 함수를 보내야 함
+
+  - 해당 상태를 업데이트 하는 함수로 반환하고자 하는 새로운 상태 값을 보내서는 안됨
+
+    ```jsx
+    // 잘못된 방식
+    function handleEditClick() {
+      setIsEditing(!isEditing);
+    }
+
+    // 올바른 방식
+    function handleEditClick() {
+      setIsEditing() => { });
+    }
+    ```
+
+  - 이유
+    - 여기서 해당 상태를 업데이트 하는 함수로 전달하는 화살표 함수를 리액트가 호출하여, 자동적으로 현재 상태 값을 가지게 되기 때문
+      → 즉, 상태 변경 전의 값이 입력됨
+
+### 2) 위의 방법을 코드에 적용하기
+
+```jsx
+function handleEditClick() {
+  setIsEditing((editing) => !editing);
+}
+```
+
+- 여기서의 `editing` 은 true 혹은 false인데, isEditing의 값과 동일
+- 하지만 이 매개변수는 값으로 인식되어, 리액트가 함수 호출 시 동적으로 설정하여 전달하게 됨
+- 이 화살표 함수를 setIsEditing으로 전달할 때, 설정하고자 하는 새로운 상태를 반환하게 됨
+- 작동하는 방식은 방법 1로 했을 때와 동일하지만, 코드는 비교적 장황해 보일 수 있음
+
+### 3) 위의 코드 또한 작동하지만 문제점이 존재
+
+- 이 작업을 수행하는 리액트가 상태 변화에 대한 스케줄을 조정한다는 것
+- 이 작업은 setIsEditing과 같은 상태 변경 함수를 통해 실행하므로, 두 단계로 이루어짐
+  - 즉, 이 상태 변경은 즉각적으로 수행되는 것이 아니라, 리액트가 미래에 수행할 상태 변경 스케줄을 조율하는 것
+    → 이 시간은 몇 밀리초밖에 되지 않으므로, 아주 빠른 시간이지만 즉각적이진 않음
+
+### 4) 문제점을 예시를 통해 알아보기
+
+```jsx
+function handleEditClick() {
+  setIsEditing(!editing); // true 예상
+  setIsEditing(!editing); // false 예상
+  // 결국 이 함수가 작동하면 isEditing은 false로 변화가 없을 것
+}
+```
+
+- 그러나 웹 사이트에서의 작동을 확인하면, 버튼 클릭이 정상적으로 작동하는 것을 확인할 수 있음
+- 결국, `setIsEditing` 을 한 번만 작성한 것과 동일한 결과
+  ⇒ 이것이 함수 형태를 사용해야 하는 이유
+
+### 5) 함수 형태를 사용해야 하는 이유
+
+```jsx
+function handleEditClick() {
+  setIsEditing(!editing); // true 예상
+  setIsEditing(!editing); // false 예상
+  // 결국 이 함수가 작동하면 isEditing은 false로 변화가 없을 것
+}
+```
+
+- 이 코드에서 리액트가 상태 변경 스케줄을 조율하는데, 두 상태 변화 모두 `isEditing`의 현재 상태를 기준으로 삼음
+  - 즉 시작점은 `isEditing = false`
+  - 해당 함수를 포함하는 컴포넌트 함수가 처음 실행되는 시점에 `isEditing` 의 값이 false이기 때문
+  - 내장 함수인 `handleEditClick()` 함수는 생성될 당시 컴포넌트 함수 실행에 포함되어 있기 때문에, `isEditing` 은 시작 시점의 값을 가지고 있는 것
+- `setIsEditing` 에서 `isEditing` 을 호출할 때 상태 변경 스케줄을 조율하게 되는데, 첫 번째 `setIsEditing` 함수에서 `isEditing` 을 true로 바꾸라는 명령이 즉각적으로 실행되지 않음
+  - 그 다음 `setIsEditing` 함수에서도 동일한 상태가 유지됨
+    ⇒ 그 이유는 우리가 아직 동일한 컴포넌트 함수 실행의 사이클을 돌고 있기 때문에, 그 다음 `setIsEditing` 함수에서 `isEditing` 의 상태를 false로 바꾸지 않고 true로 동일한 업데이트를 스케줄 하는 것
+- 그리고 이 두 상태 변화의 스케줄은 각자의 작업 이후에 실행됨
+- 만약 우리가 이 함수 형태를 수정하여 상태를 변경한다면 상황은 달라짐
+  ```jsx
+  function handleEditClick() {
+    setIsEditing((editing) => !editing); // true 예상
+    setIsEditing((editing) => !editing); // false 예상
+    // 결국 이 함수가 작동하면 isEditing은 false로 변화가 없을 것
+  }
+  ```
+  - 위와 같이 코드를 수정한다면, 버튼을 눌러도 아무 일도 일어나지 않음
+    → 우리가 예상한 결과와 동일한 결과가 나오는 것
+  - 리액트가 상태를 업데이트할 때, `setIsEditing` 함수 안에서의 상태(`editing`)는 각각의 호출이 독립적으로 작동
+  - 첫 번째 호출에서 상태가 `true`로 바뀌기로 예약되었지만, 그 변경이 아직 적용되지 않은 상태에서 두 번째 호출이 실행됨
+  - 두 번째 호출에서도 `editing`은 여전히 `false`로 간주되기 때문에 `!editing`은 `true`로 설정
+  - 결국 두 번의 호출 모두 상태를 `true`로 바꾸게 되어, 최종적으로 `isEditing`은 `true`가 됨
+
+### 6) 기억해야 할 것
+
+- 이렇게 화살표 함수 형태를 사용해서 리액트가 보장해줄 수 있는 것은 이 상태 값이 언제나 가장 최신이라는 것
+- 상태 변경할 때 이전의 상태 값에 기반하여 변경한다면, 상태 변화 함수에 화살표 함수 형태를 사용해야 함
+- 가장 최선의 방법
+  ```jsx
+  function handleEditClick() {
+    setIsEditing((editing) => !editing);
+  }
+  ```
