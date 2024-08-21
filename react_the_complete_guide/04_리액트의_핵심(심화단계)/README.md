@@ -893,3 +893,1053 @@ function handleEditClick() {
     setIsEditing((editing) => !editing);
   }
   ```
+
+## 14. 사용자 입력 & 양방향 바인딩
+
+### 1) `<input>` 요소의 `value` 속성을 사용하여 사용자 입력값 제어하기
+
+- `<input>` 요소의 `value` 속성은 입력창에 보이는 값을 설정
+  - `value` 속성에 값을 설정하면 입력창에서 값을 수정할 수 없음
+- `defaultValue` 속성을 사용하면 기본으로 보여주는 값을 지우고 새로운 값을 작성할 수 있음
+
+### 2) `<input>` 요소의 `onChange` 속성을 사용하여 사용자 입력값 제어하기
+
+- `useState`를 동일한 컴포넌트 안에서 여러 번 사용 가능한데, 제어하고자 하는 상태가 많을 때 유용
+- `onChange` 메서드는 키보드 입력에 의해 발동되고, 사용자가 작성한 값을 담은 이벤트 객체를 제공
+
+  ```jsx
+  export default function Player({ initialName, symbol }) {
+  	const [playerName, setPlayerName] = useState(initialName);
+
+  	...
+
+  	function handleChange(event) {
+  	  setPlayerName(event.target.value);
+  	}
+
+  	...
+
+  	if (isEditing) {
+  	  editablePlayerName = (
+  	    <input
+  	      type='text'
+  	      required
+  	      value={playerName}
+  	      onChange={handleChange}
+  	    />
+  	  );
+  	  btnCaption = 'Save';
+  	}
+  }
+  ```
+
+  - 여기서 `handleChane` 함수로 이벤트 값이 자동으로 넘어오게 됨
+  - 포인터를 넘기는 위치가 `handleChange` 함수이고, 이 포인터는 input 요소의 `onChange` 속성으로 넘어옴
+  - 리액트가 `handleChange` 함수를 호출하는 것은 이벤트가 생길 때
+  - 리액트가 이벤트 객체를 내보낼 때는 `handleChange` 함수를 호출하여 해당 함수의 인수로서 내보냄
+    - 그렇기 때문에 이벤트는 자동으로 넘어옴
+  - `event.target` 속성을 사용하여 해당 이벤트를 발생시키는 곳인 `input` 요소를 참조할 수 있음
+    - `input` 요소는 `value` 속성을 가지고 있는데, 이 속성은 사용자가 작성하려고 한 값을 저장
+    - 이 값은 이후 `value={playerName}` 의 값을 덮어씀
+
+⇒ onChange 메서드와 개별의 상태를 제어함으로써 사용자 입력 필드에 작성한 값에 접근 가능
+
+⇒ 이 변경된 값이 입력 필드에 다시 보여짐으로써 변경된 값에도 접근 가능
+
+### 2) 양방향 반인딩이란?
+
+- 입력값의 변화에 반응하고, 변경된 값을 다시 입력값에 전달하는 방식
+- `onChange={handleChange}` 에서 값을 빼내어 `value={playerName}` 에 전달하기 때문
+
+## 15. 다차원 리스트 렌더링
+
+```jsx
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+export default function GameBoard() {
+  return (
+    <ol id='game-board'>
+      {initialGameboard.map((row, rowIndex) => (
+        <li key={rowIndex}>
+          <ol>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
+                <button>{playerSymbol}</button>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+}
+```
+
+- 컴포넌트 함수 밖에 상수를 선언하여 특정 값을 가져오고 저장
+  - 밖에 선언하는 이유는 이 상수는 state(상태)가 아니기 때문
+- `initialGameBoard` 배열을 `map`으로 전개할 때, `li` 요소의 `key`를 `rowIndex` 로 설정
+  - 이 인덱스는 해당 값과 연결되어 있지 않기 때문에, 대부분의 경우 인덱스로 키를 설정하지 않는 것이 좋음
+    - 인덱스는 해당 값과 연결되어 있지 않기 때문
+    - 행의 위치를 바꾼다면 이전의 인덱스 정보가 변경되기 때문
+      → 인덱스는 데이터의 내용이 아닌 데이터의 위치와 연결되어 있음
+  - 하지만 `initialGameBoard` 의 경우, 문제가 되지 않음
+    → 행의 위치를 바꿀 일이 없기 때문
+
+## 16. 불변의 객체 State(상태)로 업데이트 하기
+
+### 1) 객체나 배열 타입의 State(상태)를 업데이트 할 때는 변경 불가능하게 할 것
+
+```
+import { useState } from 'react';
+
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+export default function GameBoard() {
+  const [gameBoard, setGameBoard] = useState(initialGameboard);
+
+	// 원본 배열을 복제하지 않은 방법 - 비추천(x)
+  function handleSelectSquare(rowIndex, colIndex) {
+    setGameBoard((prevGameBoard) => {
+      prevGameBoard[rowIndex][colIndex] = 'X'
+      return prevGameBoard
+    });
+  }
+
+  // 원본 배열을 복제한 방법 - 추천(o)
+  function handleSelectSquare(rowIndex, colIndex) {
+    setGameBoard((prevGameBoard) => {
+      const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+      updatedBoard[rowIndex][colIndex] = 'X';
+      return updatedBoard;
+    });
+  }
+
+  return (
+    ...
+  );
+}
+
+```
+
+- 객체나 배열 타입의 State(상태)를 업데이트 할 때는 원본을 변경 불가능하게 하는 것이 좋음
+- 즉, 이전 상태를 하나 복제해서 새 객체 또는 배열로 저장해 놓고, 이 복제된 버전을 수정하는 방식
+  → 원본 객체 또는 배열은 변경되지 않도록
+- 이 방식을 추천하는 이유
+  - 만약 State(상태)가 객체 혹은 배열이라면, 이것은 자바스크립트 내의 참조 값임
+  - 그러므로 기존 값을 복제해서 사용하지 않으면, 메모리 속의 기존 값을 바로 변경하게 됨
+  - 이 시점은 리액트가 실행하는 예정된 상태 업데이트보다 이전에 일어나게 됨
+    → 알 수 없는 버그나 부작용이 생길 수 있음
+
+### 2) 코드에 적용하기
+
+```jsx
+import { useState } from 'react';
+
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+export default function GameBoard() {
+  const [gameBoard, setGameBoard] = useState(initialGameboard);
+
+  function handleSelectSquare(rowIndex, colIndex) {
+    setGameBoard((prevGameBoard) => {
+      const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+      updatedBoard[rowIndex][colIndex] = 'X';
+      return updatedBoard;
+    });
+  }
+
+  return (
+    <ol id='game-board'>
+      {initialGameboard.map((row, rowIndex) => (
+        <li key={rowIndex}>
+          <ol>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
+                <button onClick={() => handleSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+}
+```
+
+- 위의 코드는 원본 상태에 기반하여 변경하는 방식
+  - 작업 중인 `gameBoard`의 상태를 `initialGameBoard` 대신 사용하는 것
+  - 초기에만 `initialGameBoard`을 사용하고, 이 상태는 이후에 변경되어 업데이트 된 `gameBoard`로 대체됨
+
+### 3) 참조 값 vs 기본 값
+
+### 1) 원시 값이란?
+
+```jsx
+let age = 28;
+
+var name = 'Max';
+var isMale = trur;
+```
+
+- 변수는 숫자 값을 저장
+- 숫자 값은 자바스크립트의 매우 간단한 구성요소이므로, 기본 값이라고 함
+  - 문자열, boolean, undefined, null 도 기본 값
+
+### 2) 참조 값이란?
+
+```jsx
+var person = {
+  name: 'Max',
+  age: 28,
+};
+
+var hobbies = ['sports', 'cooking'];
+```
+
+- 여기서 person은 객체이므로 참조 유형
+  - 차례로 원시 값을 갖는 속성을 가지고 있음
+  - 이것은 참조 형식이 되는 개체에는 영향을 주지 않음
+  - person 객체 내부에 중첩 된 객체 또는 배열을 가질 수도 있음
+- hobbies 배열은 참조 유형
+  - 이 경우 문자열 목록을 보유
+  - 문자열은 배운 대로 기본 값/유형이지만 배열에는 영향을 미치지 않음
+  - 배열은 항상 참조 형식
+
+### 3) 두 값의 차이점은?
+
+- 자바스크립트는 내부적으로 속성이나 변수에 지정한 값을 메모리에 저장해야 함
+
+  - 자바스크립트는 Stack과 Heap 두 가지 유형의 메모리를 가지고 있음
+
+    [Confused about Stack and Heap?](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
+
+- 짧게 요약하자면,
+  - Stack
+    - 스택은 본질적으로 항목을 스택으로 관리하는 접근하기 쉬운 메모리
+      → 숫자, 문자열, boolean의 경우
+  - Heap
+    - 정확한 크기와 구조를 미리 확인할 수 없는 항목에 대한 메모리
+    - 객체와 배열은 런타임에 변경되고 변경될 수 있으므로 힙으로 이동해야 함
+    - 각 힙 항목에 대해 정확한 주소는 힙의 항목을 가리키는 포인터에 저장
+    - 이 포인터는 차례로 스택에 저장
+
+### 4) 참조 유형의 이상항 동작
+
+- 참조 유형의 경우, 스택에 포인터만 저장된다는 사실이 매우 중요
+- 실제 person 이라는 변수에 저장되어 있는 것은 객체의 포인터
+  - 배열의 경우에도 마찬가지로, hobbies 변수에 저장된 것은 배열의 포인터
+- 그렇기 때문에 원본 객체나 배열을 새로운 변수에 저장한 후, 새로운 변수에서 객체의 어떤 값을 변경하면 원본 값도 변경됨
+
+  ```jsx
+  // 객체의 예시
+  var person = { name: 'Max' };
+  var newPerson = 사람;
+  newPerson.name = 'Anna';
+  console.log(person.name); // Anna
+
+  // 배열의 예시
+  var hobbies = ['Sports', 'Cooking'];
+  var copiedHobbies = hobbies;
+  copiedHobbies.push('Music');
+  console.log(hobbies[2]); // Music
+  ```
+
+### 5) 실제로 값을 복사하는 방법
+
+- 위의 예시를 통해 우리가 복사하는 것은 값이 아닌 포인터라는 것을 알게 됨
+- 이 포인터가 가리키는 실제 값을 변경하기 위해서는, 기본적으로 새로운 객체나 배열을 구성한 후 기존 객체나 배열의 속성이나 요소로 채워야 함
+- 새로운 배열에 원본 배열을 복제하는 방법
+
+  1. `slice()`
+
+     ```jsx
+     var hobbies = ['Sports', 'Cooking'];
+     var copiedHobbies = hobbies.slice();
+     ```
+
+     - `slice()` 는 기본적으로 전달한 시작 인덱스에서 시작하여(그리고 정의한 요소의 최대 개수까지) 이전 요소의 모든 요소를 포함하는 새 배열을 반환
+     - 인수 없이 호출하면 이전 배열의 모든 요소가 포함된 새 배열을 얻음
+
+  2. `…` (스프레드 연산자)
+
+     ```jsx
+     var hobbies = ['Sports', 'Cooking'];
+     var copiedHobbies = [...hobbies];
+     ```
+
+     - 새 배열을 수동으로 만들고 ( 를 사용하여 `[]`) 스프레드 연산자( `...`)를 사용하여 "이전 배열의 모든 요소를 끌어내어" 새 배열에 추가
+
+- 새로운 객체에 원본 객체를 복제하는 방법
+
+  1. `Object.assign()`
+
+     ```jsx
+     var person = { name: 'Max' };
+     var copiedPerson = Object.assign({}, person);
+     ```
+
+     - 이 구문은 새 객체( `{}`part)를 생성하고 이전 객체(두 번째 인수)의 모든 속성을 새로 생성된 객체에 할당
+
+  2. `…` (스프레드 연산자)
+
+     ```jsx
+     var person = { name: 'Max' };
+     var copiedPerson = { ...person };
+     ```
+
+     - 이렇게 하면 새 객체가 생성되고( 를 사용했기 때문에 `{ }`) 해당 객체의 모든 속성이 `person`새 객체로 추출됨
+
+### 6) 깊은 복사
+
+- 위의 어느 방법을 사용하더라도 깊은 복제본을 만들지 않는다는 것
+- 복제된 배열에 중첩된 배열이나 객체가 요소로 포함되어 있거나, 객체에 배열이나 다른 객체를 보유하는 속성이 포함되어 있는 경우, 이러한 중첩된 배열과 객체는 복제되지 않음
+  - 작업할 모든 레이어를 수동으로 복제해야 함
+
+[Reference vs Primitive Values](https://academind.com/tutorials/reference-vs-primitive-values)
+
+## 17. State(상태) 끌어올리기
+
+- 서로 다른 컴포넌트에서 각자의 상태를 필요로 하는 상황에서 이 상태를 제어할 때, 가장 가까운 부모 컴포넌트에서 작업해야 함
+  - 그 이유는 해당 컴포넌트가 정보를 필요로 하는 두 컴포넌트 모두에 대해 접근이 가능하기 때문
+- 우리 코드의 경으는 App 컴포넌트에서 어떤 Player가 진행 중인지, 해당 정보를 Player와 GameBoard 두 컴포넌트 모두에게 속성(prop)을 통해 보낼 수 있음
+
+```jsx
+// App.jsx
+...
+
+function App() {
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare() {
+    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+  }
+
+  return (
+    <main>
+      <div id='game-container'>
+        <ol
+          id='players'
+          className='hilight-player'
+        >
+          <Player
+            initialName='Player 1'
+            symbol='X'
+            isActive={activePlayer === 'X'}
+          />
+          <Player
+            initialName='Player 2'
+            symbol='O'
+            isActive={activePlayer === 'O'}
+          />
+        </ol>
+        <GameBoard
+          onSelectSquare={handleSelectSquare}
+          activePlayerSymbol={activePlayer}
+        />
+      </div>
+      LOG
+    </main>
+  );
+}
+
+export default App;
+
+// Player.jsx
+...
+
+export default function Player({ initialName, symbol, isActive }) {
+  ...
+
+  return (
+    <li className={isActive ? 'active' : undefined}>
+      ...
+    </li>
+  );
+}
+
+// GameBoard.jsx
+...
+
+export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
+  const [gameBoard, setGameBoard] = useState(initialGameboard);
+
+  function handleSelectSquare(rowIndex, colIndex) {
+    setGameBoard((prevGameBoard) => {
+      const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+      updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+      return updatedBoard;
+    });
+
+    onSelectSquare();
+  }
+
+  return (
+    ...
+  );
+}
+```
+
+## 18. 교차 State(상태) 방지하기
+
+- 승리 조건을 만들고, 같은 버튼을 여러 번 클릭할 수 없게 하기
+- 상태를 하나 더 만들어서 이전에 만들었던 상태와 크게 다를 것 없는 정보를 또 저장하는 것은 가능하면 피하는 것이 좋음
+  - 이 작업은 쉽지 않으며 연습이 필요
+  - 물론, 여러 상태에서 같은 정보를 제어하고 있다고 큰 일이 일어나지는 않음
+  - 하지만 일반적으로 피하는 것이 좋음
+- GameBoard 컴포넌트에서 gameBoard 상태를 제어하는 것이 아니라, App 컴포넌트의 gameTurns로 상태를 제어할 것
+  - 버튼을 클릭하는 것에 대한 정보를 목록으로서 제어할 수 있음
+  - Log 컴포넌트에 필요한 정보와 GameBoard 컴포넌트에 필요한 정보 또한 gameTurns 배열에서 가져올 수 있기 때문
+
+## 19. 계산된 값 권장 및 불필요한 State(상태) 관리 방지
+
+```jsx
+...
+
+function App() {
+  const [gameTurns, setGameTurns] = useState([]);
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare(rowIndex, colIndex) {
+    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+    setGameTurns((prevTurns) => {
+      let currentPlayer = 'X';
+
+      if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
+        currentPlayer = 'O';
+      }
+
+      const updatedTurns = [{ squre: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+
+      return updatedTurns;
+    });
+  }
+  return (
+    <main>
+      <div id='game-container'>
+        ...
+        <GameBoard
+          onSelectSquare={handleSelectSquare}
+          activePlayerSymbol={activePlayer}
+        />
+      </div>
+      <Log />
+    </main>
+  );
+}
+
+export default App;
+```
+
+- `setGameTurns` 함수에서 `activePlayer` 상태를 사용하지 않고 `currentPlayer` 변수를 만든 이유
+  - 두 종류의 상태를 병합하는 것과 같기 때문
+  - 상태 변경 함수 안에서 함수 형태로 `gameTurns` 의 상태를 업데이트 하고 있는데, 실행 시점의 조율에 대한 상태 업데이트가 실행되도록 하기 위함
+  - 여기에서는 가장 최신의 상태를 사용하지만, `activePlayer` 는 또 다른 상태이기 때문
+- `setGameTurns` 함수는 우리가 상태를 불변한 방식으로 업데이트 하고, 다른 상태를 병합하지 않도록 해줌
+- 이 작업으로 인해 gameTurns 상태를 Log 컴포넌트와 GameBoard 컴포넌트 모두에 사용 가능
+
+## 20. Props(속성)에서 State(상태) 파생하기
+
+```jsx
+// App.jsx
+...
+
+function App() {
+  const [gameTurns, setGameTurns] = useState([]);
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare(rowIndex, colIndex) {
+    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+    setGameTurns((prevTurns) => {
+      let currentPlayer = 'X';
+
+      if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
+        currentPlayer = 'O';
+      }
+
+      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+
+      return updatedTurns;
+    });
+  }
+  return (
+    <main>
+      <div id='game-container'>
+        ...
+        <GameBoard
+          onSelectSquare={handleSelectSquare}
+          turns={gameTurns}
+        />
+      </div>
+      <Log />
+    </main>
+  );
+}
+
+export default App;
+
+// GameBoard.jsx
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+export default function GameBoard({ onSelectSquare, turns }) {
+  let gameBoard = initialGameboard;
+
+  for (const turn of turns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player;
+  }
+
+  // const [gameBoard, setGameBoard] = useState(initialGameboard);
+
+  // function handleSelectSquare(rowIndex, colIndex) {
+  //   setGameBoard((prevGameBoard) => {
+  //     const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+  //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+  //     return updatedBoard;
+  //   });
+
+  //   onSelectSquare();
+  // }
+
+  return (
+    <ol id='game-board'>
+      {gameBoard.map((row, rowIndex) => (
+        <li key={rowIndex}>
+          <ol>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
+                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+}
+```
+
+- App 컴포넌트에서 제어되는 gameTurns 상태로부터 GameBoard 컴포넌트의 gameBoard 변수로 이 상태를 파생시켜 오는 것
+  → 이것이 리액트 내에서 사고하고 작업하는 방식
+- 제어하는 상태의 수는 최소화하되, 각 상태에서 가능한 많은 정보와 많은 값을 파생시키는 것
+
+## 21. 컴포넌트 간의 State(상태) 공유
+
+```jsx
+// App.jsx
+...
+function App() {
+  ...
+  return (
+    <main>
+      ...
+      <Log turns={gameTurns} />
+    </main>
+  );
+}
+
+export default App;
+
+// Log.jsx
+export default function Log({ turns }) {
+  return (
+    <ol id='log'>
+      {turns.map((turn) => (
+        <li key={`${turn.square.row}${turn.square.col}`}>
+          {turn.player} selected {turn.square.row}, {turn.square.col}
+        </li>
+      ))}
+    </ol>
+  );
+}
+```
+
+## 22. State(상태) 관리 및 간소화 및 불필요한 State(상태) 분별
+
+- UI 업데이트가 필요하니 이를 위해 `activePlayer` 상태를 제어하는 것은 타당하지 않음
+  - 상태가 UI 업데이트를 실행하는 것은 맞지만, 버튼을 클릭할 때마다 이미 `gameTurns` 상태가 변하고 있음
+    → 버튼을 클릭할 때마다 실행됨
+  - 그러므로 `activePlayer` 상태를 추가해서 UI 업데이트를 실행할 필요가 없음
+  - 현재 어떤 플레이어가 진행 중인지에 대한 정보는 `gameTurns` 상태에서도 가져올 수 있음
+
+```jsx
+...
+
+function App() {
+  const [gameTurns, setGameTurns] = useState([]);
+  // const [activePlayer, setActivePlayer] = useState('X');
+
+  let currentPlayer = 'X';
+
+  if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
+    currentPlayer = 'O';
+  }
+
+  function handleSelectSquare(rowIndex, colIndex) {
+    // setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+    setGameTurns((prevTurns) => {
+      let currentPlayer = 'X';
+
+      if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
+        currentPlayer = 'O';
+      }
+
+      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+
+      return updatedTurns;
+    });
+  }
+  return (
+    ...
+  );
+}
+
+export default App;
+```
+
+- `setGameTurns` 함수 안의 `currentPlayer` 와 if문을 삭제할 수 없음
+  - `setGameTurns` 함수는 `gameTurns`의 상태를 이전의 `gameTurns` 상태로부터 파생시켜야 함
+  - 반대로 App 컴포넌트의 `currentPlayer` 는 현재 `gameTurns` 상태에서 파생시킴
+    ⇒ 이전 상태에 기반하여 상태를 변경할 때는 위와 같이 해야 함
+- 위의 코드에서 중복되는 코드를 정리해보자
+
+  ```jsx
+  ...
+
+  function deriveActivePlayer(gameTurns) {
+    let currentPlayer = 'X';
+
+    if (gameTurns.length > 0 && gameTurns[0].player === 'X') {
+      currentPlayer = 'O';
+    }
+
+    return currentPlayer;
+  }
+
+  function App() {
+    const [gameTurns, setGameTurns] = useState([]);
+    // const [activePlayer, setActivePlayer] = useState('X');
+
+    const activePlayer = deriveActivePlayer(gameTurns);
+
+    function handleSelectSquare(rowIndex, colIndex) {
+      // setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+      setGameTurns((prevTurns) => {
+        let currentPlayer = deriveActivePlayer(prevTurns);
+
+        const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+
+        return updatedTurns;
+      });
+    }
+    return (
+      ...
+    );
+  }
+
+  export default App;
+  ```
+
+  - 추가 상태를 제어하지 않아도 되고, 중복되는 코드를 외부에 별도 함수를 만들어 정리
+  - 리액트에서 상태는 최대한 적게 사용하고, 최대한 많은 값을 파생 및 연산하도록 하는 것이 좋음
+
+## 23. 조건적 버튼 활성화
+
+```jsx
+...
+export default function GameBoard({ onSelectSquare, turns }) {
+  ...
+
+  return (
+    <ol id='game-board'>
+      {gameBoard.map((row, rowIndex) => (
+        <li key={rowIndex}>
+          <ol>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
+                <button
+                  onClick={() => onSelectSquare(rowIndex, colIndex)}
+                  disabled={playerSymbol !== null}
+                >
+                  {playerSymbol}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+```
+
+- 같은 버튼을 여러 번 클릭할 수 없도록 제어하기
+  - 한 번 선택된 버튼을 비활성화 시키기
+
+## 24. 분리된 파일로 데이터 아웃소싱
+
+- 게임 승리 조건 확인하기
+  - 가장 간단한 방법은 가능한 모든 우승 조건의 조합을 한 곳에 모은 후, 그 중에 일치하는 것이 있는지 확인
+  - 이 작업은 매번 이루어져야 함
+    - 매 차례마다 게임이 끝날 수 있는 가능성이 있기 때문
+- 게임이 승리하는 모든 조건의 배열을 담은 별도의 js 파일을 생성
+  ```jsx
+  export const WINNING_COMBINATIONS = [
+    [
+      { row: 0, column: 0 },
+      { row: 0, column: 1 },
+      { row: 0, column: 2 },
+    ],
+    [
+      { row: 1, column: 0 },
+      { row: 1, column: 1 },
+      { row: 1, column: 2 },
+    ],
+    [
+      { row: 2, column: 0 },
+      { row: 2, column: 1 },
+      { row: 2, column: 2 },
+    ],
+    [
+      { row: 0, column: 0 },
+      { row: 1, column: 0 },
+      { row: 2, column: 0 },
+    ],
+    [
+      { row: 0, column: 1 },
+      { row: 1, column: 1 },
+      { row: 2, column: 1 },
+    ],
+    [
+      { row: 0, column: 2 },
+      { row: 1, column: 2 },
+      { row: 2, column: 2 },
+    ],
+    [
+      { row: 0, column: 0 },
+      { row: 1, column: 1 },
+      { row: 2, column: 2 },
+    ],
+    [
+      { row: 0, column: 2 },
+      { row: 1, column: 1 },
+      { row: 2, column: 0 },
+    ],
+  ];
+  ```
+
+## 25. 계산된 값 끌어올리기
+
+- 매 차례마다 동적으로 승리하는 조건이 있는지 확인하기 위해 `handleSelectSquare` 에 로직을 추가
+  - 이 함수가 실행되는 시점이 버튼이 클릭됐을 때이기 때문
+  - `const [hasWinner, setHasWinner] = useState(false);` 와 같이 새로운 상태를 추가해도 되지만 굳이 필요하지 않음
+    - 동일한 내용을 반복하기 때문
+    - 우승자가 있는지 여부를 확인하는 정보는 `gameTruns`에서 이미 파생되었으므로, `handleSelectSquare` 에서도 우승자 여부를 확인할 필요가 없음
+      → 이미 App 컴포넌트 함수에서 매 차례마다 실행하고 있기 때문
+      → 버튼을 클릭할 때마다 `gameTurns` 배열을 업데이트 하고 있기 때문
+
+```jsx
+// App.jsx
+...
+import { WINNINT_CONBINATION } from './winning-combinations.js';
+
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
+...
+
+function App() {
+  const [gameTurns, setGameTurns] = useState([]);
+  // const [hasWinner, setHasWinner] = useState(false);
+  // const [activePlayer, setActivePlayer] = useState('X');
+
+  const activePlayer = deriveActivePlayer(gameTurns);
+
+  let gameBoard = initialGameboard;
+
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player;
+  }
+
+  for (const combination of WINNINT_CONBINATION) {
+    // gameBoard의 특정 위치에서 나온 기호를 저장
+    const firstSquareSymbol
+    const secondSquareSymbol
+    const thirdSquareSymbol
+  }
+
+  ...
+  return (
+    <main>
+      <div id='game-container'>
+        ...
+        <GameBoard
+          onSelectSquare={handleSelectSquare}
+          board={gameBoard}
+        />
+      </div>
+      <Log turns={gameTurns} />
+    </main>
+  );
+}
+
+export default App;
+
+// GameBoard.jsx
+export default function GameBoard({ onSelectSquare, board }) {
+  return (
+    <ol id='game-board'>
+      {board.map((row, rowIndex) => (
+        <li key={rowIndex}>
+          <ol>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
+                <button
+                  onClick={() => onSelectSquare(rowIndex, colIndex)}
+                  disabled={playerSymbol !== null}
+                >
+                  {playerSymbol}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+```
+
+- 위와 같이 작업하는 것의 장점
+  - `gameBoard` 가 App 컴포넌트에 있기 때문에, `gameBoard` 에 저장되어 있던 다양한 기호를 추출해올 수 있음
+  - 특히 우승 조건에 부합하는 특정 위치에 있는 기호를 알 수 있음
+
+## 26. 계산된 값에서 새로운 계산된 값 파생하기
+
+```jsx
+// App.jsx
+...
+
+function App() {
+  ...
+
+  let winner;
+
+  for (const combination of WINNING_COMBINATIONS) {
+    // gameBoard의 특정 위치에서 나온 기호를 저장
+    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
+    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
+    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+
+    if (firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol) {
+      winner = firstSquareSymbol;
+    }
+  }
+
+  ...
+  return (
+    <main>
+      <div id='game-container'>
+        ...
+        {winner && <p>You won, {winner}!</p>}
+        <GameBoard
+          onSelectSquare={handleSelectSquare}
+          board={gameBoard}
+        />
+      </div>
+      <Log turns={gameTurns} />
+    </main>
+  );
+}
+
+export default App;
+```
+
+## 27. 불변성이 어떤 경우에서든 중요한 이유
+
+- 게임을 재시작한다는 것은 `gameTurns` 를 빈 배열로 재설정하고, 로그를 지우는 것이라고 할 수 있음
+  - 나머지는 모두 이 `gameTurns` 상태에서 파생되기 때문에 자동적으로 조정될 것
+
+```jsx
+// App.jsx
+...
+
+function App() {
+  ...
+
+  function handleRestart() {
+    setGameTurns([]);
+  }
+
+  return (
+    <main>
+      <div id='game-container'>
+        ...
+        {(winner || hasDraw) && (
+          <GameOver
+            winner={winner}
+            onRestart={handleRestart}
+          />
+        )}
+        ...
+      </div>
+      ...
+    </main>
+  );
+}
+
+export default App;
+
+// GameOver.jsx
+export default function GameOver({ winner, onRestart }) {
+  return (
+    <div id='game-over'>
+      ...
+      <p>
+        <button onClick={onRestart}>Rematch!</button>
+      </p>
+    </div>
+  );
+}
+```
+
+- 위와 같이 수정하면, 게임을 재시작한 후 `initialGameBoard` 배열은 초기화되지 않고 여전히 이전 배열로 존재
+- App 컴포넌트에서 아래와 같이 깊은 복사를 하여, `gameBoard`를 도출할 때 메모리에서 기존의 배열이 아닌 새로운 배열을 추가하도록 하여 문제 해결
+  ```jsx
+  let gameBoard = [...initialGameboard.map((array) => [...array])];
+  ```
+
+## 28. State(상태)를 끌어올리면 안되는 경우
+
+- 게임이 종료된 후, 우승자를 보여줄 때 기호 대신 플레이어의 이름을 보여주고자 함
+  - 플레이어 이름에 대한 정보는 Player 컴포넌트에 존재
+  - Player 컴포넌트로부터 App 컴포넌트로 플레이어의 이름을 가져와야 함
+  - 여기서 플레이어 이름이 저장된 상태를 App 컴포넌트로 끌어올리고 싶을 수 있음
+    - 하지만 이것은 잘못된 방법
+    - 이 플레이어 이름 상태는 타이핑을 할 때마다 입력 필드를 업데이트 하는 것에 사용되기 때문
+    - 즉, 이 상태를 App 컴포넌트로 끌어올린다면, 입력 필드에 값을 입력할 때마다 App 컴포넌트가 재평가된다는 것을 의미
+- 해결 방법
+  ```jsx
+  const [players, setPlayers] = useState({
+    X: 'Player 1',
+    O: 'Player 2',
+  });
+  ...
+  function handlePlayerNameChange(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName
+      }
+    })
+  }
+  ```
+  - 이름과 기호를 유지하면서 단지 변경된 플레이어의 기호에 대한 이름을 덮어쓰는 것
+
+## 29. State(상태) 끌어올리기 대안
+
+```jsx
+// App.jsx
+...
+function App() {
+  const [players, setPlayers] = useState({
+    X: 'Player 1',
+    O: 'Player 2',
+  });
+  ...
+
+  for (const combination of WINNING_COMBINATIONS) {
+    // gameBoard의 특정 위치에서 나온 기호를 저장
+    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
+    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
+    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+
+    if (firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol) {
+      winner = players[firstSquareSymbol];
+    }
+  }
+
+  ...
+  function handlePlayerNameChange(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName,
+      };
+    });
+  }
+
+  return (
+    <main>
+      <div id='game-container'>
+        <ol
+          id='players'
+          className='hilight-player'
+        >
+          <Player
+            initialName='Player 1'
+            symbol='X'
+            isActive={activePlayer === 'X'}
+            onChangeName={handlePlayerNameChange}
+          />
+          <Player
+            initialName='Player 2'
+            symbol='O'
+            isActive={activePlayer === 'O'}
+          />
+        </ol>
+        ...
+      </div>
+      ...
+    </main>
+  );
+}
+
+export default App;
+
+// Player.jsx
+...
+
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
+  ...
+
+  function handleEditClick() {
+    setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
+  }
+
+  ...
+
+  return (
+    ...
+  );
+}
+```
