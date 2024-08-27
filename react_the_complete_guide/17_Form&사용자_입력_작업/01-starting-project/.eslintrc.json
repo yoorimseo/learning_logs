@@ -1,0 +1,23 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2024, // 최신 ECMAScript 버전을 사용합니다.
+    "sourceType": "module" // 모듈을 사용하도록 설정합니다.
+  },
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "env": {
+    "browser": true, // 브라우저 환경에서의 전역 변수 설정
+    "node": true // Node.js 환경에서의 전역 변수 설정
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    // 사용자 정의 ESLint 규칙
+    "react/react-in-jsx-scope": "off" // React 17 이상에서 이 규칙을 비활성화합니다.
+  }
+}
