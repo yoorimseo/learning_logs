@@ -1,0 +1,201 @@
+/* reset csss */
+img {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  width: 1.8em;
+  height: 1.8em;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.ir {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Container Style */
+.container {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 10em auto;
+}
+
+/* Common Style */
+.box {
+  width: 20em;
+  padding: 1.5em;
+  border: 0.1rem solid #c5c8ce;
+  border-radius: 0.5em;
+  background-color: white;
+  color: #374553;
+}
+
+/* Calendar Style */
+.calendar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.calendarNav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.calendarNav .date {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.calendarNav .calendarBtnGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateMoveBtnBox {
+  border: 0.1rem solid #c5c8ce;
+  border-radius: 0.5em;
+}
+
+.calendarNav #todayBtn {
+  width: 3em;
+  height: 2em;
+  margin: 0 0.125em;
+  color: #374553;
+  font-weight: 600;
+}
+
+#calendarTable {
+  width: 100%;
+}
+
+#calendarTable thead,
+#calendarTable tbody,
+#calendarTable th,
+#calendarTable td {
+  /* border: 0.15em solid#374553; */
+  padding: 1em;
+}
+
+.saturday {
+  color: #006bff;
+}
+
+.sunday {
+  color: #ff004a;
+}
+
+.opacity {
+  opacity: 50%;
+}
+
+.today {
+  width: 1.125em;
+  height: 1.125em;
+  border-radius: 50%;
+  color: white;
+  background-color: #656f7c;
+}
+
+/* todoList Style */
+.todoList {
+  max-width: 25em;
+  min-width: 20em;
+  flex: 1;
+}
+
+.todoListTitle {
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 2em;
+  font-weight: bold;
+  color: #374553;
+  border-bottom: 0.1rem solid #c5c8ce;
+}
+
+#todoForm {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0.5em;
+  margin-bottom: 1em;
+  text-align: center;
+  border: 0.1rem dashed #c5c8ce;
+  border-radius: 0.5em;
+}
+
+#todoForm input {
+  width: 80%;
+  border: none;
+  color: #646f7c;
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+#todoForm input::placeholder {
+  color: #646f7c;
+}
+
+#list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  border: 0.1rem solid #c5c8ce;
+  border-radius: 0.5em;
+}
+
+#list li:not(:last-of-type) {
+  margin-bottom: 1em;
+}
+
+#list li button:first-of-type {
+  margin-right: 0.5em;
+}
+
+#list li span {
+  margin-top: 0.125em;
+  margin-right: 0.5em;
+  align-content: center;
+}
+
+#list li button:last-of-type {
+  margin-left: auto;
+}
+
+.done {
+  color: #c5c8ce;
+  text-decoration: line-through;
+}
+
+/* media query */
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    margin: 5em auto;
+  }
+  .box {
+    width: 20em;
+  }
+  .calendar {
+    margin-bottom: 3em;
+  }
+}
